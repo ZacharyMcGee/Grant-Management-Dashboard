@@ -14,17 +14,17 @@ body {
   min-height: 100%;
 }
 
-
-
 .header {
-  padding-left: 15%;
-  padding-right: 15%;
+  position: fixed;
+  top: 0;
+  width: 100%;
   background-color: #444;
   height: 60px;
 }
 
 .header_img {
   float: left;
+  padding-left: 15%;
   padding-top: 16px;
 }
 
@@ -34,6 +34,7 @@ body {
 
 .header_menu_bar {
   float: right;
+  padding-right: 15%;
   padding-top: 20px;
 }
 
@@ -61,19 +62,69 @@ body {
 }
 
 .content {
-  background-color: #FFF;
   float: left;
+  background-color: #FFF;
   width: 70%;
-  margin-top: 15px;
   border-radius: 3px;
+  margin-top: 75px;
   padding-left: 10px;
   padding-right: 10px;
 }
 
 .side {
   float:left;
-  margin-top: 15px;
+  position: fixed;
+  top: 60px;
+  left: 67%;
+  background-color: #FFF;
   width: 20%;
+  border-radius: 3px;
+  margin-top: 15px;
+  margin-left: 10px;
   padding-left: 10px;
   padding-right: 10px;
+}
+
+.profile_card {
+  padding-top: 10px;
+  height: 50px;
+}
+
+.side_avatar {
+  float: left;
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+}
+
+.side_text {
+  float: left;
+  font-family: agency-fb, sans-serif;
+  font-style: normal;
+  font-weight: 400;  letter-spacing: .5px;
+  padding-top: 16px;
+  padding-left: 10px;
+}
+
+.profile_line hr {
+  border: 0;
+  height: 0;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.red_text {
+  color: #e5a4a4;
+}
+
+.blue_text {
+  color: #a0cce5;
+}
+
+.yellow_text {
+  color: #e8d863;
+}
+
+.green_text {
+  color: #a4da94;
 }
