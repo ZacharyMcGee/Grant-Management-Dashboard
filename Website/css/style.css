@@ -70,11 +70,30 @@ body {
   width: calc(100% - 265px);
   margin-top: 75px;
   margin-right: 210px;
-  padding-left: 10px;
-  padding-right: 10px;
   -webkit-box-shadow: 0px 0px 1px 0px rgba(87,87,87,0.19);
   -moz-box-shadow: 0px 0px 1px 0px rgba(87,87,87,0.19);
   box-shadow: 0px 0px 1px 0px rgba(87,87,87,0.19);
+}
+
+.content_header {
+   font-family: agency-fb, sans-serif;
+   color: #7d7d7d;
+}
+
+.content_header p {
+  margin: 0px;
+  margin-bottom: 10px;
+  padding: 10px 0 0 10px;
+}
+
+.content_header a {
+  text-decoration: none;
+  color: #660000;
+}
+
+.content_main {
+  padding-left: 10px;
+  padding-right: 10px;
 }
 
 .side {
