@@ -33,9 +33,9 @@ body {
 }
 
 .header_menu_bar {
-  float: right;
-  padding-right: 15%;
-  padding-top: 20px;
+  float: left;
+  padding-left: 20px;
+  padding-top: 19px;
 }
 
 .header_menu_bar ul {
@@ -57,36 +57,61 @@ body {
 
 .main {
   height: 100%;
+  overflow: auto;
   margin-left: 15%;
-  margin-right: 15%;
+  margin-right: 15%
 }
 
 .content {
   float: left;
   background-color: #FFF;
-  width: 70%;
   border-radius: 3px;
+  width: calc(100% - 265px);
   margin-top: 75px;
+  margin-right: 210px;
   padding-left: 10px;
   padding-right: 10px;
+  -webkit-box-shadow: 0px 0px 1px 0px rgba(87,87,87,0.19);
+  -moz-box-shadow: 0px 0px 1px 0px rgba(87,87,87,0.19);
+  box-shadow: 0px 0px 1px 0px rgba(87,87,87,0.19);
 }
 
 .side {
-  float:left;
+  float: left;
   position: fixed;
   top: 60px;
-  left: 67%;
+  right: 15%;
   background-color: #FFF;
-  width: 20%;
+  width: 230px;
   border-radius: 3px;
   margin-top: 15px;
   margin-left: 10px;
+  -webkit-box-shadow: 0px 0px 1px 0px rgba(87,87,87,0.19);
+  -moz-box-shadow: 0px 0px 1px 0px rgba(87,87,87,0.19);
+  box-shadow: 0px 0px 1px 0px rgba(87,87,87,0.19);
+}
+
+.side_header {
+   font-family: agency-fb, sans-serif;
+   color: #7d7d7d;
+   text-align: center;
+   padding-top: 10px;
+}
+
+.side_header p {
+  padding: 0px;
+  margin: 0px;
+  margin-bottom: 10px;
+}
+
+.side_main{
   padding-left: 10px;
   padding-right: 10px;
 }
 
 .profile_card {
-  padding-top: 10px;
+  padding-top: 15px;
+  padding-bottom: 15px;
   height: 50px;
 }
 
@@ -109,6 +134,7 @@ body {
 .profile_line hr {
   border: 0;
   height: 0;
+  margin: 0px;
   border-top: 1px solid rgba(0, 0, 0, 0.1);
   border-bottom: 1px solid rgba(255, 255, 255, 0.3);
 }
@@ -127,4 +153,16 @@ body {
 
 .green_text {
   color: #a4da94;
+}
+
+.footer {
+  bottom:0;
+  width:100%;
+  height:60px;
+  background:#FFF;
+}
+
+.footer_text {
+  text-align: center;
+  font-family: 'Open Sans', sans-serif;
 }
