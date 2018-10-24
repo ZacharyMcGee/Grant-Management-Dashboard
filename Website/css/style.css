@@ -55,6 +55,8 @@ body {
   text-decoration: none;
 }
 
+
+
 .main {
   height: 100%;
   overflow: auto;
@@ -190,6 +192,11 @@ body {
 
 .footer_text {
   top: 50%;
+  color: #7d7d7d;
   text-align: center;
   font-family: 'Open Sans', sans-serif;
+}
+
+.footer_text p {
+  padding-top: 20px;
 }
