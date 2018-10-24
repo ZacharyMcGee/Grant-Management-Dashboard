@@ -153,8 +153,8 @@ body {
 }
 
 .content_header {
-   font-family: agency-fb, sans-serif;
-   color: #7d7d7d;
+  font-family: 'Open Sans', sans-serif;
+  color: #7d7d7d;
 }
 
 .content_header p {
@@ -180,7 +180,7 @@ body {
 
 .header_text {
   font-size: 18px;
-  font-weight: bold;
+  color: #444;
 }
 
 .side {
@@ -206,13 +206,15 @@ body {
 }
 
 .side_header {
-   font-family: agency-fb, sans-serif;
+  font-family: 'Open Sans', sans-serif;
    color: #7d7d7d;
    text-align: center;
    padding-top: 10px;
 }
 
 .side_header p {
+  font-size: 18px;
+  color: #444;
   padding: 0px;
   margin: 0px;
   margin-bottom: 10px;
