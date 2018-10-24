@@ -12,9 +12,11 @@ html, body{
 body {
   background-color: #eceef1;
   min-height: 100%;
+  min-width: 960px;
 }
 
 .header {
+  min-width: 960px;
   position: fixed;
   top: 0;
   width: 100%;
@@ -55,7 +57,79 @@ body {
   text-decoration: none;
 }
 
+.header_menu_bar a:hover {
+    transition: color 0.5s ease;
+    color: #FFF;
+}
 
+.header_media_links {
+  float: right;
+  padding-right: 15%;
+  padding-top: 18px;
+}
+
+.media_link{
+  float: left;
+}
+
+.media_link_github {
+    width: 24px; height: 24px;
+    color: transparent;
+    background: url('../images/github.png') no-repeat left top;
+    transition: .5s ease;
+    margin-right: 0px;
+}
+
+.media_link_github a {
+  height: 100%;
+  display: block;
+}
+
+.media_link_github a:link, .media_link_github a:visited {
+  padding-top: 2px;
+  padding-left: 0px;
+  font-family: 'Open Sans', sans-serif;
+  text-decoration: none;
+  transition: .3s ease;
+  color: transparent;
+}
+
+.media_link_github a:link:hover, .media_link_github a:visited:hover {
+  padding-left: 30px;
+  font-family: 'Open Sans', sans-serif;
+  text-decoration: none;
+  transition: .5s ease;
+  margin-right: 60px;
+  color: #f1f1f1;
+}
+
+.media_link_github:hover {
+  transition: .5s ease;
+  margin-right: 60px;
+  animation: .5s media_link_hover_flash infinite step-end;
+}
+
+
+@keyframes media_link_hover_flash{
+  0% {
+  background-position: -24px 0px
+  }
+  33% {
+    background-position: -48px 0px
+  }
+  66% {
+    background-position: -72px 0px
+  }
+  100% {
+    background-position: -96px 0px
+  }
+}
+
+@keyframes media_link_hover_move{
+  100% {
+    margin-right: 60px
+  }
+}
 
 .main {
   height: 100%;
@@ -94,6 +168,11 @@ body {
   color: #660000;
 }
 
+.content_header a:hover {
+    transition: color 0.5s ease;
+    color: #7d7d7d;
+}
+
 .content_main {
   padding-left: 10px;
   padding-right: 10px;
@@ -117,6 +196,13 @@ body {
   -webkit-box-shadow: 0px 0px 1px 0px rgba(87,87,87,0.19);
   -moz-box-shadow: 0px 0px 1px 0px rgba(87,87,87,0.19);
   box-shadow: 0px 0px 1px 0px rgba(87,87,87,0.19);
+}
+
+@media screen and (max-width: 960px) {
+    .side {
+      right: auto;
+      left: calc(15vh + 470px);
+    }
 }
 
 .side_header {
