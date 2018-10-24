@@ -65,6 +65,7 @@ body {
 .content {
   float: left;
   background-color: #FFF;
+  color: #7d7d7d;
   font-family: 'Open Sans', sans-serif;
   border-radius: 3px;
   width: calc(100% - 265px);
@@ -94,6 +95,11 @@ body {
 .content_main {
   padding-left: 10px;
   padding-right: 10px;
+}
+
+.header_text {
+  font-size: 18px;
+  font-weight: bold;
 }
 
 .side {
@@ -183,6 +189,7 @@ body {
 }
 
 .footer_text {
+  top: 50%;
   text-align: center;
   font-family: 'Open Sans', sans-serif;
 }
