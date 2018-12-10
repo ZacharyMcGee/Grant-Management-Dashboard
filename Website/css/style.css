@@ -73,11 +73,11 @@ body {
 
 .media_link{
   float: left;
+  margin-right: 60px;
 }
 
 .media_link_github {
     width: 24px; height: 24px;
-    color: transparent;
     background: url('../images/github.png') no-repeat left top;
     transition: .5s ease;
     margin-right: 0px;
@@ -85,6 +85,7 @@ body {
 
 .media_link_github a {
   height: 100%;
+  margin-left: 30px;
   display: block;
 }
 
@@ -94,21 +95,11 @@ body {
   font-family: 'Open Sans', sans-serif;
   text-decoration: none;
   transition: .3s ease;
-  color: transparent;
-}
-
-.media_link_github a:link:hover, .media_link_github a:visited:hover {
-  padding-left: 30px;
-  font-family: 'Open Sans', sans-serif;
-  text-decoration: none;
-  transition: .5s ease;
-  margin-right: 60px;
-  color: #f1f1f1;
+  color: #999;
 }
 
 .media_link_github:hover {
   transition: .5s ease;
-  margin-right: 60px;
   animation: .5s media_link_hover_flash infinite step-end;
 }
 
