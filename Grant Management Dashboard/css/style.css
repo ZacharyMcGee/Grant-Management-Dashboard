@@ -1,0 +1,220 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans');
+
+html, body{
+  padding: 0;
+  margin: 0;
+}
+
+.html{
+  height: 100%;
+}
+
+body {
+  background-color: #f3f3f3;
+  min-height: 100%;
+  min-width: 600px;
+}
+
+.header {
+  min-width: 960px;
+  margin-left: 160px;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background-color: #FFF;
+  height: 45px;
+  -webkit-box-shadow: 0px 0px 1px 0px rgba(87,87,87,0.19);
+  -moz-box-shadow: 0px 0px 1px 0px rgba(87,87,87,0.19);
+  box-shadow: 0px 0px 1px 0px rgba(87,87,87,0.19);
+}
+
+.header-img {
+  float: left;
+  padding-top: 5px;
+}
+
+.header-img img {
+  width: 66.7%;
+  height: 66.7%;
+}
+
+.header-menu-bar {
+  float: right;
+  padding-top: 11px;
+}
+
+.header-menu-bar ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.header-menu-bar li {
+  display: inline;
+  padding: 10px;
+}
+
+.header-menu-bar a {
+  color: #303030;
+  font-family: 'Open Sans', sans-serif;
+  text-decoration: none;
+}
+
+.header-menu-buttons {
+  float: left;
+  padding-right: 15px;
+  padding-left: 15px;
+  border-right: 1px solid #e6e6e6;
+  border-left: 1px solid #e6e6e6;
+}
+
+.header-account-info {
+  font-family: 'Open Sans', sans-serif;
+  color: #303030;
+  float: right;
+  margin-right: 190px;
+  margin-top: 12px;
+}
+
+.header-account-username {
+  float: left;
+  margin-right: 5px;
+  margin-left: 15px;
+}
+
+.header-account-username p{
+  margin: 0px;
+  padding: 0px;
+}
+
+.header-account-username a{
+  padding-left: 5px;
+  text-decoration: none;
+  color: #303030;
+}
+
+.account-dropdown {
+  display: none;
+  top: 50px;
+  margin-left: 15px;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  -webkit-box-shadow: 0px 0px 1px 0px rgba(87,87,87,0.19);
+  -moz-box-shadow: 0px 0px 1px 0px rgba(87,87,87,0.19);
+  box-shadow: 0px 0px 1px 0px rgba(87,87,87,0.19);  z-index: 1;
+}
+
+.account-dropdown a {
+    float: none;
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+}
+
+.account-dropdown a:hover {
+    background-color: #f3f3f3;
+}
+
+.main {
+  height: 100%;
+  margin-left: 190px;
+  margin-right: 30px;
+}
+
+.content {
+  float: left;
+  width: 100%;
+  padding-bottom: 40px;
+}
+
+.full-card {
+  background-color: #FFF;
+  color: #7d7d7d;
+  font-family: 'Open Sans', sans-serif;
+  border-radius: 3px;
+  width: 100%;
+  margin-top: 75px;
+  padding-bottom: 20px;
+  -webkit-box-shadow: 0px 0px 1px 0px rgba(87,87,87,0.19);
+  -moz-box-shadow: 0px 0px 1px 0px rgba(87,87,87,0.19);
+  box-shadow: 0px 0px 1px 0px rgba(87,87,87,0.19);
+}
+
+.card-title {
+  border-bottom: 1px solid #e6e6e6;
+  padding-bottom: 8px;
+  height: 32px;
+}
+
+.card-title-text {
+  margin-left: 20px;
+  margin-bottom: 10px;
+  padding-top: 10px;
+  float: left;
+}
+
+.card-title-button {
+  padding-top: 8px;
+  padding-right: 20px;
+  float: right;
+}
+
+.card-body {
+  overflow: auto;
+  width: 100%;
+}
+
+.sidebar {
+  background-color: #263544;
+    height: 100%;
+    width: 160px;
+    position: fixed;
+    z-index: 0;
+    top: 0; /
+    left: 0;
+    overflow-x: hidden;
+    -webkit-box-shadow: -1px 2px 5px 1px rgba(0,0,0,0.26);
+    -moz-box-shadow: -1px 2px 5px 1px rgba(0,0,0,0.26);
+    box-shadow: -1px 2px 5px 1px rgba(0,0,0,0.26);
+}
+
+.sidebar-header {
+  z-index: 1;
+  background-color: #263544;
+  height: 45px;
+  border-bottom: 1px solid #00000012;
+  -webkit-box-shadow: 0px 0px 1px 0px rgba(87,87,87,0.19);
+  -moz-box-shadow: 0px 0px 1px 0px rgba(87,87,87,0.19);
+  box-shadow: 0px 0px 1px 0px rgba(87,87,87,0.19);
+}
+
+.sidebar-header img {
+  height: 45%;
+  margin-top: 12px;
+  margin-left: 13px;
+}
+
+.sidebar-menu {
+
+  z-index: 0;
+}
+
+.sidebar-menu a {
+    padding: 6px 8px 6px 16px;
+    text-decoration: none;
+    font-size: 14px;
+    font-family: 'Open Sans', sans-serif;
+    display: block;
+}
+
+.sidebar-button {
+  color: #dcdcdc;
+}
+
+.active, .sidebar-button:hover {
+  color: #dcdcdc;
+  background-color: #1d2531;
+}
