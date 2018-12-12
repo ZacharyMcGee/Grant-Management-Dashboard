@@ -17,12 +17,12 @@ body {
 
 .header {
   min-width: 960px;
-  margin-left: 160px;
+  margin-left: 190px;
   position: fixed;
   top: 0;
   width: 100%;
   background-color: #FFF;
-  height: 45px;
+  height: 61px;
   -webkit-box-shadow: 0px 0px 1px 0px rgba(87,87,87,0.19);
   -moz-box-shadow: 0px 0px 1px 0px rgba(87,87,87,0.19);
   box-shadow: 0px 0px 1px 0px rgba(87,87,87,0.19);
@@ -40,7 +40,7 @@ body {
 
 .header-menu-bar {
   float: right;
-  padding-top: 11px;
+  padding-top: 18px;
 }
 
 .header-menu-bar ul {
@@ -72,8 +72,8 @@ body {
   font-family: 'Open Sans', sans-serif;
   color: #303030;
   float: right;
-  margin-right: 190px;
-  margin-top: 12px;
+  margin-right: 220px;
+  margin-top: 18px;
 }
 
 .header-account-username {
@@ -170,7 +170,7 @@ body {
 .sidebar {
   background-color: #263544;
     height: 100%;
-    width: 160px;
+    width: 190px;
     position: fixed;
     z-index: 0;
     top: 0; /
@@ -184,7 +184,7 @@ body {
 .sidebar-header {
   z-index: 1;
   background-color: #263544;
-  height: 45px;
+  height: 60px;
   border-bottom: 1px solid #00000012;
   -webkit-box-shadow: 0px 0px 1px 0px rgba(87,87,87,0.19);
   -moz-box-shadow: 0px 0px 1px 0px rgba(87,87,87,0.19);
@@ -192,8 +192,8 @@ body {
 }
 
 .sidebar-header img {
-  height: 45%;
-  margin-top: 12px;
+  height: 40%;
+  margin-top: 18px;
   margin-left: 13px;
 }
 
