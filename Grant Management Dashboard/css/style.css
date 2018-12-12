@@ -39,11 +39,28 @@ body {
   height: 66.7%;
 }
 
+.expand-button {
+  float: left;
+  display: inline;
+  margin-top: 20px;
+  margin-left: 20px;
+  cursor: pointer;
+}
+
 .search-bar {
   float: left;
   display: inline;
   margin-top: 20px;
   margin-left: 20px;
+  cursor: pointer;
+}
+
+.search-bar input {
+  margin-left: 20px;
+  padding: 5px;
+  margin-top: -5px;
+  border-radius: 3px;
+  border: 1px solid #e0e0e0;
 }
 
 .header-menu-bar {

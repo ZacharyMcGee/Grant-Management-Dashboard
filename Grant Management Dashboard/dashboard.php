@@ -23,6 +23,9 @@
   <div class="header">
     <div class="header-img">
     </div>
+    <div class="expand-button">
+      <i class="fas fa-expand" style="color: #263544;" onClick="openFullscreen()"></i>
+    </div>
     <div class="search-bar">
       <i class="fas fa-search" style="color: #263544;"></i>
     </div>
