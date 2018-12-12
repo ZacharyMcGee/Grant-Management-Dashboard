@@ -50,7 +50,7 @@ if ($result->num_rows > 0) {
 
 <button class="accordion"><i class="fas fa-chart-pie"></i>Grants</button>
 <div class="panel">
-  <a href="#" class="sidebar-button" id="tasks"><i class="fas fa-plus-circle"></i>New Grant</a>
+  <a href="#" class="sidebar-button" id="new-grant"><i class="fas fa-plus-circle"></i>New Grant</a>
   <a href="#" class="sidebar-button" id="tasks"><i class="far fa-eye"></i>View Grants</a>
   <a href="#" class="sidebar-button" id="tasks"><i class="fas fa-plus-circle"></i>Create New Grant</a>
   <a href="#" class="sidebar-button" id="tasks"><i class="fas fa-plus-circle"></i>Create New Grant</a>
@@ -100,10 +100,10 @@ if ($result->num_rows > 0) {
   </div>
 
   <div class="main" id="main">
+    <div class="breadcrumbs" id="breadcrumbs">
+      <p>Home / Dashboard</p>
+    </div>
     <div class="content" id="content">
-      <div class="breadcrumbs">
-        <p>Home / Dashboard</p>
-      </div>
 
       <div class="full-card">
         <div class="card-title">
