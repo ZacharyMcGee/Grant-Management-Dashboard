@@ -16,12 +16,15 @@
     </div>
     <div class="sidebar-menu">
       <a href="#" class="sidebar-button active" id="dashboard"><i class="fas fa-tachometer-alt"></i><span class="parent-link">Dashboard</span></a>
-      <a href="#" class="sidebar-button" id="tasks"><i class="fas fa-tasks"></i><span class="parent-link">Tasks</span></a>
+      <a href="#" class="sidebar-button" id="tasks"><i class="fas fa-chart-pie"></i><span class="parent-link">Grants</span></a>
     </div>
 </div>
 
   <div class="header">
     <div class="header-img">
+    </div>
+    <div class="search-bar">
+      <i class="fas fa-search" style="color: #263544;"></i>
     </div>
     <div class="header-account-info">
     <div class="header-menu-buttons">
@@ -52,7 +55,9 @@
 
   <div class="main" id="main">
     <div class="content" id="content">
-
+      <div class="breadcrumbs">
+        <p>Home / Dashboard</p>
+      </div>
   </div>
 </div>
 
