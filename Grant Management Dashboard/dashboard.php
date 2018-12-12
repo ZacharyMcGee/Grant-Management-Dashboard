@@ -1,3 +1,31 @@
+<?php
+session_start();
+// check to see if the user is logged in
+if ($_SESSION['loggedin']) {
+require_once 'config.php';
+
+
+$con = mysqli_connect($DB_HOST, $DB_USER, $DB_PASS, $DB_NAME);
+if ( mysqli_connect_errno() ) {
+	die ('Failed to connect to MySQL: ' . mysqli_connect_error());
+}
+
+$sql = "SELECT username FROM accounts WHERE id=" . $_SESSION['id'];
+$result = $con->query($sql);
+if ($result->num_rows > 0) {
+    while($row = $result->fetch_assoc()) {
+       $username = $row["username"];
+    }
+} else {
+    $username = "Unavailable";
+}
+
+} else {
+	// user is not logged in, send the user to the login page
+	header('Location: index.php');
+}
+?>
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -15,8 +43,23 @@
       <a href=""><img src="images/logo.png"/></a>
     </div>
     <div class="sidebar-menu">
-      <a href="#" class="sidebar-button active" id="dashboard"><i class="fas fa-tachometer-alt"></i><span class="parent-link">Dashboard</span></a>
-      <a href="#" class="sidebar-button" id="tasks"><i class="fas fa-chart-pie"></i><span class="parent-link">Grants</span></a>
+      <button id="dashboard" class="accordion"><i class="fas fa-tachometer-alt"></i>Dashboard</button>
+      <div class="panel">
+        <a href="#" class="sidebar-button" id="tasks"><i class="fas fa-palette"></i>Customize</a>
+      </div>
+
+<button class="accordion"><i class="fas fa-chart-pie"></i>Grants</button>
+<div class="panel">
+  <a href="#" class="sidebar-button" id="tasks"><i class="fas fa-plus-circle"></i>New Grant</a>
+  <a href="#" class="sidebar-button" id="tasks"><i class="far fa-eye"></i>View Grants</a>
+  <a href="#" class="sidebar-button" id="tasks"><i class="fas fa-plus-circle"></i>Create New Grant</a>
+  <a href="#" class="sidebar-button" id="tasks"><i class="fas fa-plus-circle"></i>Create New Grant</a>
+</div>
+
+<button class="accordion"><i class="fas fa-chart-pie"></i>Tasks</button>
+<div class="panel">
+  <a href="#" class="sidebar-button" id="tasks"><i class="fas fa-plus-circle"></i>Create New Grant</a>
+</div>
     </div>
 </div>
 
@@ -24,7 +67,7 @@
     <div class="header-img">
     </div>
     <div class="expand-button">
-      <i class="fas fa-expand" style="color: #263544;" onClick="openFullscreen()"></i>
+      <i class="fas fa-expand" style="color: #263544;" onClick="loadExcel()"></i>
     </div>
     <div class="search-bar">
       <i class="fas fa-search" style="color: #263544;"></i>
@@ -35,7 +78,7 @@
       <i class="fas fa-question-circle fa-lg" style="color: #263544;"></i>
     </div>
     <div class="header-account-username">
-      <p><i class="fas fa-user fa-lg" style="color: #263544;"></i></p>
+      <p><i class="fas fa-user fa-lg" style="color: #263544;"></i><?php echo "<a href='account.php'>" . $username . "</a>"?></p>
     </div>
      <i class="fas fa-caret-down fa-sm" onclick="openDropdown('account-dropdown')" style="color: #263544; margin-top: 4px; cursor: pointer;"></i>
       <div class="account-dropdown" id="account-dropdown">
@@ -61,6 +104,20 @@
       <div class="breadcrumbs">
         <p>Home / Dashboard</p>
       </div>
+
+      <div class="full-card">
+        <div class="card-title">
+          <div class="card-title-text">
+            <i class="fas fa-plus-circle" id="tasks"></i><span class="parent-link">Dashboard</span>
+          </div>
+          <div class="card-title-button">
+          </div>
+        </div>
+
+        <div class="card-body">
+          <canvas id="myChart"></canvas>
+        </div>
+      </div>
   </div>
 </div>
 
@@ -73,5 +130,7 @@
 
 </body>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
+  <script src="js/xlsx.full.min.js"></script>
   <script src="js/Dashboard.js"></script>
 </html>
