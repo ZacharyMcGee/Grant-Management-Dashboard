@@ -34,11 +34,11 @@ dragarea.addEventListener('drop', (e) => {
   <div class="card-body">
     <div class="input-grant-title">
       <p>Grant Name</p>
-      <input type="text" id="input-title" class="input-text" placeholder="Task Name, e.g. Google Scrape">
+      <input type="text" id="input-title" class="input-text">
     </div>
     <div class="input-grant-description">
-      <p>Grant Description</p>
-      <input type="text" id="input-description" class="input-text" placeholder="Web Address, e.g. www.google.com">
+      <p>Budget Purpose</p>
+      <input type="text" id="input-bp" class="input-text">
     </div>
     <div class="drag-and-drop-description">
       <p>Upload Excel Data</p><span class="small-hint">(.xlsx format)</span>
