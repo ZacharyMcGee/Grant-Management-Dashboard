@@ -57,11 +57,12 @@ function readSingleFile(e) {
     }
   }
   var reader = new FileReader();
+  reader.readAsBinaryString(file);
+
   reader.onload = function(e) {
     var contents = e.target.result;
     loadExcel(contents);
   };
-  reader.readAsBinaryString(file);
 }
 
 function loadExcel(contents){
