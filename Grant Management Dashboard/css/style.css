@@ -276,6 +276,7 @@ body {
 
 .active, .accordion:hover {
   background-color: #1d2531;
+  border-bottom: 1px solid #1a242f;
 }
 
 .accordion:after {
@@ -295,4 +296,56 @@ body {
   max-height: 0;
   overflow: hidden;
   transition: all 0.2s ease-out;
+}
+
+.drag-and-drop {
+  border: 3px dashed #bbb;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  padding: 20px;
+  text-align: center;
+  font: 21pt bold arial;
+  color: #7d7d7d;
+  margin: 20px;
+}
+
+.drag-and-drop-text p {
+  font-size: 22px;
+  font-family: 'Open Sans', sans-serif;
+  padding: 0px;
+  margin: 0px;
+}
+
+.drag-and-drop-text img {
+  width: 20px;
+}
+
+.drag-and-drop-text-or p {
+  font-size: 16px;
+  font-family: 'Open Sans', sans-serif;
+  padding: 0px;
+  margin: 0px;
+  color: #aeaeae;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+input[type="file"] {
+    display: none;
+}
+.custom-file-upload {
+  border: 1px solid #ccc;
+  display: inline-block;
+  padding: 6px 85px;
+  cursor: pointer;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 16px;
+}
+
+.custom-file-upload p {
+  padding: 0px;
+}
+
+.dragging {
+  background-color: #befffa;
 }
