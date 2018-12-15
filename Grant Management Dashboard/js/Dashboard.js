@@ -1,4 +1,6 @@
-/* ACCORDION MENU */
+  /////////////////////////////////////
+ /*           ACCORDION MENU        */
+/////////////////////////////////////
 
 var acc = document.getElementsByClassName("accordion");
 var i;
@@ -15,7 +17,30 @@ for (i = 0; i < acc.length; i++) {
   });
 }
 
-/* EXPAND BUTTON */
+  /////////////////////////////////////
+  /*    ACCORDION MENU BUTTONS      */
+/////////////////////////////////////
+//         DASHBOARD
+//         - customize
+//         GRANTS
+//         - new grant
+//         - view grants
+////////////////////////////////////
+
+/* NEW GRANT BUTTON */
+
+$("#new-grant").click(function(){
+    $.ajax({url: "includes/grants/new-grant.php", success: function(result){
+        $("#content").html(result);
+        $("#breadcrumbs").html("<p>Home / New Grant</p>");
+        document.getElementById('file-upload')
+        .addEventListener('change', readSingleFile, false);
+    }});
+});
+
+  /////////////////////////////////////
+ /*      MAKE PAGE FULL SCREEN      */
+/////////////////////////////////////
 function openFullscreen() {
   var elem = document.documentElement;
   if (elem.requestFullscreen) {
@@ -41,6 +66,10 @@ function closeFullscreen() {
   }
 }
 
+  /////////////////////////////////////
+ /*      READ EXCEL FILE DATA       */
+/////////////////////////////////////
+
 function readSingleFile(e) {
   // IF WE SELECTED THE FILE FROM BUTTON THEN HANDLE THIS WAY
   if(e.type == "change"){
@@ -64,6 +93,10 @@ function readSingleFile(e) {
     loadExcel(contents);
   };
 }
+
+  /////////////////////////////////////
+ /* TURN EXCEL DATA TO JSON & LOAD  */
+/////////////////////////////////////
 
 function loadExcel(contents){
 
@@ -105,18 +138,10 @@ var chart = new Chart(ctx, {
     options: {}
 });
 
-/* SIDEBAR MENU BUTTONS */
+  /////////////////////////////////////
+ /* BUILD HTML TABLE FROM JSON DATA */
+/////////////////////////////////////
 
-$("#new-grant").click(function(){
-    $.ajax({url: "includes/grants/new-grant.php", success: function(result){
-        $("#content").html(result);
-        $("#breadcrumbs").html("<p>Home / New Grant</p>");
-        document.getElementById('file-upload')
-        .addEventListener('change', readSingleFile, false);
-    }});
-});
-
-/* FUNCTIONS */
 function buildHtmlTable(selector, excelData) {
   var columns = addAllColumnHeaders(excelData, selector);
 
@@ -130,10 +155,6 @@ function buildHtmlTable(selector, excelData) {
     $(selector).append(row$);
   }
 }
-
-// Adds a header row to the table and returns the set of columns.
-// Need to do union of keys from all records as some records may not contain
-// all records.
 function addAllColumnHeaders(excelData, selector) {
   var columnSet = [];
   var headerTr$ = $('<tr/>');
@@ -147,7 +168,7 @@ function addAllColumnHeaders(excelData, selector) {
       }
     }
   }
-  $(selector).append(headerTr$);
 
+  $(selector).append(headerTr$);
   return columnSet;
 }

@@ -41,7 +41,7 @@ dragarea.addEventListener('drop', (e) => {
       <input type="text" id="input-bp" class="input-text">
     </div>
     <div class="drag-and-drop-description">
-      <p>Upload Excel Data</p><span class="small-hint">(.xlsx format)</span>
+      <p id="upload-excel-p">Upload Excel Data</p><span id="small-hint" class="small-hint">(.xlsx format)</span>
     </div>
     <div id="drag-and-drop" class="drag-and-drop">
       <div class="drag-and-drop-text">
