@@ -113,30 +113,39 @@ function loadExcel(contents){
         raw: true
     });
     document.getElementById('drag-and-drop').innerHTML = "<div class='excelData'><table id='excelDataTable' class='excelDataTable'></table></div>";
-    buildHtmlTable('#excelDataTable', result)
-    console.log(result[0].Description);
+    buildHtmlTable('#excelDataTable', result);
+    var totalDirectCostExpenditures = calculateTotalDirectCostExpenditures(result);
+    var totalDirectCostRefunds = calculateTotalDirectCostRefunds(result);
+    var netDirectCostExpenditures = calculateNetDirectCostExpenditures(totalDirectCostExpenditures, totalDirectCostRefunds);
+    console.log(totalDirectCostExpenditures);
+    console.log(totalDirectCostRefunds);
+    console.log(netDirectCostExpenditures);
     console.log(result);
 }
 
-var ctx = document.getElementById('myChart').getContext('2d');
-var chart = new Chart(ctx, {
-    // The type of chart we want to create
-    type: 'line',
+function calculateTotalDirectCostExpenditures(obj){
+  var total = 0;
+  for(var i = 0; i < obj.length; i++){
+    if(!obj[i]["Headers Category"].includes("24") && !obj[i]["Headers Category"].includes("63")){
+      total += obj[i]["Debit Amount"];
+    }
+  }
+  return total;
+}
 
-    // The data for our dataset
-    data: {
-        labels: ["January", "February", "March", "April", "May", "June", "July"],
-        datasets: [{
-            label: "My First dataset",
-            backgroundColor: 'rgb(255, 99, 132)',
-            borderColor: 'rgb(255, 99, 132)',
-            data: [0, 10, 5, 2, 20, 30, 45],
-        }]
-    },
+function calculateTotalDirectCostRefunds(obj){
+  var total = 0;
+  for(var i = 0; i < obj.length; i++){
+    if(!obj[i]["Headers Category"].includes("24") && !obj[i]["Headers Category"].includes("63") && !obj[i]["Headers Category"].includes("62")){
+      total += obj[i]["Credit Amount"];
+    }
+  }
+  return total;
+}
 
-    // Configuration options go here
-    options: {}
-});
+function calculateNetDirectCostExpenditures(expenditures, refunds){
+  return (expenditures - refunds).toFixed(2);
+}
 
   /////////////////////////////////////
  /* BUILD HTML TABLE FROM JSON DATA */
@@ -155,6 +164,7 @@ function buildHtmlTable(selector, excelData) {
     $(selector).append(row$);
   }
 }
+
 function addAllColumnHeaders(excelData, selector) {
   var columnSet = [];
   var headerTr$ = $('<tr/>');
@@ -170,5 +180,42 @@ function addAllColumnHeaders(excelData, selector) {
   }
 
   $(selector).append(headerTr$);
+  str = 'hey what is;going on there;'
+  runCommands(str);
   return columnSet;
+
+}
+
+function runCommands(string){
+  var commands = string.split(';');
+  //for(var i = 0; i < commands.length; i++){
+    //tokens = commands[i].split(' ');
+  //}
+  //print(commands);
+  //print(tokens);
+
+}
+
+
+
+function createChart(){
+  var ctx = document.getElementById('myChart').getContext('2d');
+  var chart = new Chart(ctx, {
+      // The type of chart we want to create
+      type: 'line',
+
+      // The data for our dataset
+      data: {
+          labels: ["January", "February", "March", "April", "May", "June", "July"],
+          datasets: [{
+              label: "My First dataset",
+              backgroundColor: 'rgb(255, 99, 132)',
+              borderColor: 'rgb(255, 99, 132)',
+              data: [0, 10, 5, 2, 20, 30, 45],
+          }]
+      },
+
+      // Configuration options go here
+      options: {}
+  });
 }
