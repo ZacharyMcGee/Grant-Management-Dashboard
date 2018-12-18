@@ -15,11 +15,11 @@ dragarea.addEventListener('dragleave', () => {
 dragarea.addEventListener('drop', (e) => {
   e.preventDefault();
   dragarea.classList.remove('dragging');
+  dragarea.classList.add('dropped');
   fileInput.files = e.dataTransfer.files;
   readSingleFile(e);
   //console.log(e);
 });
-
 </script>
 </head>
 <div class="full-card">

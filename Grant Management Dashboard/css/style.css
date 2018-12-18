@@ -416,11 +416,6 @@ input[type="file"] {
   padding: 0px;
 }
 
-.dragging {
-  background-color: #ebfafc;
-  border: 3px dashed #1daff3;
-}
-
 .excelData {
   position:relative;
 }
@@ -451,4 +446,19 @@ input[type="file"] {
   height:20px;
   width:35%;
   border:1px solid red;
+}
+
+/* ADD ON STYLES */
+
+.dragging {
+  background-color: #ebfafc;
+  border: 3px dashed #1daff3;
+}
+
+.hilighted {
+  background-color: #000;
+}
+
+.dropped {
+  border: 3px solid #FFF;
 }
