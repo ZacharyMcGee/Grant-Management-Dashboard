@@ -316,6 +316,7 @@ body {
 }
 
 .input-grant-description {
+  display: inline-block;
   float: left;
   height: 70px;
   width: calc(50% - 20px); /* IE 9,10 , Chrome, Firefox */
@@ -325,6 +326,40 @@ body {
 }
 
 .input-grant-description p {
+  margin: 0px;
+  margin-bottom: 5px;
+  margin-top: 5px;
+  font-size: 18px;
+}
+
+.input-grant-award {
+  display: inline-block;
+  float: left;
+  height: 70px;
+  width: calc(50% - 20px); /* IE 9,10 , Chrome, Firefox */
+  width: -webkit-calc(50% - 20px); /*For safari 6.0*/
+  padding-top: 10px;
+  padding-left: 20px;
+}
+
+.input-grant-award p {
+  margin: 0px;
+  margin-bottom: 5px;
+  margin-top: 5px;
+  font-size: 18px;
+}
+
+.input-grant-agency {
+  display: inline-block;
+  float: left;
+  height: 70px;
+  width: calc(50% - 20px); /* IE 9,10 , Chrome, Firefox */
+  width: -webkit-calc(50% - 20px); /*For safari 6.0*/
+  padding-top: 10px;
+  padding-left: 20px;
+}
+
+.input-grant-agency p {
   margin: 0px;
   margin-bottom: 5px;
   margin-top: 5px;
@@ -446,6 +481,47 @@ input[type="file"] {
   height:20px;
   width:35%;
   border:1px solid red;
+}
+
+.button-bar-bottom {
+  float: right;
+  margin-top: 10px;
+  padding-top: 10px;
+  width: 100%;
+}
+
+.cancel-button {
+  background-color: #CF2D2D;
+  width: 200px;
+  border: none;
+  border-radius: 3px;
+  color: white;
+  padding: 10px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  font-family: 'Open Sans', sans-serif;
+  cursor: pointer;
+  float: right;
+  margin-right: 20px;
+}
+
+.save-button {
+  background-color: #2AB030;
+  width: 200px;
+  border: none;
+  border-radius: 3px;
+  color: white;
+  padding: 10px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  font-family: 'Open Sans', sans-serif;
+  cursor: pointer;
+  margin-right: 20px;
+  float: right;
 }
 
 /* ADD ON STYLES */

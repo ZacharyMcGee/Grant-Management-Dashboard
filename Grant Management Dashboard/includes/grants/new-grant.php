@@ -20,6 +20,17 @@ dragarea.addEventListener('drop', (e) => {
   readSingleFile(e);
   //console.log(e);
 });
+
+$("#save-new-grant").click(function(){
+    console.log("save");
+});
+
+$("#cancel-new-grant").click(function(){
+  $.ajax({url: "includes/dashboard/dashboard.php", success: function(result){
+      $("#content").html(result);
+      $("#breadcrumbs").html("<p>Home / Dashboard</p>");
+  }});
+});
 </script>
 </head>
 <div class="full-card">
@@ -37,8 +48,16 @@ dragarea.addEventListener('drop', (e) => {
       <input type="text" id="input-title" class="input-text">
     </div>
     <div class="input-grant-description">
-      <p>Budget Purpose</p>
+      <p>Budget Purpose #</p>
       <input type="text" id="input-bp" class="input-text">
+    </div>
+    <div class="input-grant-award">
+      <p>Award Amount</p>
+      <input type="text" id="input-award" class="input-text">
+    </div>
+    <div class="input-grant-agency">
+      <p>Funding Agency</p>
+      <input type="text" id="input-agency" class="input-text">
     </div>
     <div class="drag-and-drop-description">
       <p id="upload-excel-p">Upload Excel Data</p><span id="small-hint" class="small-hint">(.xlsx format)</span>
@@ -54,6 +73,10 @@ dragarea.addEventListener('drop', (e) => {
           Select File
       </label>
       <input id="file-upload" type="file"/>
+    </div>
+    <div class="button-bar-bottom">
+      <button id="save-new-grant" class="save-button" type="button"><i class="far fa-save" style="padding-right:10px;"></i>Save Grant</button>
+      <button id="cancel-new-grant" class="cancel-button" type="button"><i class="fas fa-ban" style="padding-right:10px;"></i>Cancel</button>
     </div>
   </div>
 </div>
