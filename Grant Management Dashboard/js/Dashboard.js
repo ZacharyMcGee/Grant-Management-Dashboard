@@ -219,3 +219,22 @@ function createChart(){
       options: {}
   });
 }
+
+function showAlert(type, message) {
+      var x = document.getElementById("alertbar")
+
+      switch(type){
+        case "error":
+          x.innerHTML = "<p><i class='fas fa-exclamation-circle'></i> " + message + "</p>"
+          x.classList.add("error-alert");
+          break;
+        case "alert":
+          x.innerHTML = "<p><i class='fas fa-exclamation-triangle'></i> " + message + "</p>"
+          x.classList.add("warning-alert");
+          break;
+        default:
+          break;
+      }
+      x.classList.add("show");
+      setTimeout(function(){ x.className = x.className.replace("show", ""); }, 6000);
+}

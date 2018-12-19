@@ -1,7 +1,7 @@
 <head>
 <script type="text/javascript">
-let dragarea = document.getElementById('drag-and-drop');
-let fileInput = document.getElementById('file-upload');
+var dragarea = document.getElementById('drag-and-drop');
+var fileInput = document.getElementById('file-upload');
 
 dragarea.addEventListener('dragover', (e) => {
   e.preventDefault();
@@ -18,10 +18,10 @@ dragarea.addEventListener('drop', (e) => {
   dragarea.classList.add('dropped');
   fileInput.files = e.dataTransfer.files;
   readSingleFile(e);
-  //console.log(e);
 });
 
 $("#save-new-grant").click(function(){
+    showAlert("error", "HEY");
     console.log("save");
 });
 
@@ -75,8 +75,8 @@ $("#cancel-new-grant").click(function(){
       <input id="file-upload" type="file"/>
     </div>
     <div class="button-bar-bottom">
-      <button id="save-new-grant" class="save-button" type="button"><i class="far fa-save" style="padding-right:10px;"></i>Save Grant</button>
       <button id="cancel-new-grant" class="cancel-button" type="button"><i class="fas fa-ban" style="padding-right:10px;"></i>Cancel</button>
+      <button id="save-new-grant" class="save-button" type="button"><i class="far fa-save" style="padding-right:10px;"></i>Save Grant</button>
     </div>
   </div>
 </div>

@@ -109,6 +109,7 @@ if ($result->num_rows > 0) {
 </div>
 
   <div class="footer">
+		<div class="alertbar" id="alertbar"></div>
     <div class="footer_text">
 
     </div>
