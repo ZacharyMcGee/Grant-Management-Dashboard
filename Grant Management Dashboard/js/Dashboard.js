@@ -106,7 +106,7 @@ function readSingleFile(e) {
 function validateFileType(file) {
   var fileTypes = ['xlsx']; // FILETYPES WE ALLOW (XLSX ONLY)
   var extension = file.name.split('.').pop().toLowerCase(),
-  isSuccess = fileTypes.indexOf(extension) > -1; 
+  isSuccess = fileTypes.indexOf(extension) > -1;
   if (isSuccess) {
       return true;
   }
@@ -143,7 +143,8 @@ function loadExcel(contents){
     console.log(totalDirectCostExpenditures);
     console.log(totalDirectCostRefunds);
     console.log(netDirectCostExpenditures);
-    console.log(result);
+    sessionStorage.setItem("result", JSON.stringify(result).replace(/'/g, ""));
+    //console.log(JSON.parse(sessionStorage.getItem("result")));
 }
 
 function calculateTotalDirectCostExpenditures(obj){

@@ -21,7 +21,27 @@ dragarea.addEventListener('drop', (e) => {
 
 $("#save-new-grant").click(function(){
   if(validateNewGrantForm()){
-    showAlert("success", "Grant saved successfully!");
+    var grantName = document.getElementById('input-title').value;
+    var budgetPurpose = document.getElementById('input-bp').value;
+    var awardAmount = document.getElementById('input-award').value;
+    var fundingAgency = document.getElementById('input-agency').value;
+
+    console.log(sessionStorage.getItem("result"));
+    $.ajax({
+        url: "functions/save-grant.php",
+        type: "post",
+        data: { 'jsondata' : sessionStorage.getItem("result"), 'name' : grantName, 'bp' : budgetPurpose, 'award' : awardAmount, 'agency' : fundingAgency } ,
+        success: function (response) {
+          console.log(response);
+          showAlert("success", response);
+        },
+        error: function(jqXHR, textStatus, errorThrown) {
+            console.log(textStatus, errorThrown);
+        }
+
+
+        });
+    //JSON.parse(sessionStorage.getItem("result"));
   }
 });
 
