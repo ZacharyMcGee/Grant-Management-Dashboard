@@ -85,13 +85,36 @@ function readSingleFile(e) {
       return;
     }
   }
-  var reader = new FileReader();
-  reader.readAsBinaryString(file);
+  // CHECK IF THE FILE IS OF TYPE XLSX
+  if(validateFileType(file)){
+    var dragarea = document.getElementById('drag-and-drop');
+    dragarea.classList.add('dropped');
+    var reader = new FileReader();
+    reader.readAsBinaryString(file);
 
-  reader.onload = function(e) {
-    var contents = e.target.result;
-    loadExcel(contents);
-  };
+    reader.onload = function(e) {
+      var contents = e.target.result;
+      loadExcel(contents);
+    };
+  }
+}
+
+  /////////////////////////////////////
+ /*      VALIDATE THE FILETYPE      */
+/////////////////////////////////////
+
+function validateFileType(file) {
+  var fileTypes = ['xlsx']; // FILETYPES WE ALLOW (XLSX ONLY)
+  var extension = file.name.split('.').pop().toLowerCase(),
+  isSuccess = fileTypes.indexOf(extension) > -1; 
+  if (isSuccess) {
+      return true;
+  }
+  else
+  {
+    showAlert("error", "File types must be of type: 'xlsx'")
+    return false;
+  }
 }
 
   /////////////////////////////////////
