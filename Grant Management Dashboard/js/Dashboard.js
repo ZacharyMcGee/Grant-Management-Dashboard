@@ -226,15 +226,23 @@ function showAlert(type, message) {
       switch(type){
         case "error":
           x.innerHTML = "<p><i class='fas fa-exclamation-circle'></i> " + message + "</p>"
+          x.classList.remove("success-alert");
           x.classList.add("error-alert");
           break;
         case "alert":
           x.innerHTML = "<p><i class='fas fa-exclamation-triangle'></i> " + message + "</p>"
+          x.classList.remove("success-alert");
           x.classList.add("warning-alert");
+          break;
+        case "success":
+          x.innerHTML = "<p><i class='fas fa-check-circle'></i> " + message + "</p>"
+          x.classList.remove("warning-alert");
+          x.classList.remove("error-alert");
+          x.classList.add("success-alert");
           break;
         default:
           break;
       }
       x.classList.add("show");
-      setTimeout(function(){ x.className = x.className.replace("show", ""); }, 6000);
+      setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
 }

@@ -21,8 +21,9 @@ dragarea.addEventListener('drop', (e) => {
 });
 
 $("#save-new-grant").click(function(){
-    showAlert("error", "HEY");
-    console.log("save");
+  if(validateNewGrantForm()){
+    showAlert("success", "Grant saved successfully!");
+  }
 });
 
 $("#cancel-new-grant").click(function(){
@@ -31,6 +32,30 @@ $("#cancel-new-grant").click(function(){
       $("#breadcrumbs").html("<p>Home / Dashboard</p>");
   }});
 });
+
+function validateNewGrantForm(){
+  var grantNameForm = document.getElementById('input-title');
+  var budgetPurposeForm = document.getElementById('input-bp');
+  var awardAmountForm = document.getElementById('input-award');
+
+  if(grantNameForm.value == ""){
+    showAlert("error", "You must enter a grant name!");
+    return false;
+  }
+  else if(budgetPurposeForm.value == ""){
+    showAlert("error", "You must enter a budget purpose number!");
+    return false;
+  }
+  else if(awardAmountForm.value == ""){
+    showAlert("error", "You must enter an award amount!");
+    return false;
+  }
+  else if(isNaN(awardAmountForm.value)){
+    showAlert("error", "Award must be a valid dollar amount!");
+    return false;
+  }
+  return true;
+}
 </script>
 </head>
 <div class="full-card">
@@ -44,15 +69,15 @@ $("#cancel-new-grant").click(function(){
 
   <div class="card-body">
     <div class="input-grant-title">
-      <p>Grant Name</p>
+      <p>Grant Name</p><span class="small-asterix">*</span>
       <input type="text" id="input-title" class="input-text">
     </div>
     <div class="input-grant-description">
-      <p>Budget Purpose #</p>
+      <p>Budget Purpose #</p><span class="small-asterix">*</span>
       <input type="text" id="input-bp" class="input-text">
     </div>
     <div class="input-grant-award">
-      <p>Award Amount</p>
+      <p>Award Amount</p><span class="small-asterix">*</span>
       <input type="text" id="input-award" class="input-text">
     </div>
     <div class="input-grant-agency">
