@@ -38,6 +38,13 @@ $("#new-grant").click(function(){
     }});
 });
 
+$("#view-grants").click(function(){
+    $.ajax({url: "includes/grants/view-grants.php", success: function(result){
+        $("#content").html(result);
+        $("#breadcrumbs").html("<p>Home / View Grants</p>");
+    }});
+});
+
   /////////////////////////////////////
  /*      MAKE PAGE FULL SCREEN      */
 /////////////////////////////////////
