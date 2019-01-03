@@ -1,4 +1,51 @@
   /////////////////////////////////////
+ /*           CHART PLUGINS         */
+/////////////////////////////////////
+
+// Text in middle of Doughnut Chart
+Chart.pluginService.register({
+  beforeDraw: function (chart) {
+    if (chart.config.options.elements.center) {
+      //Get ctx from string
+      var ctx = chart.chart.ctx;
+
+      //Get options from the center object in options
+      var centerConfig = chart.config.options.elements.center;
+      var fontStyle = centerConfig.fontStyle || 'Arial';
+      var txt = centerConfig.text;
+      var color = centerConfig.color || '#000';
+      var sidePadding = centerConfig.sidePadding || 20;
+      var sidePaddingCalculated = (sidePadding/100) * (chart.innerRadius * 2)
+      //Start with a base font of 30px
+      ctx.font = "30px " + fontStyle;
+
+      //Get the width of the string and also the width of the element minus 10 to give it 5px side padding
+      var stringWidth = ctx.measureText(txt).width;
+      var elementWidth = (chart.innerRadius * 2) - sidePaddingCalculated;
+
+      // Find out how much the font can grow in width.
+      var widthRatio = elementWidth / stringWidth;
+      var newFontSize = Math.floor(30 * widthRatio);
+      var elementHeight = (chart.innerRadius * 2);
+
+      // Pick a new font size so it will not be larger than the height of label.
+      var fontSizeToUse = Math.min(newFontSize, elementHeight);
+
+      //Set font settings to draw it correctly.
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      var centerX = ((chart.chartArea.left + chart.chartArea.right) / 2);
+      var centerY = ((chart.chartArea.top + chart.chartArea.bottom) / 2);
+      ctx.font = fontSizeToUse+"px " + fontStyle;
+      ctx.fillStyle = color;
+
+      //Draw text in center
+      ctx.fillText(txt, centerX, centerY);
+    }
+  }
+});
+
+  /////////////////////////////////////
  /*           ACCORDION MENU        */
 /////////////////////////////////////
 
@@ -150,7 +197,12 @@ function loadExcel(contents){
     console.log(totalDirectCostExpenditures);
     console.log(totalDirectCostRefunds);
     console.log(netDirectCostExpenditures);
-    sessionStorage.setItem("result", JSON.stringify(result).replace(/'/g, ""));
+    result = JSON.stringify(result);
+    result = result.split(String.fromCharCode(92)).join(String.fromCharCode(92,92));
+
+    result = result.replace(/'/g, "");
+    sessionStorage.setItem("result", result);
+    console.log(sessionStorage.getItem("result"));
     //console.log(JSON.parse(sessionStorage.getItem("result")));
 }
 
@@ -176,6 +228,10 @@ function calculateTotalDirectCostRefunds(obj){
 
 function calculateNetDirectCostExpenditures(expenditures, refunds){
   return (expenditures - refunds).toFixed(2);
+}
+
+function calculateNetDirectCostLeft(awardAmount, netDirectCostExpenditures){
+  return (awardAmount - netDirectCostExpenditures).toFixed(2);
 }
 
   /////////////////////////////////////
@@ -229,26 +285,54 @@ function runCommands(string){
 
 
 
-function createChart(){
-  var ctx = document.getElementById('myChart').getContext('2d');
+function moneyLeftPieChart(id, award, jsondata){
+  jsondata = jsondata.substring(1, jsondata.length-1);
+  jsondata = JSON.parse(jsondata);
+  console.log(award + " and ");
+  var totalDirectCostExpenditures = calculateTotalDirectCostExpenditures(jsondata);
+  var totalDirectCostRefunds = calculateTotalDirectCostRefunds(jsondata);
+  var netDirectCostExpenditures = calculateNetDirectCostExpenditures(totalDirectCostExpenditures, totalDirectCostRefunds);
+  var amountLeft = calculateNetDirectCostLeft(award, netDirectCostExpenditures);
+
+  var ctx = document.getElementById(id).getContext('2d');
   var chart = new Chart(ctx, {
       // The type of chart we want to create
-      type: 'line',
-
+      type: 'doughnut',
       // The data for our dataset
       data: {
-          labels: ["January", "February", "March", "April", "May", "June", "July"],
+          labels: ["Amount Spent", "Amount Remaining"],
           datasets: [{
-              label: "My First dataset",
-              backgroundColor: 'rgb(255, 99, 132)',
-              borderColor: 'rgb(255, 99, 132)',
-              data: [0, 10, 5, 2, 20, 30, 45],
+              data: [netDirectCostExpenditures, amountLeft],
+              backgroundColor: [
+                'rgb(230,230,230)',
+                'rgb(96,202,119)',
+              ]
           }]
       },
 
       // Configuration options go here
-      options: {}
+      options: {
+        cutoutPercentage: 70,
+        responsive: true,
+        maintainAspectRatio: false,
+        aspectRatio: 1,
+        elements: {
+            center: {
+            text: "$" + amountLeft,
+            color: '#60ca77',
+            fontStyle: 'Helvetica',
+            sidePadding: 25
+          }
+        },
+        legend: {
+           display: false,
+        },
+      }
   });
+}
+
+function openGrant(id) {
+  $("#content").load("includes/grants/grant.php?id=" + id);
 }
 
 function showAlert(type, message) {

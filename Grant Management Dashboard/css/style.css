@@ -176,6 +176,19 @@ body {
   box-shadow: 0px 0px 3px 0px rgba(87, 87, 87, 0.1);
 }
 
+.full-card-left-border-active {
+  background-color: #FFF;
+  color: #7d7d7d;
+  font-family: 'Open Sans', sans-serif;
+  border-radius: 3px;
+  width: calc(100% - 10px);
+  padding-bottom: 20px;
+  -webkit-box-shadow: 0px 0px 3px 0px rgba(87, 87, 87, 0.1);
+  -moz-box-shadow: 0px 0px 3px 0px rgba(87, 87, 87, 0.1);
+  box-shadow: 0px 0px 3px 0px rgba(87, 87, 87, 0.1);
+  height: 120px;
+}
+
 .card-title {
   border-bottom: 1px solid #e6e6e6;
   padding-bottom: 8px;
@@ -207,6 +220,50 @@ body {
 .card-body {
   overflow: auto;
   width: 100%;
+}
+
+.view-grants-info {
+  margin-left: 200px;
+  padding-top: 10px;
+}
+
+.view-grants-title {
+  margin: 0px;
+  color: #bababa;
+  text-decoration: none;
+}
+
+.view-grants-info p {
+  margin: 0px;
+  text-decoration: none;
+
+}
+
+.view-grants-info h3 {
+  margin: 0px;
+}
+
+.view-grants-info a:link {
+  text-decoration: none;
+}
+
+.view-grants-info a:visited {
+  margin: 0px;
+  color: #263544;
+  text-decoration: none;
+}
+
+.view-grants-chart {
+  float: left;
+  height: 120px;
+  width: 170px;
+  margin-top: 10px;
+  border-right: 1px solid #ededed;
+}
+
+.view-grants-chart canvas {
+  position:relative;
+  z-index:1;
 }
 
 .sidebar {
