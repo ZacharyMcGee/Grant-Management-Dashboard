@@ -101,7 +101,7 @@ if ($result->num_rows > 0) {
 
   <div class="main" id="main">
     <div class="breadcrumbs" id="breadcrumbs">
-      <p>Home / Dashboard</p>
+      <p><a href='dashboard.php'><i class="fas fa-home"></i></a> / Dashboard</p>
     </div>
     <div class="content" id="content">
     	<?php include 'includes/dashboard/dashboard.php'; ?>
