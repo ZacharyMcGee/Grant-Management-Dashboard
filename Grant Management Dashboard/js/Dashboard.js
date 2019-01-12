@@ -79,7 +79,7 @@ for (i = 0; i < acc.length; i++) {
 $("#new-grant").click(function(){
     $.ajax({url: "includes/grants/new-grant.php", success: function(result){
         $("#content").html(result);
-        $("#breadcrumbs").html("<p>Home / New Grant</p>");
+        $("#breadcrumbs").html("<p><a href='dashboard.php'><i class='fas fa-home'></i></a> / New Grant</p>");
         document.getElementById('file-upload')
         .addEventListener('change', readSingleFile, false);
     }});
@@ -88,7 +88,7 @@ $("#new-grant").click(function(){
 $("#view-grants").click(function(){
     $.ajax({url: "includes/grants/view-grants.php", success: function(result){
         $("#content").html(result);
-        $("#breadcrumbs").html("<p>Home / View Grants</p>");
+        $("#breadcrumbs").html("<p><a href='dashboard.php'><i class='fas fa-home'></i></a> / View Grants</p>");
     }});
 });
 
