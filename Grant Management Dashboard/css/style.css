@@ -181,12 +181,15 @@ body {
   color: #7d7d7d;
   font-family: 'Open Sans', sans-serif;
   border-radius: 3px;
-  width: calc(100% - 10px);
+  width: calc(50% - 20px);
   padding-bottom: 20px;
   -webkit-box-shadow: 0px 0px 3px 0px rgba(87, 87, 87, 0.1);
   -moz-box-shadow: 0px 0px 3px 0px rgba(87, 87, 87, 0.1);
   box-shadow: 0px 0px 3px 0px rgba(87, 87, 87, 0.1);
   height: 120px;
+  display: inline;
+  float: left;
+  margin-right: 20px;
 }
 
 .card-title {
@@ -223,14 +226,42 @@ body {
 }
 
 .view-grants-info {
-  margin-left: 200px;
+  margin-left: 20px;
   padding-top: 10px;
+  float: left;
 }
 
 .view-grants-title {
   margin: 0px;
-  color: #bababa;
+  color: #7d7d7d;
   text-decoration: none;
+  margin-right: 5px;
+  font-size: 19px;
+  float: left;
+}
+
+.view-grants-bp {
+  color: #fff;
+  background-color: #6980ff;
+  border-radius: 3px;
+  font-size: 12px;
+  float: left;
+  margin-top: 5px;
+  padding-left: 2px;
+  padding-right: 2px;
+}
+
+.view-grants-award {
+  color: #bababa;
+  float: left;
+}
+
+.view-grants-update {
+  color: #bababa;
+  float: left;
+  font-size: 12px;
+  line-height: 10px;
+  margin-left: 1px;
 }
 
 .view-grants-info p {
@@ -264,6 +295,23 @@ body {
 .view-grants-chart canvas {
   position:relative;
   z-index:1;
+}
+
+.view-grants-buttons {
+  float: right;
+  margin-right: 20px;
+  margin-top: 14px;
+  width: 100px;
+}
+
+.view-grants-buttons button {
+  background-color: #e6e6e6;
+  border: 1px solid #dadada;
+  border-radius: 3px;
+  width: 100px;
+  height: 25px;
+  color: #7d7d7d;
+  margin-bottom: 18px;
 }
 
 .sidebar {
@@ -476,8 +524,8 @@ body {
 }
 
 .input-text:focus {
-  background-color: #f2f2f2;
-  border: 1px solid #5eb363;
+  box-shadow: 0 0 5px rgba(81, 203, 238, 1);
+  border: 1px solid rgba(81, 203, 238, 1);
 }
 
 .drag-and-drop {
