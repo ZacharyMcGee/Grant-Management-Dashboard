@@ -300,7 +300,7 @@ function moneyLeftPieChart(id, award, jsondata){
       type: 'doughnut',
       // The data for our dataset
       data: {
-          labels: ["Amount Spent", "Amount Remaining"],
+          labels: ["Spent", "Remaining"],
           datasets: [{
               data: [netDirectCostExpenditures, amountLeft],
               backgroundColor: [
