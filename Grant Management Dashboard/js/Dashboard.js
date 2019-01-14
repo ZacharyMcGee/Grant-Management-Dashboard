@@ -120,6 +120,17 @@ function closeFullscreen() {
   }
 }
 
+$("#search-bar").click(function(){
+  console.log("HEYYY");
+  var currentClass = $('#search-bar-input').attr('class');
+  if(currentClass == "search-bar-input"){
+    $("#search-bar-input").attr('class', 'search-bar-input-open');
+  }
+  else {
+    $("#search-bar-input").attr('class', 'search-bar-input');
+  }
+});
+
   /////////////////////////////////////
  /*      READ EXCEL FILE DATA       */
 /////////////////////////////////////
