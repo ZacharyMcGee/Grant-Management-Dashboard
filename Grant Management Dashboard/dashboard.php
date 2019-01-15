@@ -45,20 +45,21 @@ if ($result->num_rows > 0) {
     <div class="sidebar-menu">
       <button id="dashboard" class="accordion"><i class="fas fa-tachometer-alt"></i>Dashboard</button>
       <div class="panel">
+				<a href="#" class="sidebar-button" id="tasks"><i class="fas fa-tachometer-alt"></i>Dashboard Home</a>
         <a href="#" class="sidebar-button" id="tasks"><i class="fas fa-palette"></i>Customize</a>
       </div>
 
 <button class="accordion"><i class="fas fa-chart-pie"></i>Grants</button>
 <div class="panel">
-  <a href="#" class="sidebar-button" id="new-grant"><i class="fas fa-plus-circle"></i>New Grant</a>
+  <a href="#" class="sidebar-button" id="new-grant"><i class="fas fa-plus-circle"></i>Create New Grant</a>
   <a href="#" class="sidebar-button" id="view-grants"><i class="far fa-eye"></i>View Grants</a>
   <a href="#" class="sidebar-button" id="tasks"><i class="fas fa-plus-circle"></i>Create New Grant</a>
   <a href="#" class="sidebar-button" id="tasks"><i class="fas fa-plus-circle"></i>Create New Grant</a>
 </div>
 
-<button class="accordion"><i class="fas fa-chart-pie"></i>Tasks</button>
+<button class="accordion"><i class="fas fa-tasks"></i>Tasks</button>
 <div class="panel">
-  <a href="#" class="sidebar-button" id="tasks"><i class="fas fa-plus-circle"></i>Create New Grant</a>
+  <a href="#" class="sidebar-button" id="tasks"><i class="fas fa-calendar-alt"></i>Schedule Alert</a>
 </div>
     </div>
 </div>
@@ -70,7 +71,10 @@ if ($result->num_rows > 0) {
       <i class="fas fa-expand" style="color: #263544;" onClick="loadExcel()"></i>
     </div>
     <div class="search-bar">
-      <i class="fas fa-search" style="color: #263544;"></i>
+			<form id="search-bar-form" style="text-align:right;">
+        <i id="search-bar" class="fas fa-search search-bar-icon"></i>
+				<input id="search-bar-input" class="search-bar-input" type="search" placeholder="Search Grants...">
+			</form>
     </div>
     <div class="header-account-info">
     <div class="header-menu-buttons">
