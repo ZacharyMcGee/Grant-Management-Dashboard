@@ -10,7 +10,7 @@ if ( mysqli_connect_errno() ) {
 
 $grantid = json_encode($_GET['id']);
 
-$sql = "SELECT name, bp, award, agency, jsondata FROM grants WHERE id=" . $grantid;
+$sql = "SELECT name, bp, dc_award, agency, jsondata FROM grants WHERE id=" . $grantid;
 $result = $con->query($sql);
 
 if ($result->num_rows > 0) {
