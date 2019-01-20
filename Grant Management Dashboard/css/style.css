@@ -530,6 +530,21 @@ body {
   padding-left: 20px;
 }
 
+.input-grant-input-container {
+  display: flex;
+  width: 100%;
+  margin-bottom: 15px;
+}
+
+.input-grant-input-container i {
+  padding: 10px;
+  background: dodgerblue;
+  color: white;
+  min-width: 20px;
+  text-align: center;
+  border-radius: 3px 0px 0px 3px;
+}
+
 .input-grant-award p {
   float: left;
   margin: 0px;
@@ -592,17 +607,25 @@ body {
 
 .input-text {
   background-color: #f3f3f3;
-  width: calc(100% - 40px); /* IE 9,10 , Chrome, Firefox */
-  width: -webkit-calc(100% - 40px); /*For safari 6.0*/
+  width: calc(100% - 100px); /* IE 9,10 , Chrome, Firefox */
+  width: -webkit-calc(100% - 100px); /*For safari 6.0*/
   padding: 10px;
-  border-radius: 3px;
-  border: 1px solid #bbbbbb;
+  border-radius: 0px 3px 3px 0px;
+  border-top: 1px solid #bbbbbb;
+  border-bottom: 1px solid #bbbbbb;
+  border-right: 1px solid #bbbbbb;
+  border-left: 0px;
   float: left;
 }
 
 .input-text:focus {
-  box-shadow: 0 0 5px rgba(81, 203, 238, 1);
-  border: 1px solid rgba(81, 203, 238, 1);
+  box-shadow: 0 0 1px #1e90ff;
+  border-top: 1px solid #1e90ff;
+  border-bottom: 1px solid #1e90ff;
+  border-right: 1px solid #1e90ff;
+  border-left: none;
+  background-color: white;
+  transition: all .3s;
 }
 
 .drag-and-drop {

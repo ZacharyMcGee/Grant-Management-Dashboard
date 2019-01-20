@@ -89,19 +89,31 @@ function validateNewGrantForm(){
   <div class="card-body">
     <div class="input-grant-title">
       <p>Grant Name</p><span class="small-asterix">*</span>
-      <input type="text" id="input-title" class="input-text" maxlength="64">
+      <div class="input-grant-input-container">
+        <i class="fas fa-file-signature fa-lg fa-fw" aria-hidden="true"></i>
+        <input type="text" id="input-title" class="input-text" maxlength="64">
+      </div>
     </div>
     <div class="input-grant-description">
       <p>Budget Purpose #</p><span class="small-asterix">*</span>
-      <input type="text" id="input-bp" class="input-text" maxlength="64">
+      <div class="input-grant-input-container">
+        <i class="fas fa-hashtag fa-lg fa-fw" aria-hidden="true"></i>
+        <input type="text" id="input-bp" class="input-text" maxlength="64">
+      </div>
     </div>
     <div class="input-grant-award">
       <p>Award Amount</p><span class="small-asterix">*</span>
-      <input type="text" id="input-award" class="input-text" maxlength="64">
+      <div class="input-grant-input-container">
+        <i class="fas fa-dollar-sign fa-lg fa-fw" aria-hidden="true"></i>
+        <input type="text" id="input-award" class="input-text" maxlength="64">
+      </div>
     </div>
     <div class="input-grant-agency">
       <p>Funding Agency</p>
-      <input type="text" id="input-agency" class="input-text" maxlength="64">
+      <div class="input-grant-input-container">
+        <i class="fas fa-university fa-lg fa-fw" aria-hidden="true"></i>
+        <input type="text" id="input-agency" class="input-text" maxlength="64">
+      </div>
     </div>
     <div class="drag-and-drop-description">
       <p id="upload-excel-p">Upload Excel Data</p><span id="small-hint" class="small-hint">(.xlsx format)</span>
