@@ -13,11 +13,12 @@ $userId = $_SESSION['id'];
 $jsondata = json_encode($_POST['jsondata']);
 $name = $_POST['name'];
 $bp = $_POST['bp'];
-$dc_award = $_POST['award'];
+$dc_award = $_POST['dcaward'];
+$idc_award = $_POST['idcaward'];
 $agency = $_POST['agency'];
 
-$sql = "INSERT INTO grants (userid, name, bp, dc_award, agency, jsondata)
-VALUES ('$userId', '$name', '$bp', '$dc_award', '$agency', '$jsondata')";
+$sql = "INSERT INTO grants (userid, name, bp, dc_award, idc_award, agency, jsondata)
+VALUES ('$userId', '$name', '$bp', '$dc_award', '$idc_award', '$agency', '$jsondata')";
 
 if ($con->query($sql) === TRUE) {
     echo "Successfuly created grant!";

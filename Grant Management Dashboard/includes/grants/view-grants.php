@@ -8,7 +8,7 @@ if ( mysqli_connect_errno() ) {
 	die ('Failed to connect to MySQL: ' . mysqli_connect_error());
 }
 
-$sql = "SELECT id, name, bp, dc_award, agency, jsondata, creation_date FROM grants WHERE userid=" . $_SESSION['id'];
+$sql = "SELECT id, name, bp, dc_award, idc_award, agency, jsondata, creation_date FROM grants WHERE userid=" . $_SESSION['id'];
 $result = $con->query($sql);
 
 if ($result->num_rows > 0) {
@@ -65,10 +65,25 @@ if ($result->num_rows > 0) {
 					$timeSinceUpdate = $interval->format('%y years ago');
 				}
 
-		    $formattedAward = '$' . number_format($row["dc_award"], 2);
+		    $formattedDCAward = '$' . number_format($row["dc_award"], 2);
 
-        echo "<a href='#' onClick='openGrant(" . $row["id"] . ")'><div class='full-card-left-border-active'><div class='view-grants-chart'><canvas id='chart" . $i . "'></canvas></div><div class='view-grants-info'><span class='view-grants-title'>" . $row["name"] . " </span><div class='view-grants-bp'> #" . $row["bp"] . "</div><br><span class='view-grants-update'> Updated " . $timeSinceUpdate . "</span><br><span class='view-grants-award-title'>Awards</span><br><span class='view-grants-award'>Direct Cost: " . $formattedAward . "</span><span class='view-grants-award'>Indirect Cost: " . $formattedAward . "</span></div><div class='view-grants-buttons'><button class='button'>Manage</button><button class='button'>Report</button><button class='button'>Delete</button></div></div></a><script>moneyLeftPieChart('chart" . $i . "','" . $row["dc_award"] . "','" . $row["jsondata"] . "');</script>";
-        $i++;
+				if(is_numeric($row["idc_award"])){
+           $formattedIDCAward = '$' . number_format($row["idc_award"], 2);
+			  }
+				else
+				{
+					$formattedIDCAward = $row["idc_award"];
+				}
+
+				if($i > 1){
+					echo "<a href='#' onClick='openGrant(" . $row["id"] . ")'><div class='full-card-left-border-active' style='margin-top: 20px;'><div class='view-grants-chart'><canvas id='chart" . $i . "'></canvas></div><div class='view-grants-info'><div class='view-grants-top'><span class='view-grants-title'>" . $row["name"] . " </span><div class='view-grants-bp'> #" . $row["bp"] . "</div></div><br><span class='view-grants-update'> Updated " . $timeSinceUpdate . "</span><br><span class='view-grants-award-title'>Awards</span><br><span class='view-grants-award'>Direct Cost: " . $formattedDCAward . "</span><span class='view-grants-award'>Indirect Cost: " . $formattedIDCAward . "</span></div><div class='view-grants-buttons'><button class='button'>Manage</button><button class='button'>Report</button><button class='button'>Delete</button></div></div></a><script>moneyLeftPieChart('chart" . $i . "','" . $row["dc_award"] . "','" . $row["jsondata"] . "');</script>";
+					$i++;
+        }
+				else
+				{
+					echo "<a href='#' onClick='openGrant(" . $row["id"] . ")'><div class='full-card-left-border-active'><div class='view-grants-chart'><canvas id='chart" . $i . "'></canvas></div><div class='view-grants-info'><div class='view-grants-top'><span class='view-grants-title'>" . $row["name"] . " </span><div class='view-grants-bp'> #" . $row["bp"] . "</div></div><br><span class='view-grants-update'> Updated " . $timeSinceUpdate . "</span><br><span class='view-grants-award-title'>Awards</span><br><span class='view-grants-award'>Direct Cost: " . $formattedDCAward . "</span><span class='view-grants-award'>Indirect Cost: " . $formattedIDCAward . "</span></div><div class='view-grants-buttons'><button class='button'>Manage</button><button class='button'>Report</button><button class='button'>Delete</button></div></div></a><script>moneyLeftPieChart('chart" . $i . "','" . $row["dc_award"] . "','" . $row["jsondata"] . "');</script>";
+        	$i++;
+				}
     }
 }
 else
