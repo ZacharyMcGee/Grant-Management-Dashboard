@@ -1,5 +1,8 @@
 @import url('https://fonts.googleapis.com/css?family=Open+Sans');
 @import url('https://fonts.googleapis.com/css?family=Nunito+Sans:600');
+@import url('https://fonts.googleapis.com/css?family=Roboto+Condensed');
+@import url('https://fonts.googleapis.com/css?family=Proza+Libre');
+
 
 html, body{
   padding: 0;
@@ -295,6 +298,11 @@ body {
   float: left;
 }
 
+.view-grants-top {
+  width: 100%;
+  height: 4px;
+}
+
 .view-grants-title {
   margin: 0px;
   color: #7d7d7d;
@@ -485,6 +493,26 @@ body {
   transition: all 0.2s ease-out;
 }
 
+.information-grant-header {
+  width: calc(100% - 50px);
+  border-bottom: 1px solid #eaeaea;
+  margin-left: 20px;
+  padding: 0px;
+  margin-right: 20px;
+  color: #8c8c8c;
+}
+
+.information-grant-header p {
+  font-family: 'Proza Libre', sans-serif;
+  padding-bottom: 0px;
+  margin-bottom: 5px;
+  margin-top: 20px;
+}
+
+.information-container {
+  height: 160px;
+}
+
 .input-grant-title {
   float: left;
   height: 70px;
@@ -524,8 +552,8 @@ body {
   display: inline-block;
   float: left;
   height: 70px;
-  width: calc(50% - 20px); /* IE 9,10 , Chrome, Firefox */
-  width: -webkit-calc(50% - 20px); /*For safari 6.0*/
+  width: calc(25% - 20px); /* IE 9,10 , Chrome, Firefox */
+  width: -webkit-calc(25% - 20px); /*For safari 6.0*/
   padding-top: 10px;
   padding-left: 20px;
 }
@@ -596,6 +624,15 @@ body {
   color: #509f38;
 }
 
+.small-tip {
+  font-size: 12px;
+  float: left;
+  display: inline-block;
+  margin-top: 6px;
+  margin-left: 5px;
+  color: #bbb;
+}
+
 .small-asterix {
   font-size: 16px;
   float: left;
@@ -637,7 +674,6 @@ body {
   font: 21pt bold arial;
   color: #7d7d7d;
   margin: 20px;
-  margin-top: 140px;
   overflow: auto;
   max-height: 300px;
 }
@@ -714,7 +750,7 @@ input[type="file"] {
 
 .button-bar-bottom {
   float: right;
-  margin-top: 10px;
+  margin-top: 30px;
   padding-top: 0px;
   width: 100%;
 }

@@ -23,14 +23,19 @@ $("#save-new-grant").click(function(){
   if(validateNewGrantForm()){
     var grantName = document.getElementById('input-title').value;
     var budgetPurpose = document.getElementById('input-bp').value;
-    var awardAmount = document.getElementById('input-award').value;
+    var dcAwardAmount = document.getElementById('input-dc-award').value;
+    var idcAwardAmount = document.getElementById('input-idc-award').value;
     var fundingAgency = document.getElementById('input-agency').value;
 
+    if(idcAwardAmount == ""){
+      idcAwardAmount = "n/a";
+    }
+    
     console.log(sessionStorage.getItem("result"));
     $.ajax({
         url: "functions/save-grant.php",
         type: "post",
-        data: { 'jsondata' : sessionStorage.getItem("result"), 'name' : grantName, 'bp' : budgetPurpose, 'award' : awardAmount, 'agency' : fundingAgency } ,
+        data: { 'jsondata' : sessionStorage.getItem("result"), 'name' : grantName, 'bp' : budgetPurpose, 'dcaward' : dcAwardAmount, 'idcaward' : idcAwardAmount, 'agency' : fundingAgency } ,
         success: function (response) {
           console.log(response);
           showAlert("success", response);
@@ -55,7 +60,7 @@ $("#cancel-new-grant").click(function(){
 function validateNewGrantForm(){
   var grantNameForm = document.getElementById('input-title');
   var budgetPurposeForm = document.getElementById('input-bp');
-  var awardAmountForm = document.getElementById('input-award');
+  var dcAwardAmountForm = document.getElementById('input-dc-award');
 
   if(grantNameForm.value == ""){
     showAlert("error", "You must enter a grant name!");
@@ -65,11 +70,11 @@ function validateNewGrantForm(){
     showAlert("error", "You must enter a budget purpose number!");
     return false;
   }
-  else if(awardAmountForm.value == ""){
+  else if(dcAwardAmountForm.value == ""){
     showAlert("error", "You must enter an award amount!");
     return false;
   }
-  else if(isNaN(awardAmountForm.value)){
+  else if(isNaN(dcAwardAmountForm.value)){
     showAlert("error", "Award must be a valid dollar amount!");
     return false;
   }
@@ -87,6 +92,10 @@ function validateNewGrantForm(){
   </div>
 
   <div class="card-body">
+    <div class="information-grant-header">
+      <p>Grant Information</p>
+    </div>
+    <div class="information-container">
     <div class="input-grant-title">
       <p>Grant Name</p><span class="small-asterix">*</span>
       <div class="input-grant-input-container">
@@ -102,19 +111,31 @@ function validateNewGrantForm(){
       </div>
     </div>
     <div class="input-grant-award">
-      <p>Award Amount</p><span class="small-asterix">*</span>
+      <p>DC Award Amount</p><span class="small-asterix">*</span>
       <div class="input-grant-input-container">
         <i class="fas fa-dollar-sign fa-lg fa-fw" aria-hidden="true"></i>
-        <input type="text" id="input-award" class="input-text" maxlength="64">
+        <input type="text" id="input-dc-award" class="input-text" maxlength="64">
+      </div>
+    </div>
+    <div class="input-grant-award">
+      <p>IDC Award Amount</p><span class="small-tip">(optional)</span>
+      <div class="input-grant-input-container">
+        <i class="fas fa-dollar-sign fa-lg fa-fw" aria-hidden="true"></i>
+        <input type="text" id="input-idc-award" class="input-text" maxlength="64">
       </div>
     </div>
     <div class="input-grant-agency">
-      <p>Funding Agency</p>
+      <p>Funding Agency</p><span class="small-tip">(optional)</span>
       <div class="input-grant-input-container">
         <i class="fas fa-university fa-lg fa-fw" aria-hidden="true"></i>
         <input type="text" id="input-agency" class="input-text" maxlength="64">
       </div>
     </div>
+  </div>
+    <div class="information-grant-header">
+      <p>Grant Data</p>
+    </div>
+    <div class="information-container">
     <div class="drag-and-drop-description">
       <p id="upload-excel-p">Upload Excel Data</p><span id="small-hint" class="small-hint">(.xlsx format)</span>
     </div>
@@ -130,6 +151,7 @@ function validateNewGrantForm(){
       </label>
       <input id="file-upload" type="file"/>
     </div>
+  </div>
     <div class="button-bar-bottom">
       <button id="cancel-new-grant" class="cancel-button" type="button"><i class="fas fa-ban" style="padding-right:10px;"></i>Cancel</button>
       <button id="save-new-grant" class="save-button" type="button"><i class="far fa-save" style="padding-right:10px;"></i>Save Grant</button>
