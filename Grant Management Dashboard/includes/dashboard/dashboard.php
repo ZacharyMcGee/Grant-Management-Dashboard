@@ -41,7 +41,7 @@ $con->close();
     </div>
   </div>
 
-  <div class="card-body">
+  <div class="total-grants-card">
      <p><?php echo $numOfActiveGrants ?></p>
   </div>
 </div>
@@ -55,8 +55,8 @@ $con->close();
     </div>
   </div>
 
-  <div class="card-body">
-
+  <div class="total-grants-card">
+		<p><?php echo $numOfInactiveGrants ?></p>
   </div>
 </div>
 
@@ -69,7 +69,7 @@ $con->close();
     </div>
   </div>
 
-  <div class="card-body">
+  <div class="total-grants-card">
 
   </div>
 </div>
@@ -83,7 +83,7 @@ $con->close();
     </div>
   </div>
 
-  <div class="card-body">
+  <div class="total-grants-card">
 
   </div>
 </div>

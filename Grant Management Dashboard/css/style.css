@@ -226,6 +226,19 @@ body {
   box-shadow: 0px 0px 3px 0px rgba(87, 87, 87, 0.1);
 }
 
+.alt-full-card {
+  background-color: #FFF;
+  color: #7d7d7d;
+  font-family: 'Open Sans', sans-serif;
+  border-radius: 3px;
+  height: 500px;
+  width: calc(100% - 10px);
+  padding-bottom: 20px;
+  -webkit-box-shadow: 0px 0px 3px 0px rgba(87, 87, 87, 0.1);
+  -moz-box-shadow: 0px 0px 3px 0px rgba(87, 87, 87, 0.1);
+  box-shadow: 0px 0px 3px 0px rgba(87, 87, 87, 0.1);
+}
+
 .fourth-card {
   background-color: #FFF;
   color: #7d7d7d;
@@ -290,6 +303,25 @@ body {
 .card-body {
   overflow: auto;
   width: 100%;
+}
+
+.alt-card-body {
+  overflow: auto;
+  width: 100%;
+  height: 100%;
+}
+
+.total-grants-card {
+  overflow: auto;
+  width: 100%;
+  height: 100%;
+}
+
+.total-grants-card p {
+  text-align: left;
+  font-size: 32px;
+  margin-left: 25px;
+  vertical-align: center;
 }
 
 .view-grants-info {
@@ -523,6 +555,19 @@ body {
 
 .information-container {
   height: 160px;
+}
+
+.preset {
+  height: calc(.25 * (100% - 105px));
+  background-color: #e6e6e6;
+  color: #7d7d7d;
+  font-family: 'Open Sans', sans-serif;
+  border-radius: 3px;
+  border: 1px solid #dadada;
+  width: 95%;
+  margin: 0 auto;
+  margin-top: 5px;
+  cursor: pointer;
 }
 
 .input-grant-title {
