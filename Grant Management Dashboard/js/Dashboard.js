@@ -294,7 +294,55 @@ function runCommands(string){
 
 }
 
+function addDataLinearTime(chartID) {
 
+  var newData = [{x: "04/01/2015", y: 135}];
+
+linearTimeChart.data.datasets[0].data.push(newData);
+linearTimeChart.update();
+  console.log(linearTimeChart);
+}
+
+function linearTimeChart(idata) {
+  var ctx = document.getElementById('timeChart').getContext('2d');
+   var linearTimeChart = new Chart(ctx, {
+    type: 'line',
+    data: {
+      datasets: [
+    {
+        label: "Direct Cost Remaining",
+        data: [{x: "04/01/2014", y: 175}],
+        fill: false,
+        borderColor: 'rgb(96,202,119)'
+    },
+]
+    },
+    options: {
+        scales: {
+            xAxes: [{
+                type: 'time',
+                distribution: 'linear'
+            }],
+            yAxes: [{
+                ticks: {
+                  beginAtZero: true   // minimum value will be 0.
+                }
+            }]
+        }
+    }
+})
+for(var i = 0; i < idata.length; i++){
+  jsondata = idata[i].y.substring(1, idata[i].y.length-1);
+  jsondata = JSON.parse(jsondata);
+  var totalDirectCostExpenditures = calculateTotalDirectCostExpenditures(jsondata);
+  var totalDirectCostRefunds = calculateTotalDirectCostRefunds(jsondata);
+  var netDirectCostExpenditures = calculateNetDirectCostExpenditures(totalDirectCostExpenditures, totalDirectCostRefunds);
+  idata[i].y = netDirectCostExpenditures;
+  console.log(idata[i].y);
+  linearTimeChart.data.datasets[0].data[i + 1] = idata[i];
+}
+linearTimeChart.update();
+}
 
 function moneyLeftPieChart(id, award, jsondata){
   jsondata = jsondata.substring(1, jsondata.length-1);
