@@ -92,6 +92,20 @@ $("#view-grants").click(function(){
     }});
 });
 
+$("#dash-home").click(function(){
+    $.ajax({url: "includes/dashboard/dashboard.php", success: function(result){
+        $("#content").html(result);
+        $("#breadcrumbs").html("<p><a href='dashboard.php'><i class='fas fa-home'></i></a> / Dashboard Home</p>");
+    }});
+});
+
+$("#custom").click(function(){
+    $.ajax({url: "includes/dashboard/custom.php", success: function(result){
+        $("#content").html(result);
+        $("#breadcrumbs").html("<p><a href='dashboard.php'><i class='fas fa-home'></i></a> / Customize</p>");
+    }});
+});
+
   /////////////////////////////////////
  /*      MAKE PAGE FULL SCREEN      */
 /////////////////////////////////////

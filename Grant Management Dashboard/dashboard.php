@@ -45,8 +45,8 @@ if ($result->num_rows > 0) {
     <div class="sidebar-menu">
       <button id="dashboard" class="accordion"><i class="fas fa-tachometer-alt"></i>Dashboard</button>
       <div class="panel">
-				<a href="#" class="sidebar-button" id="tasks"><i class="fas fa-tachometer-alt"></i>Dashboard Home</a>
-        <a href="#" class="sidebar-button" id="tasks"><i class="fas fa-palette"></i>Customize</a>
+				<a href="#" class="sidebar-button" id="dash-home"><i class="fas fa-tachometer-alt"></i>Dashboard Home</a>
+        <a href="#" class="sidebar-button" id="custom"><i class="fas fa-palette"></i>Customize</a>
       </div>
 
 <button class="accordion"><i class="fas fa-chart-pie"></i>Grants</button>
