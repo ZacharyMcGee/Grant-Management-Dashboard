@@ -18,12 +18,14 @@ global $myJSON;
 $result2 = $con->query($sql2);
 if ($result2->num_rows > 0) {
     // output data of each row
+		$i = 0;
+		$a = array();
 		while($row = $result2->fetch_assoc()) {
+			$i++;
 			$myObj = new \stdClass();
 			$myObj->x = $row["creation_date"];
 			$myObj->y = $row["jsondata"];
 
-			$a = array();
 			array_push($a, $myObj);
 	}
 }
