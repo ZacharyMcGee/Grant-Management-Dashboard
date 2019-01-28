@@ -442,6 +442,10 @@ body {
   cursor: pointer;
 }
 
+.timechart {
+  width: calc(50%);
+}
+
 .sidebar {
   background-color: #263544;
     height: 100%;

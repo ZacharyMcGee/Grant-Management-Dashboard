@@ -318,6 +318,7 @@ linearTimeChart.update();
 }
 
 function linearTimeChart(idata) {
+  console.log(idata);
   var ctx = document.getElementById('timeChart').getContext('2d');
    var linearTimeChart = new Chart(ctx, {
     type: 'line',
@@ -346,19 +347,24 @@ function linearTimeChart(idata) {
     }
 })
 for(var i = 0; i < idata.length; i++){
-  jsondata = idata[i].y.substring(1, idata[i].y.length-1);
+  //console.log(idata[i].y);
+  jsondata = idata[i].y;
+  jsondata = jsondata.replace(/\\\\/g, '\\');
+  jsondata = jsondata.substring(1, jsondata.length-1);
   jsondata = JSON.parse(jsondata);
+
   var totalDirectCostExpenditures = calculateTotalDirectCostExpenditures(jsondata);
   var totalDirectCostRefunds = calculateTotalDirectCostRefunds(jsondata);
   var netDirectCostExpenditures = calculateNetDirectCostExpenditures(totalDirectCostExpenditures, totalDirectCostRefunds);
   idata[i].y = netDirectCostExpenditures;
-  console.log(idata[i].y);
+  //console.log(idata[i].y);
   linearTimeChart.data.datasets[0].data[i + 1] = idata[i];
 }
 linearTimeChart.update();
 }
 
 function moneyLeftPieChart(id, award, jsondata){
+  console.log("json = " + jsondata);
   jsondata = jsondata.substring(1, jsondata.length-1);
   jsondata = JSON.parse(jsondata);
   console.log(award + " and ");
