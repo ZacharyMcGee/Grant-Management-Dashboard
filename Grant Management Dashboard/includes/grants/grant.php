@@ -31,7 +31,7 @@ if ($result2->num_rows > 0) {
 }
 else
 {
-    echo "0 results";
+		$a = array(); // If we only have 1 data set
 }
 
 
@@ -101,15 +101,15 @@ $("#update-grant-data").click(function(){
     <div class='card-title-text'><span class='parent-link'><?php echo $name ?></span></div>
   </div>
   <div class='body'>
+		<div class="remaining-awards">
+			<p>Remaining Direct Cost</p>
+		</div>
 		<div class="timechart">
 			<?php echo $timeChart ?>
 		</div>
-		<div class="past-data-table">
-
-		</div>
-
+		<div class="update-grant-data">
 		<div class="drag-and-drop-description">
-			<p id="upload-excel-p">Upload Excel Data</p><span id="small-hint" class="small-hint">(.xlsx format)</span>
+			<p id="upload-excel-p">Update Grant Data</p><span id="small-hint" class="small-hint">(.xlsx format)</span>
 		</div>
 		<div id="drag-and-drop" class="drag-and-drop">
 			<div class="drag-and-drop-text">
@@ -125,4 +125,5 @@ $("#update-grant-data").click(function(){
 		</div>
 		<button id="update-grant-data" class="save-button" type="button"><i class="far fa-save" style="padding-right:10px;"></i>Update Grant</button>
   </div>
+</div>
 </div>

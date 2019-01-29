@@ -442,10 +442,24 @@ body {
   cursor: pointer;
 }
 
-.timechart {
-  width: calc(50%);
+.remaining-awards {
+  float: left;
+  display: inline;
+  width: calc(30% - 20px);
 }
 
+.timechart {
+  float: left;
+  display: inline;
+  width: calc(50% - 40px);
+  border: 1px solid #e6e6e6;
+  margin: 20px;
+  padding-right: 20px;
+}
+
+.update-grant-data {
+  width: calc(50%);
+}
 .sidebar {
   background-color: #263544;
     height: 100%;

@@ -326,8 +326,9 @@ function linearTimeChart(idata) {
       datasets: [
     {
         label: "Direct Cost Remaining",
-        data: [{x: "04/01/2014", y: 175}],
-        fill: false,
+        data: [idata[0]],
+        fill: 0,
+        //backgroundColor: 'rgb(182, 237, 194)',
         borderColor: 'rgb(96,202,119)'
     },
 ]
@@ -336,13 +337,23 @@ function linearTimeChart(idata) {
         scales: {
             xAxes: [{
                 type: 'time',
-                distribution: 'linear'
+                distribution: 'linear',
             }],
             yAxes: [{
                 ticks: {
-                  beginAtZero: true   // minimum value will be 0.
+                  beginAtZero: true,   // minimum value will be 0.
+                  callback: function(value, index, values) {
+                      return '$' + value.toFixed(2);;
+                  }
                 }
             }]
+        },
+        title: {
+          display: true,
+          text:'Timeline Chart'
+        },
+        legend: {
+          display: false,
         }
     }
 })
@@ -357,7 +368,7 @@ for(var i = 0; i < idata.length; i++){
   var totalDirectCostRefunds = calculateTotalDirectCostRefunds(jsondata);
   var netDirectCostExpenditures = calculateNetDirectCostExpenditures(totalDirectCostExpenditures, totalDirectCostRefunds);
   idata[i].y = netDirectCostExpenditures;
-  //console.log(idata[i].y);
+  console.log(idata[i].y);
   linearTimeChart.data.datasets[0].data[i + 1] = idata[i];
 }
 linearTimeChart.update();
