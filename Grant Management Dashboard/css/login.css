@@ -1,0 +1,19 @@
+html {
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+body {
+  margin: 0px;
+  padding: 0px;
+  background-color: #f9f9f7;
+}
+
+.header {
+  background-color: #5E0001;
+  height: 52.5px;
+  padding: 10px;
+}
+
+.content {
+  height: 800px;
+}
