@@ -350,13 +350,14 @@ function linearTimeChart(idata) {
         },
         title: {
           display: true,
-          text:'Timeline Chart'
+          text:'Direct Cost Timeline'
         },
         legend: {
           display: false,
         }
     }
 })
+
 for(var i = 0; i < idata.length; i++){
   //console.log(idata[i].y);
   jsondata = idata[i].y;
@@ -374,7 +375,75 @@ for(var i = 0; i < idata.length; i++){
 linearTimeChart.update();
 }
 
+function pieBreakdown(jsondata) {
+  jsondata = jsondata.substring(1, jsondata.length-1);
+  jsondata = JSON.parse(jsondata);
+  console.log(jsondata);
+}
+
+function setBreakdown(jsondata, award) {
+  jsondata = jsondata.substring(1, jsondata.length-1);
+  jsondata = JSON.parse(jsondata);
+  var totalDirectCostExpenditures = calculateTotalDirectCostExpenditures(jsondata);
+  var totalDirectCostRefunds = calculateTotalDirectCostRefunds(jsondata);
+  var netDirectCostExpenditures = calculateNetDirectCostExpenditures(totalDirectCostExpenditures, totalDirectCostRefunds);
+  var amountLeft = calculateNetDirectCostLeft(award, netDirectCostExpenditures);
+  document.getElementById("spent").innerHTML = "-" + moneyFormat(netDirectCostExpenditures);
+  document.getElementById("remaining").innerHTML = "= " + moneyFormat(amountLeft);
+}
+
+function moneyFormat(money) {
+    return "$" + money.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
+
 function moneyLeftPieChart(id, award, jsondata){
+  console.log("json = " + jsondata);
+  jsondata = jsondata.substring(1, jsondata.length-1);
+  jsondata = JSON.parse(jsondata);
+  console.log(award + " and ");
+  var totalDirectCostExpenditures = calculateTotalDirectCostExpenditures(jsondata);
+  var totalDirectCostRefunds = calculateTotalDirectCostRefunds(jsondata);
+  var netDirectCostExpenditures = calculateNetDirectCostExpenditures(totalDirectCostExpenditures, totalDirectCostRefunds);
+  var amountLeft = calculateNetDirectCostLeft(award, netDirectCostExpenditures);
+
+  var ctx = document.getElementById(id).getContext('2d');
+  var chart = new Chart(ctx, {
+      // The type of chart we want to create
+      type: 'doughnut',
+      // The data for our dataset
+      data: {
+          labels: ["Spent", "Remaining"],
+          datasets: [{
+              data: [netDirectCostExpenditures, amountLeft],
+              backgroundColor: [
+                'rgb(230,230,230)',
+                'rgb(96,202,119)',
+              ]
+          }]
+      },
+
+      // Configuration options go here
+      options: {
+        cutoutPercentage: 70,
+        responsive: true,
+        maintainAspectRatio: false,
+        aspectRatio: 1,
+        elements: {
+            center: {
+            text: "$" + amountLeft,
+            color: '#60ca77',
+            fontStyle: 'Helvetica',
+            sidePadding: 25
+          }
+        },
+        legend: {
+           display: false,
+        },
+      }
+  });
+}
+
+function moneyLeftIDCPieChart(id, award, jsondata){
   console.log("json = " + jsondata);
   jsondata = jsondata.substring(1, jsondata.length-1);
   jsondata = JSON.parse(jsondata);
