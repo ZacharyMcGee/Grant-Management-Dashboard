@@ -30,7 +30,7 @@ $("#save-new-grant").click(function(){
     if(idcAwardAmount == ""){
       idcAwardAmount = "n/a";
     }
-    
+
     console.log(sessionStorage.getItem("result"));
     $.ajax({
         url: "functions/save-grant.php",
@@ -135,7 +135,7 @@ function validateNewGrantForm(){
     <div class="information-grant-header">
       <p>Grant Data</p>
     </div>
-    <div class="information-container">
+    <div class="data-container">
     <div class="drag-and-drop-description">
       <p id="upload-excel-p">Upload Excel Data</p><span id="small-hint" class="small-hint">(.xlsx format)</span>
     </div>
