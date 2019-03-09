@@ -301,7 +301,7 @@ body {
 }
 
 .card-body {
-  overflow: auto;
+  overflow: hidden;
   width: 100%;
 }
 
@@ -588,7 +588,7 @@ body {
 }
 
 .information-grant-header {
-  width: calc(100% - 50px);
+  width: calc(100% - 40px);
   border-bottom: 1px solid #eaeaea;
   margin-left: 20px;
   padding: 0px;
@@ -605,6 +605,10 @@ body {
 
 .information-container {
   height: 160px;
+}
+
+.data-container {
+  height: 100%;
 }
 
 .preset {
@@ -673,7 +677,7 @@ body {
 
 .input-grant-input-container i {
   padding: 10px;
-  background: dodgerblue;
+  background: #6c7d8f;
   color: white;
   min-width: 20px;
   text-align: center;
@@ -751,8 +755,8 @@ body {
 
 .input-text {
   background-color: #f3f3f3;
-  width: calc(100% - 100px); /* IE 9,10 , Chrome, Firefox */
-  width: -webkit-calc(100% - 100px); /*For safari 6.0*/
+  width: calc(100% - 90px); /* IE 9,10 , Chrome, Firefox */
+  width: -webkit-calc(100% - 90px); /*For safari 6.0*/
   padding: 10px;
   border-radius: 0px 3px 3px 0px;
   border-top: 1px solid #bbbbbb;
@@ -764,9 +768,9 @@ body {
 
 .input-text:focus {
   box-shadow: 0 0 1px #1e90ff;
-  border-top: 1px solid #1e90ff;
-  border-bottom: 1px solid #1e90ff;
-  border-right: 1px solid #1e90ff;
+  border-top: 1px solid #6c7d8f;
+  border-bottom: 1px solid #6c7d8f;
+  border-right: 1px solid #6c7d8f;
   border-left: none;
   background-color: white;
   transition: all .3s;
@@ -859,14 +863,17 @@ input[type="file"] {
   float: right;
   margin-top: 30px;
   padding-top: 0px;
-  width: 100%;
+  width: calc(100% - 40px);
+  border-top: 1px solid #eaeaea;
+  padding-top: 20px;
+  margin-left: 20px;
+  margin-right: 20px;
 }
 
 .cancel-button {
   background-color: #db6161;
-  width: calc(50% - 30px);
+  width: calc(25% - 30px);
   border: 1px solid #bd5555;
-  border-radius: 3px;
   color: white;
   padding: 7px 32px;
   text-align: center;
@@ -876,13 +883,11 @@ input[type="file"] {
   font-family: 'Open Sans', sans-serif;
   cursor: pointer;
   float: right;
-  margin-right: 20px;
 }
 
 .save-button {
   background-color: #85C389;
-  width: calc(50% - 30px);
-  border-radius: 3px;
+  width: calc(25% - 30px);
   color: white;
   padding: 7px 32px;
   text-align: center;
