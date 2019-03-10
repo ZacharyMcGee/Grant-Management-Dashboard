@@ -12,17 +12,84 @@ if ($result->num_rows > 0) {
     // output data of each row
     $numOfActiveGrants = 0;
     $numOfInactiveGrants = 0;
+		$grantList = "<table><tr><th>Status</th><th>Grant Name</th><th>Budget Purpose #</th><th>Direct Cost Award</th><th>Indirect Cost Award</th><th>Funding Agency</th><th>Creation Date</th></tr>";
 
     while($row = $result->fetch_assoc()) {
+			$date = new \DateTime();
+			$date->setTimestamp(strtotime($row['creation_date']));
+			$interval = $date->diff(new \DateTime('now'));
+			$timeInSeconds = $interval->format('%s');
+			$timeInMinutes = $interval->format('%i');
+			$timeInHours = $interval->format('%h');
+			$timeInDays = $interval->format('%d');
+			$timeInMonths = $interval->format('%m');
+			$timeInYears = $interval->format('%y');
+
+			if($timeInYears <= 0) {
+				if($timeInMonths <= 0) {
+					if($timeInDays <= 0) {
+						if($timeInHours <= 0) {
+							if($timeInMinutes <= 0) {
+								if($timeInSeconds <= 0) {
+									$timeSinceUpdate = $interval->format('0 seconds ago');
+								}
+								else
+								{
+									$timeSinceUpdate = $interval->format('%s seconds ago');
+								}
+							}
+							else
+							{
+								$timeSinceUpdate = $interval->format('%m minutes ago');
+							}
+						}
+						else
+						{
+							$timeSinceUpdate = $interval->format('%h hours ago');
+						}
+					}
+					else
+					{
+					$timeSinceUpdate = $interval->format('%d days ago');
+					}
+				}
+				else
+				{
+					$timeSinceUpdate = $interval->format('%m months ago');
+				}
+			}
+			else
+			{
+				$timeSinceUpdate = $interval->format('%y years ago');
+			}
+
+			$activeImage;
+			// Here we count the number of active and inactive grants
+			// And we also check if the current grant should have an active
+			// icon or inactive icon for the table
       if($row["active"] == 1){
         $numOfActiveGrants++;
+				$activeImage = "<img src='images/active-icon.png'>";
       }
       else
       {
         $numOfInactiveGrants++;
+				$activeImage = "<img src='images/inactive-icon.png'>";
       }
 
+			$formattedDCAward = '$' . number_format($row["dc_award"], 2);
+
+			if(is_numeric($row["idc_award"])){
+				 $formattedIDCAward = '$' . number_format($row["idc_award"], 2);
+			}
+			else
+			{
+				$formattedIDCAward = $row["idc_award"];
+			}
+
+			$grantList .= "<tr><td style='padding-left: 30px;'>" . $activeImage . "</td><td>" . $row["name"] . "</td><td>" . $row["bp"] . "</td><td>" . $formattedDCAward . "</td><td>" . $formattedIDCAward . "</td><td>" . $row["agency"] . "</td><td>" . $timeSinceUpdate . "</td></tr>";
     }
+		$grantList .= "</table>";
   }
 else
 {
@@ -95,5 +162,8 @@ $con->close();
 		<div class="card-title-text">
 			<i class="fas fa-list" style="color:#7d7d7d;"></i><span class="parent-link">All Grants</span>
 		</div>
+	</div>
+	<div class="all-grants-table">
+		<?php echo $grantList ?>
 	</div>
 </div>
