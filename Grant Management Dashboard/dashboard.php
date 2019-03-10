@@ -52,7 +52,7 @@ if ($result->num_rows > 0) {
 <button class="accordion"><i class="fas fa-chart-pie"></i>Grants</button>
 <div class="panel">
   <a href="#" class="sidebar-button" id="new-grant"><i class="fas fa-plus-circle"></i>Create New Grant</a>
-  <a href="#" class="sidebar-button" id="view-grants"><i class="far fa-eye"></i>View Grants</a>
+  <a href="#" class="sidebar-button" id="view-grants"><i class="far fa-eye"></i>View All Grants</a>
 </div>
 
 <button class="accordion"><i class="fas fa-tasks"></i>Tasks</button>
@@ -62,7 +62,7 @@ if ($result->num_rows > 0) {
 
 <button class="accordion"><i class="fas fa-user"></i>Profile</button>
 <div class="panel">
-  <a href="#" class="sidebar-button" id="tasks"><i class="fas fa-calendar-alt"></i>Schedule Alert</a>
+  <a href="#" class="sidebar-button" id="tasks"><i class="fas fa-user-edit"></i>Edit Profile</a>
 </div>
     </div>
 

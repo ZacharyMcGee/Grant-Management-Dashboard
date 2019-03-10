@@ -85,7 +85,7 @@ function validateNewGrantForm(){
 <div class="full-card">
   <div class="card-title">
     <div class="card-title-text">
-      <i class="fas fa-plus-circle"></i><span class="parent-link">New Grant</span>
+      <i class="fas fa-plus-circle"></i><span class="parent-link">Create New Grant</span>
     </div>
     <div class="card-title-button">
     </div>

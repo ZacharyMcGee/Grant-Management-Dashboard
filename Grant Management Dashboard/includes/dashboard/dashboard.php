@@ -5,7 +5,7 @@ if ( mysqli_connect_errno() ) {
 	die ('Failed to connect to MySQL: ' . mysqli_connect_error());
 }
 
-$sql = "SELECT active FROM grants WHERE userid=" . $_SESSION['id'];
+$sql = "SELECT id, name, bp, dc_award, idc_award, agency, jsondata, active, creation_date FROM grants WHERE userid=" . $_SESSION['id'];
 $result = $con->query($sql);
 
 if ($result->num_rows > 0) {
@@ -42,7 +42,8 @@ $con->close();
   </div>
 
   <div class="total-grants-card">
-     <p><?php echo $numOfActiveGrants ?></p>
+		<div class="view-all"><i class="fas fa-info-circle"></i> Total Grants <a href="">Currently Active</a></div>
+     <div class="current-active-grants"><?php echo $numOfActiveGrants ?> / <?php echo ($numOfActiveGrants + $numOfInactiveGrants) ?></div>
   </div>
 </div>
 
@@ -56,9 +57,10 @@ $con->close();
   </div>
 
   <div class="total-grants-card">
-		<p><?php echo $numOfInactiveGrants ?></p>
+		<div class="view-all"><i class="fas fa-info-circle"></i> Total Grants <a href="">Currently Inactive</a></div>
+		 <div class="current-active-grants"><?php echo $numOfInactiveGrants ?> / <?php echo ($numOfActiveGrants + $numOfInactiveGrants) ?></div>
+		</div>
   </div>
-</div>
 
 <div class="fourth-card">
   <div class="card-title">
@@ -74,7 +76,7 @@ $con->close();
   </div>
 </div>
 
-<div class="fourth-card">
+<div class="fourth-card" style="margin-right: 0px;">
   <div class="card-title">
     <div class="card-title-text">
       <i class="fas fa-plus-circle" style="color:#ffbd94;"></i><span class="parent-link">Total Inactive Grants</span>
@@ -86,4 +88,12 @@ $con->close();
   <div class="total-grants-card">
 
   </div>
+</div>
+
+<div class="full-card" style="margin-top: 135px;">
+	<div class="card-title">
+		<div class="card-title-text">
+			<i class="fas fa-list" style="color:#7d7d7d;"></i><span class="parent-link">All Grants</span>
+		</div>
+	</div>
 </div>
