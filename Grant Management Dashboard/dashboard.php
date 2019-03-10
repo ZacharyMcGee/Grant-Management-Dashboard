@@ -66,7 +66,7 @@ if ($result->num_rows > 0) {
 </div>
     </div>
 
-		<button class="logout-sidebar"><i class="fas fa-sign-out-alt"></i>Logout</button>
+		<a href="logout.php" class="logout-sidebar"><i class="fas fa-sign-out-alt"></i>Logout</a>
 </div>
 
   <div class="header">
