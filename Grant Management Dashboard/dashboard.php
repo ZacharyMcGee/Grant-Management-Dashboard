@@ -45,7 +45,7 @@ if ($result->num_rows > 0) {
     <div class="sidebar-menu">
       <button id="dashboard" class="accordion"><i class="fas fa-tachometer-alt"></i>Dashboard</button>
       <div class="panel">
-				<a href="#" class="sidebar-button" id="dash-home"><i class="fas fa-tachometer-alt"></i>Dashboard Home</a>
+				<a href="dashboard.php" class="sidebar-button"><i class="fas fa-tachometer-alt"></i>Dashboard Home</a>
         <a href="#" class="sidebar-button" id="custom"><i class="fas fa-palette"></i>Customize</a>
       </div>
 
@@ -53,15 +53,20 @@ if ($result->num_rows > 0) {
 <div class="panel">
   <a href="#" class="sidebar-button" id="new-grant"><i class="fas fa-plus-circle"></i>Create New Grant</a>
   <a href="#" class="sidebar-button" id="view-grants"><i class="far fa-eye"></i>View Grants</a>
-  <a href="#" class="sidebar-button" id="tasks"><i class="fas fa-plus-circle"></i>Create New Grant</a>
-  <a href="#" class="sidebar-button" id="tasks"><i class="fas fa-plus-circle"></i>Create New Grant</a>
 </div>
 
 <button class="accordion"><i class="fas fa-tasks"></i>Tasks</button>
 <div class="panel">
   <a href="#" class="sidebar-button" id="tasks"><i class="fas fa-calendar-alt"></i>Schedule Alert</a>
 </div>
+
+<button class="accordion"><i class="fas fa-user"></i>Profile</button>
+<div class="panel">
+  <a href="#" class="sidebar-button" id="tasks"><i class="fas fa-calendar-alt"></i>Schedule Alert</a>
+</div>
     </div>
+
+		<button class="logout-sidebar"><i class="fas fa-sign-out-alt"></i>Logout</button>
 </div>
 
   <div class="header">
