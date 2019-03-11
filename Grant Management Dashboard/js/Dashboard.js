@@ -369,20 +369,30 @@ function sortByDate(arr) {
   return dateA > dateB ? 1 : -1;
   }
 
-function linearTimeChart(jsondata, dc_award) {
+function linearTimeChart(jsondata, dc_award, idc_award) {
   jsondata = jsondata.substring(1, jsondata.length-1);
   jsondata = JSON.parse(jsondata);
 
-  var total = 0;
+  var dcdataset = [];
+  var idcdataset = [];
+
+  var dctotal = 0;
   for(var i = 0; i < jsondata.length; i++){
     if(!jsondata[i]["Headers Category"].includes("24") && !jsondata[i]["Headers Category"].includes("63") && !jsondata[i]["Headers Category"].includes("62")){
-      total += jsondata[i]["Credit Amount"];
+      dctotal += jsondata[i]["Credit Amount"];
     }
   }
 
-  dc_award = +dc_award + +total;
+  dc_award = +dc_award + +dctotal;
 
-  var dataset = [];
+  var idctotal = 0;
+  for(var i = 0; i < jsondata.length; i++){
+    if(jsondata[i]["Headers Category"].includes("24")){
+      idctotal += jsondata[i]["Credit Amount"];
+    }
+  }
+
+  idc_award = +idc_award + +idctotal;
 
   for(var i = 0; i < jsondata.length; i++){
     if(!jsondata[i]["Headers Category"].includes("24") && !jsondata[i]["Headers Category"].includes("63")){
@@ -391,30 +401,48 @@ function linearTimeChart(jsondata, dc_award) {
       dateSplit[2] = "20" + dateSplit[2];
       var dateFormat = new Date(dateSplit[2] + "-" + (dateSplit[1]) + "-" + dateSplit[0]);
       var data = { x: dateFormat, y: jsondata[i]["Debit Amount"], debit: jsondata[i]["Debit Amount"]};
-      dataset.push(data);
+      dcdataset.push(data);
+    }
+    else if(jsondata[i]["Headers Category"].includes("24")){
+      var date = dateFormatChange(jsondata[i]["Ledger Date"]);
+      var dateSplit = date.split("/");
+      dateSplit[2] = "20" + dateSplit[2];
+      var dateFormat = new Date(dateSplit[2] + "-" + (dateSplit[1]) + "-" + dateSplit[0]);
+      var data = { x: dateFormat, y: jsondata[i]["Debit Amount"], debit: jsondata[i]["Debit Amount"]};
+      idcdataset.push(data);
     }
   }
-  dataset.sort(function(a,b){
+
+  dcdataset.sort(function(a,b){
     var c = new Date(a.x);
     var d = new Date(b.x);
     return c-d;
   });
-  for(var i = 0; i < dataset.length; i++) {
-    dc_award = dc_award - dataset[i].y;
-    dataset[i].y = dc_award;
+  for(var i = 0; i < dcdataset.length; i++) {
+    dc_award = dc_award - dcdataset[i].y;
+    dcdataset[i].y = dc_award;
   }
-  console.log(dataset);
-  console.log(dataset[0].x);
+
+  idcdataset.sort(function(a,b){
+    var c = new Date(a.x);
+    var d = new Date(b.x);
+    return c-d;
+  });
+  for(var i = 0; i < idcdataset.length; i++) {
+    idc_award = idc_award - idcdataset[i].y;
+    idcdataset[i].y = idc_award;
+  }
+  console.log(dcdataset);
+  console.log(dcdataset[0].x);
   var ctx = document.getElementById('timeChart').getContext('2d');
    var linearTimeChart = new Chart(ctx, {
     type: 'line',
     data: {
       datasets: [
     {
-        label: [""],
-        data: dataset,
-        fill: 0,
-        //backgroundColor: 'rgb(182, 237, 194)',
+        label: ["Direct Cost"],
+        data: dcdataset,
+        fill: false,
         borderColor: 'rgb(96,202,119)',
         lineTension: 0,
         backgroundColor: "rgba(75,192,192,0.4)",
@@ -435,6 +463,29 @@ function linearTimeChart(jsondata, dc_award) {
         pointHitRadius: 10,
         spanGaps: false
     },
+    {
+        label: ["Indirect Cost"],
+        data: idcdataset,
+        fill: false,
+        borderColor: 'rgb(255,99,132)',
+        lineTension: 0,
+        backgroundColor: "rgba(255,99,132,.4)",
+        borderCapStyle: 'butt',
+        borderDash: [],
+        borderDashOffset: 0.0,
+        borderWidth: 2,
+        borderJoinStyle: 'miter',
+        pointBorderColor: "rgb(255,99,132)",
+        pointBackgroundColor: "#fff",
+        pointBorderWidth: 1,
+        pointHoverRadius: 5,
+        pointHoverBackgroundColor: "rgba(255,99,132,1)",
+        pointHoverBorderColor: "rgba(255,99,132,1)",
+        pointHoverBorderWidth: 2,
+        pointRadius: 3,
+        pointHitRadius: 10,
+        spanGaps: false
+    }
 ]
     },
     options: {
@@ -465,10 +516,10 @@ function linearTimeChart(jsondata, dc_award) {
         },
         title: {
           display: true,
-          text:'Direct Cost Timeline'
+          text:'Spending Timeline'
         },
         legend: {
-          display: false,
+          display: true,
         },
         pan: {
           enabled: true,
@@ -485,14 +536,27 @@ function linearTimeChart(jsondata, dc_award) {
         tooltips: {
             callbacks: {
                 label: function(tooltipItem, data) {
+                  if(tooltipItem.datasetIndex == 0) {
                     var debit = moneyFormat(data.datasets[0].data[tooltipItem.index].debit);
                     var label = data.datasets[tooltipItem.datasetIndex].label || '';
 
                     if (label) {
-                        label += ' Debit: -' + debit + ', DC Remaining: ';
+                        label = ' Debit: -' + debit + ', DC Remaining: ';
                     }
                     label += moneyFormat(Math.round(tooltipItem.yLabel * 100) / 100);
                     return label;
+                  }
+                  else
+                  {
+                    var debit = moneyFormat(data.datasets[1].data[tooltipItem.index].debit);
+                    var label = data.datasets[tooltipItem.datasetIndex].label || '';
+
+                    if (label) {
+                        label = ' Debit: -' + debit + ', IDC Remaining: ';
+                    }
+                    label += moneyFormat(Math.round(tooltipItem.yLabel * 100) / 100);
+                    return label;
+                  }
                 },
                 title: function(tooltipItems, data) {
                   var newDate = tooltipItems[0].xLabel.split(" ");

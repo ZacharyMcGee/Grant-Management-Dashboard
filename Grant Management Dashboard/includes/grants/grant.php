@@ -67,7 +67,7 @@ if ($result->num_rows > 0) {
 			$formattedIDCAward = $row["idc_award"];
 		}
 
-		$timeChart = "<canvas id='timeChart'></canvas><script>linearTimeChart('" . $json . "','" . $row["dc_award"] . "');</script>";
+		$timeChart = "<canvas id='timeChart'></canvas><script>linearTimeChart('" . $json . "','" . $row["dc_award"] . "','" . $row["idc_award"] . "');</script>";
 		$dcRemaining = "<canvas id='dcLeftPieChart'></canvas><script>dcMoneyLeftPieChart('dcLeftPieChart','" . $row["dc_award"] . "','" . $json . "');</script>";
 		$dcSpendingBreakdown = "<div class='dc-breakdown'>Award: <span class='awarded'>" . $formattedDCAward . "</span>\nSpent: <span class='spent' id='dc-spent'></span><hr class='custom-hr'><span class='remaining' id='dc-remaining'></span></div><script>setDCBreakdown('" . $json . "','" . $row["dc_award"] . "');</script>";
 
