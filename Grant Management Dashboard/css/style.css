@@ -127,7 +127,9 @@ body {
 }
 
 .fas.disabled {
+  color: #76767600;
   display: none !important;
+  transition: all 1s;
 }
 
 .search-bar-cancel-text.disabled {
@@ -222,6 +224,7 @@ body {
 }
 
 .content {
+  font-family: 'Open Sans', sans-serif;
   font-size: 14px;
   float: left;
   width: 100%;
@@ -430,6 +433,7 @@ body {
   padding: 8px;
   padding-left: 20px;
   font-size: 12px;
+  font-weight: 200;
 }
 
 .all-grants-table tr:not(:first-child):hover {
