@@ -222,7 +222,7 @@ body {
   color: #7d7d7d;
   font-family: 'Open Sans', sans-serif;
   border-radius: 3px;
-  width: calc(100% - 10px);
+  width: calc(100% - 20px);
   padding-bottom: 20px;
   -webkit-box-shadow: 0px 0px 3px 0px rgba(87, 87, 87, 0.1);
   -moz-box-shadow: 0px 0px 3px 0px rgba(87, 87, 87, 0.1);
@@ -247,12 +247,28 @@ body {
   color: #7d7d7d;
   font-family: 'Open Sans', sans-serif;
   border-radius: 3px;
-  width: calc(25% - 18px);
+  width: calc(25% - 20px);
   padding-bottom: 25px;
   -webkit-box-shadow: 0px 0px 3px 0px rgba(87, 87, 87, 0.1);
   -moz-box-shadow: 0px 0px 3px 0px rgba(87, 87, 87, 0.1);
   box-shadow: 0px 0px 3px 0px rgba(87, 87, 87, 0.1);
   height: 90px;
+  display: inline;
+  float: left;
+  margin-right: 20px;
+}
+
+.fourth-card-tall {
+  background-color: #FFF;
+  color: #7d7d7d;
+  font-family: 'Open Sans', sans-serif;
+  border-radius: 3px;
+  width: calc(25% - 20px);
+  padding-bottom: 25px;
+  -webkit-box-shadow: 0px 0px 3px 0px rgba(87, 87, 87, 0.1);
+  -moz-box-shadow: 0px 0px 3px 0px rgba(87, 87, 87, 0.1);
+  box-shadow: 0px 0px 3px 0px rgba(87, 87, 87, 0.1);
+  height: 120px;
   display: inline;
   float: left;
   margin-right: 20px;
@@ -511,6 +527,7 @@ body {
 
 .remaining-awards {
   width: 100%;
+  margin-top: 2px;
 }
 
 .dc-award-chart {
@@ -527,6 +544,11 @@ body {
 }
 
 .dc-breakdown {
+  font-size: 12px;
+  margin-top: 12px;
+}
+
+.idc-breakdown {
   font-size: 12px;
   margin-top: 12px;
 }
@@ -550,10 +572,10 @@ body {
 }
 
 .timechart {
-  width: calc(100% - 60px);
   border: 1px solid #e6e6e6;
   margin: 20px;
   padding-right: 20px;
+
 }
 
 .update-grant-data {

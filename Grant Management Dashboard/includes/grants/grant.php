@@ -10,7 +10,7 @@ if ( mysqli_connect_errno() ) {
 $grantid = json_encode($_GET['id']);
 $_SESSION["current_grant"] = $grantid;
 
-$sql = "SELECT name, bp, dc_award, agency, jsondata, creation_date FROM grants WHERE id=" . $grantid;
+$sql = "SELECT name, bp, dc_award, idc_award, agency, jsondata, creation_date FROM grants WHERE id=" . $grantid;
 $sql2 = "SELECT jsondata, creation_date FROM grant_archive WHERE grantid=" . $grantid;
 
 global $myJSON;
@@ -59,9 +59,20 @@ if ($result->num_rows > 0) {
 			$formattedDCAward = $row["dc_award"];
 		}
 
-		$timeChart = "<canvas id='timeChart'></canvas><script>linearTimeChart(" . $myJSON . ");</script>";
-		$dcRemaining = "<canvas id='dcLeftPieChart'></canvas><script>moneyLeftPieChart('dcLeftPieChart','" . $row["dc_award"] . "','" . $json . "');</script>";
-		$dcSpendingBreakdown = "<div class='dc-breakdown'>Award: <span class='awarded'>" . $formattedDCAward . "</span>\nSpent: <span class='spent' id='spent'></span><hr class='custom-hr'><span class='remaining' id='remaining'></span></div><script>setBreakdown('" . $json . "','" . $row["dc_award"] . "');</script>";
+		if(is_numeric($row["idc_award"])){
+			 $formattedIDCAward = '$' . number_format($row["idc_award"], 2);
+		}
+		else
+		{
+			$formattedIDCAward = $row["idc_award"];
+		}
+
+		$timeChart = "<canvas id='timeChart'></canvas><script>linearTimeChart('" . $json . "','" . $row["dc_award"] . "');</script>";
+		$dcRemaining = "<canvas id='dcLeftPieChart'></canvas><script>dcMoneyLeftPieChart('dcLeftPieChart','" . $row["dc_award"] . "','" . $json . "');</script>";
+		$dcSpendingBreakdown = "<div class='dc-breakdown'>Award: <span class='awarded'>" . $formattedDCAward . "</span>\nSpent: <span class='spent' id='dc-spent'></span><hr class='custom-hr'><span class='remaining' id='dc-remaining'></span></div><script>setDCBreakdown('" . $json . "','" . $row["dc_award"] . "');</script>";
+
+		$idcRemaining = "<canvas id='idcLeftPieChart'></canvas><script>idcMoneyLeftPieChart('idcLeftPieChart','" . $row["idc_award"] . "','" . $json . "');</script>";
+		$idcSpendingBreakdown = "<div class='idc-breakdown'>Award: <span class='awarded'>" . $formattedIDCAward . "</span>\nSpent: <span class='spent' id='idc-spent'></span><hr class='custom-hr'><span class='remaining' id='idc-remaining'></span></div><script>setIDCBreakdown('" . $json . "','" . $row["idc_award"] . "');</script>";
 }
 else
 {
@@ -109,7 +120,7 @@ $("#update-grant-data").click(function(){
 });
 </script>
 </head>
-<div class="fourth-card">
+<div class="fourth-card-tall">
 	<div class='card-title'>
 		<div class='card-title-text'><span class='parent-link'>Remaining Direct Cost</span></div>
 	</div>
@@ -123,18 +134,21 @@ $("#update-grant-data").click(function(){
 	</div>
 </div>
 
-<div class="fourth-card">
+<div class="fourth-card-tall">
 	<div class='card-title'>
 		<div class='card-title-text'><span class='parent-link'>Remaining Indirect Cost</span></div>
 	</div>
 	<div class="remaining-awards">
 		<div class="dc-award-chart">
-
+			<?php echo $idcRemaining ?>
+		</div>
+		<div class="spending-breakdown">
+			<?php echo $idcSpendingBreakdown ?>
 		</div>
 	</div>
 </div>
 
-<div class="fourth-card">
+<div class="fourth-card-tall">
 	<div class='card-title'>
 		<div class='card-title-text'><span class='parent-link'>Something Else</span></div>
 	</div>
@@ -145,7 +159,7 @@ $("#update-grant-data").click(function(){
 	</div>
 </div>
 
-<div class="fourth-card">
+<div class="fourth-card-tall">
 	<div class='card-title'>
 		<div class='card-title-text'><span class='parent-link'>Something Else</span></div>
 	</div>
@@ -160,12 +174,17 @@ $("#update-grant-data").click(function(){
     <div class='card-title-text'><span class='parent-link'>Spending Timeline</span></div>
   </div>
   <div class='body'>
+			<div class="timechart">
+				<?php echo $timeChart ?>
+		</div>
+	</div>
+</div>
 
-		<div class="timechart">
-			<?php echo $timeChart ?>
-		</div>
-		</div>
-		<div class="update-grant-data">
+<div class='full-card' style='margin-top: 20px;'>
+	<div class='card-title'>
+		<div class='card-title-text'><span class='parent-link'>Update Grant Data</span></div>
+	</div>
+	<div class="update-grant-data">
 <div class="drag-and-drop-description">
 	<p id="upload-excel-p">Update Grant Data</p><span id="small-hint" class="small-hint">(.xlsx format)</span>
 </div>

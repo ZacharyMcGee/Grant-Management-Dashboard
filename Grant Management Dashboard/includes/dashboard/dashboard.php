@@ -87,7 +87,7 @@ if ($result->num_rows > 0) {
 				$formattedIDCAward = $row["idc_award"];
 			}
 
-			$grantList .= "<tr><td style='padding-left: 30px;'>" . $activeImage . "</td><td>" . $row["name"] . "</td><td>" . $row["bp"] . "</td><td>" . $formattedDCAward . "</td><td>" . $formattedIDCAward . "</td><td>" . $row["agency"] . "</td><td>" . $timeSinceUpdate . "</td></tr>";
+			$grantList .= "<tr onClick='openGrant(" . $row["id"] . ")'><td style='padding-left: 30px;'>" . $activeImage . "</td><td>" . $row["name"] . "</td><td>" . $row["bp"] . "</td><td>" . $formattedDCAward . "</td><td>" . $formattedIDCAward . "</td><td>" . $row["agency"] . "</td><td>" . $timeSinceUpdate . "</td></tr>";
     }
 		$grantList .= "</table>";
   }

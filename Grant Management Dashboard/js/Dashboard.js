@@ -241,6 +241,16 @@ function calculateTotalDirectCostExpenditures(obj){
   return total;
 }
 
+function calculateTotalIndirectCostExpenditures(obj){
+  var total = 0;
+  for(var i = 0; i < obj.length; i++){
+    if(obj[i]["Headers Category"].includes("24")){
+      total += obj[i]["Debit Amount"];
+    }
+  }
+  return total;
+}
+
 function calculateTotalDirectCostRefunds(obj){
   var total = 0;
   for(var i = 0; i < obj.length; i++){
@@ -251,11 +261,29 @@ function calculateTotalDirectCostRefunds(obj){
   return total;
 }
 
+function calculateTotalIndirectCostRefunds(obj){
+  var total = 0;
+  for(var i = 0; i < obj.length; i++){
+    if(obj[i]["Headers Category"].includes("24")){
+      total += obj[i]["Credit Amount"];
+    }
+  }
+  return total;
+}
+
 function calculateNetDirectCostExpenditures(expenditures, refunds){
   return (expenditures - refunds).toFixed(2);
 }
 
+function calculateNetIndirectCostExpenditures(expenditures, refunds){
+  return (expenditures - refunds).toFixed(2);
+}
+
 function calculateNetDirectCostLeft(awardAmount, netDirectCostExpenditures){
+  return (awardAmount - netDirectCostExpenditures).toFixed(2);
+}
+
+function calculateNetIndirectCostLeft(awardAmount, netDirectCostExpenditures){
   return (awardAmount - netDirectCostExpenditures).toFixed(2);
 }
 
@@ -317,7 +345,166 @@ linearTimeChart.update();
   console.log(linearTimeChart);
 }
 
-function linearTimeChart(idata) {
+function dateFormatChange(date) {
+  date = date.replace("-", "/");
+  date = date.replace("-", "/");
+  date = date.replace("Jan", "01");
+  date = date.replace("Feb", "02");
+  date = date.replace("Mar", "03");
+  date = date.replace("Apr", "04");
+  date = date.replace("May", "05");
+  date = date.replace("Jun", "06");
+  date = date.replace("Jul", "07");
+  date = date.replace("Aug", "08");
+  date = date.replace("Sep", "09");
+  date = date.replace("Oct", "10");
+  date = date.replace("Nov", "11");
+  date = date.replace("Dec", "12");
+  return date;
+}
+
+function sortByDate(arr) {
+  var dateA = arr[1].getTime();
+  var dateB = arr[1].getTime();
+  return dateA > dateB ? 1 : -1;
+  }
+
+function linearTimeChart(jsondata, dc_award) {
+  jsondata = jsondata.substring(1, jsondata.length-1);
+  jsondata = JSON.parse(jsondata);
+
+  var total = 0;
+  for(var i = 0; i < jsondata.length; i++){
+    if(!jsondata[i]["Headers Category"].includes("24") && !jsondata[i]["Headers Category"].includes("63") && !jsondata[i]["Headers Category"].includes("62")){
+      total += jsondata[i]["Credit Amount"];
+    }
+  }
+
+  dc_award = +dc_award + +total;
+
+  var dataset = [];
+
+  for(var i = 0; i < jsondata.length; i++){
+    if(!jsondata[i]["Headers Category"].includes("24") && !jsondata[i]["Headers Category"].includes("63")){
+      var date = dateFormatChange(jsondata[i]["Ledger Date"]);
+      var dateSplit = date.split("/");
+      dateSplit[2] = "20" + dateSplit[2];
+      var dateFormat = new Date(dateSplit[2] + "-" + (dateSplit[1]) + "-" + dateSplit[0]);
+      var data = { x: dateFormat, y: jsondata[i]["Debit Amount"], debit: jsondata[i]["Debit Amount"]};
+      dataset.push(data);
+    }
+  }
+  dataset.sort(function(a,b){
+    var c = new Date(a.x);
+    var d = new Date(b.x);
+    return c-d;
+  });
+  for(var i = 0; i < dataset.length; i++) {
+    dc_award = dc_award - dataset[i].y;
+    dataset[i].y = dc_award;
+  }
+  console.log(dataset);
+  console.log(dataset[0].x);
+  var ctx = document.getElementById('timeChart').getContext('2d');
+   var linearTimeChart = new Chart(ctx, {
+    type: 'line',
+    data: {
+      datasets: [
+    {
+        label: [""],
+        data: dataset,
+        fill: 0,
+        //backgroundColor: 'rgb(182, 237, 194)',
+        borderColor: 'rgb(96,202,119)',
+        lineTension: 0,
+        backgroundColor: "rgba(75,192,192,0.4)",
+        borderColor: "rgba(75,192,192,1)",
+        borderCapStyle: 'butt',
+        borderDash: [],
+        borderDashOffset: 0.0,
+        borderWidth: 2,
+        borderJoinStyle: 'miter',
+        pointBorderColor: "rgba(75,192,192,1)",
+        pointBackgroundColor: "#fff",
+        pointBorderWidth: 1,
+        pointHoverRadius: 5,
+        pointHoverBackgroundColor: "rgba(75,192,192,1)",
+        pointHoverBorderColor: "rgba(220,220,220,1)",
+        pointHoverBorderWidth: 2,
+        pointRadius: 3,
+        pointHitRadius: 10,
+        spanGaps: false
+    },
+]
+    },
+    options: {
+        scales: {
+          xAxes: [
+                  {
+                    scaleLabel: {
+                      display: true
+                    },
+                    type: "time",
+                    time: {
+                      unit: "month",
+                      displayFormats: {
+                        month: "MMM-YYYY"
+                      }
+                    },
+                    position: "bottom"
+                  }
+                ],
+            yAxes: [{
+                ticks: {
+                  beginAtZero: true,   // minimum value will be 0.
+                  callback: function(value, index, values) {
+                      return '$' + value.toFixed(2);;
+                  }
+                }
+            }]
+        },
+        title: {
+          display: true,
+          text:'Direct Cost Timeline'
+        },
+        legend: {
+          display: false,
+        },
+        pan: {
+          enabled: true,
+          drag: true,
+          mode: "xy",
+          speed: 10,
+          threshold: 0
+        },
+        zoom: {
+          enabled: true,
+          drag: false,
+          mode: "xy",
+        },
+        tooltips: {
+            callbacks: {
+                label: function(tooltipItem, data) {
+                    var debit = moneyFormat(data.datasets[0].data[tooltipItem.index].debit);
+                    var label = data.datasets[tooltipItem.datasetIndex].label || '';
+
+                    if (label) {
+                        label += ' Debit: -' + debit + ', DC Remaining: ';
+                    }
+                    label += moneyFormat(Math.round(tooltipItem.yLabel * 100) / 100);
+                    return label;
+                },
+                title: function(tooltipItems, data) {
+                  var newDate = tooltipItems[0].xLabel.split(" ");
+                  return 'Transaction Date: ' + newDate[0] + " "  + newDate[1] + " " + newDate[2];
+                },
+            }
+        }
+    }
+  })
+}
+
+function linearTimeChart2(idata) {
   console.log(idata);
   var ctx = document.getElementById('timeChart').getContext('2d');
    var linearTimeChart = new Chart(ctx, {
@@ -381,22 +568,33 @@ function pieBreakdown(jsondata) {
   console.log(jsondata);
 }
 
-function setBreakdown(jsondata, award) {
+function setDCBreakdown(jsondata, award) {
   jsondata = jsondata.substring(1, jsondata.length-1);
   jsondata = JSON.parse(jsondata);
   var totalDirectCostExpenditures = calculateTotalDirectCostExpenditures(jsondata);
   var totalDirectCostRefunds = calculateTotalDirectCostRefunds(jsondata);
   var netDirectCostExpenditures = calculateNetDirectCostExpenditures(totalDirectCostExpenditures, totalDirectCostRefunds);
   var amountLeft = calculateNetDirectCostLeft(award, netDirectCostExpenditures);
-  document.getElementById("spent").innerHTML = "-" + moneyFormat(netDirectCostExpenditures);
-  document.getElementById("remaining").innerHTML = "= " + moneyFormat(amountLeft);
+  document.getElementById("dc-spent").innerHTML = "-" + moneyFormat(netDirectCostExpenditures);
+  document.getElementById("dc-remaining").innerHTML = "= " + moneyFormat(amountLeft);
+}
+
+function setIDCBreakdown(jsondata, award) {
+  jsondata = jsondata.substring(1, jsondata.length-1);
+  jsondata = JSON.parse(jsondata);
+  var totalIndirectCostExpenditures = calculateTotalIndirectCostExpenditures(jsondata);
+  var totalIndirectCostRefunds = calculateTotalIndirectCostRefunds(jsondata);
+  var netIndirectCostExpenditures = calculateNetIndirectCostExpenditures(totalIndirectCostExpenditures, totalIndirectCostRefunds);
+  var amountLeft = calculateNetIndirectCostLeft(award, netIndirectCostExpenditures);
+  document.getElementById("idc-spent").innerHTML = "-" + moneyFormat(netIndirectCostExpenditures);
+  document.getElementById("idc-remaining").innerHTML = "= " + moneyFormat(amountLeft);
 }
 
 function moneyFormat(money) {
     return "$" + money.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
 
-function moneyLeftPieChart(id, award, jsondata){
+function dcMoneyLeftPieChart(id, award, jsondata){
   console.log("json = " + jsondata);
   jsondata = jsondata.substring(1, jsondata.length-1);
   jsondata = JSON.parse(jsondata);
@@ -443,15 +641,15 @@ function moneyLeftPieChart(id, award, jsondata){
   });
 }
 
-function moneyLeftIDCPieChart(id, award, jsondata){
+function idcMoneyLeftPieChart(id, award, jsondata){
   console.log("json = " + jsondata);
   jsondata = jsondata.substring(1, jsondata.length-1);
   jsondata = JSON.parse(jsondata);
   console.log(award + " and ");
-  var totalDirectCostExpenditures = calculateTotalDirectCostExpenditures(jsondata);
-  var totalDirectCostRefunds = calculateTotalDirectCostRefunds(jsondata);
-  var netDirectCostExpenditures = calculateNetDirectCostExpenditures(totalDirectCostExpenditures, totalDirectCostRefunds);
-  var amountLeft = calculateNetDirectCostLeft(award, netDirectCostExpenditures);
+  var totalIndirectCostExpenditures = calculateTotalIndirectCostExpenditures(jsondata);
+  var totalIndirectCostRefunds = calculateTotalIndirectCostRefunds(jsondata);
+  var netIndirectCostExpenditures = calculateNetIndirectCostExpenditures(totalIndirectCostExpenditures, totalIndirectCostRefunds);
+  var amountLeft = calculateNetIndirectCostLeft(award, netIndirectCostExpenditures);
 
   var ctx = document.getElementById(id).getContext('2d');
   var chart = new Chart(ctx, {
@@ -461,7 +659,7 @@ function moneyLeftIDCPieChart(id, award, jsondata){
       data: {
           labels: ["Spent", "Remaining"],
           datasets: [{
-              data: [netDirectCostExpenditures, amountLeft],
+              data: [netIndirectCostExpenditures, amountLeft],
               backgroundColor: [
                 'rgb(230,230,230)',
                 'rgb(96,202,119)',
