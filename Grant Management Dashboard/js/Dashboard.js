@@ -101,11 +101,15 @@ function openViewGrants() {
 }
 
 $("#dash-home").click(function(){
-    $.ajax({url: "includes/dashboard/dashboard.php", success: function(result){
-        $("#content").html(result);
-        $("#breadcrumbs").html("<p><a href='dashboard.php'><i class='fas fa-home'></i></a> / Dashboard Home</p>");
-    }});
+  openGrantHome();
 });
+
+function openGrantHome() {
+  $.ajax({url: "includes/dashboard/dashboard.php", success: function(result){
+      $("#content").html(result);
+      $("#breadcrumbs").html("<p><a href='dashboard.php'><i class='fas fa-home'></i></a> / Dashboard</p>");
+  }});
+}
 
 $("#custom").click(function(){
     $.ajax({url: "includes/dashboard/custom.php", success: function(result){
@@ -123,6 +127,18 @@ document.getElementById("search-bar-input").addEventListener('input', function (
       $("#content").html(result);
   }});
 });
+
+function clearSearch() {
+  $("#search-bar-input").val("");
+}
+
+function cancelSearch() {
+  clearSearch();
+  $("#search-bar-input").attr('class', 'search-bar-input');
+  $("#search-bar-cancel").toggleClass('disabled');
+  $("#search-bar-cancel-text").toggleClass('disabled');
+  openGrantHome();
+}
 
 $("#search-bar").click(function(){
   var currentClass = $('#search-bar-input').attr('class');

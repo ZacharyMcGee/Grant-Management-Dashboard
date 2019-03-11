@@ -79,8 +79,8 @@ if ($result->num_rows > 0) {
 			<form id="search-bar-form" style="text-align:right;">
         <i id="search-bar" class="fas fa-search search-bar-icon"></i>
 				<input id="search-bar-input" class="search-bar-input" type="search" placeholder="Search Grants...">
-				<i id="search-bar-cancel" class="fas fa-times-circle cancel disabled"></i>
-				<p id="search-bar-cancel-text" class="search-bar-cancel-text disabled">Cancel</p>
+				<a href="javascript:clearSearch();"><i id="search-bar-cancel" class="fas fa-times-circle cancel disabled"></i></a>
+				<p id="search-bar-cancel-text" class="search-bar-cancel-text disabled"><a href="javascript:cancelSearch();">Cancel<a></p>
 			</form>
     </div>
     <div class="header-account-info">
@@ -89,7 +89,7 @@ if ($result->num_rows > 0) {
       <i class="fas fa-question-circle fa-lg" style="color: #263544;"></i>
     </div>
     <div class="header-account-username">
-      <p><i class="fas fa-user fa-lg" style="color: #263544;"></i><?php echo "<a href='account.php'>" . $username . "</a>"?></p>
+      <i class="fas fa-user fa-lg" style="color: #263544;"></i><?php echo "<a href='account.php'>" . $username . "</a>"?>
     </div>
      <i class="fas fa-caret-down fa-sm" onclick="openDropdown('account-dropdown')" style="color: #263544; margin-top: 4px; cursor: pointer;"></i>
       <div class="account-dropdown" id="account-dropdown">
