@@ -100,6 +100,30 @@ body {
   transition: width .7s;
 }
 
+.cancel {
+  float: right;
+  position: absolute;
+  margin-left: -25px;
+  margin-top: 8px;
+  color: #767676;
+  transition: all 1s;
+}
+
+.search-bar-cancel-text {
+  color: #767676;
+  margin: 0px;
+  padding: 0px;
+  display: inline-block;
+}
+
+.fas.disabled {
+  display: none !important;
+}
+
+.search-bar-cancel-text.disabled {
+  display: none !important;
+}
+
 .header-menu-bar {
   float: right;
   padding-top: 22px;
@@ -204,16 +228,19 @@ body {
 
 .breadcrumbs a {
   color: #bababa;
+  text-decoration: none;
   transition: 0.2s;
 }
 
 .breadcrumbs a:visited {
   color: #bababa;
+  text-decoration: none;
   transition: 0.2s;
 }
 
 .breadcrumbs a:hover {
   color: #7d7d7d;
+  text-decoration: none;
   transition: 0.2s;
 }
 

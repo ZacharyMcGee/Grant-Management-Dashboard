@@ -79,6 +79,8 @@ if ($result->num_rows > 0) {
 			<form id="search-bar-form" style="text-align:right;">
         <i id="search-bar" class="fas fa-search search-bar-icon"></i>
 				<input id="search-bar-input" class="search-bar-input" type="search" placeholder="Search Grants...">
+				<i id="search-bar-cancel" class="fas fa-times-circle cancel disabled"></i>
+				<p id="search-bar-cancel-text" class="search-bar-cancel-text disabled">Cancel</p>
 			</form>
     </div>
     <div class="header-account-info">

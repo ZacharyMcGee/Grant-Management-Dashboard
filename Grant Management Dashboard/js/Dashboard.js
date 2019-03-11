@@ -76,6 +76,10 @@ for (i = 0; i < acc.length; i++) {
 
 /* NEW GRANT BUTTON */
 
+function setBreadcrumb(breadcrumb) {
+  $("#breadcrumbs").html("<p><a href='dashboard.php'><i class='fas fa-home'></i></a> / " + breadcrumb + "</p>");
+}
+
 $("#new-grant").click(function(){
     $.ajax({url: "includes/grants/new-grant.php", success: function(result){
         $("#content").html(result);
@@ -86,11 +90,15 @@ $("#new-grant").click(function(){
 });
 
 $("#view-grants").click(function(){
-    $.ajax({url: "includes/grants/view-grants.php", success: function(result){
-        $("#content").html(result);
-        $("#breadcrumbs").html("<p><a href='dashboard.php'><i class='fas fa-home'></i></a> / View Grants</p>");
-    }});
+  openViewGrants();
 });
+
+function openViewGrants() {
+  $.ajax({url: "includes/grants/view-grants.php", success: function(result){
+      $("#content").html(result);
+      $("#breadcrumbs").html("<p><a href='dashboard.php'><i class='fas fa-home'></i></a> / View Grants</p>");
+  }});
+}
 
 $("#dash-home").click(function(){
     $.ajax({url: "includes/dashboard/dashboard.php", success: function(result){
@@ -104,6 +112,30 @@ $("#custom").click(function(){
         $("#content").html(result);
         $("#breadcrumbs").html("<p><a href='dashboard.php'><i class='fas fa-home'></i></a> / Customize</p>");
     }});
+});
+
+    /////////////////////////////////////
+  /*      SEARCH FUNCTIONALITY       */
+/////////////////////////////////////
+
+document.getElementById("search-bar-input").addEventListener('input', function (evt) {
+  $.ajax({url: "includes/extras/search.php", type: "post", data: {search: document.getElementById("search-bar-input").value }, success: function(result){
+      $("#content").html(result);
+  }});
+});
+
+$("#search-bar").click(function(){
+  var currentClass = $('#search-bar-input').attr('class');
+  if(currentClass == "search-bar-input"){
+    $("#search-bar-input").attr('class', 'search-bar-input-open');
+    $("#search-bar-cancel").toggleClass('disabled');
+    $("#search-bar-cancel-text").toggleClass('disabled');
+  }
+  else {
+    $("#search-bar-input").attr('class', 'search-bar-input');
+    $("#search-bar-cancel").toggleClass('disabled');
+    $("#search-bar-cancel-text").toggleClass('disabled');
+  }
 });
 
   /////////////////////////////////////
@@ -133,17 +165,6 @@ function closeFullscreen() {
     document.msExitFullscreen();
   }
 }
-
-$("#search-bar").click(function(){
-  console.log("HEYYY");
-  var currentClass = $('#search-bar-input').attr('class');
-  if(currentClass == "search-bar-input"){
-    $("#search-bar-input").attr('class', 'search-bar-input-open');
-  }
-  else {
-    $("#search-bar-input").attr('class', 'search-bar-input');
-  }
-});
 
   /////////////////////////////////////
  /*      READ EXCEL FILE DATA       */
@@ -345,7 +366,6 @@ linearTimeChart.update();
   console.log(linearTimeChart);
 }
 
-// Fix the date format in the Excel file from 00-Mon-00 to 00/00/00
 function dateFormatChange(date) {
   date = date.replace("-", "/");
   date = date.replace("-", "/");
@@ -364,35 +384,37 @@ function dateFormatChange(date) {
   return date;
 }
 
-// For the spending timeline chart on the grant page
-// Graphs the points of spending for Direct Cost and Indirect Cost
+function sortByDate(arr) {
+  var dateA = arr[1].getTime();
+  var dateB = arr[1].getTime();
+  return dateA > dateB ? 1 : -1;
+  }
+
 function linearTimeChart(jsondata, dc_award, idc_award) {
   jsondata = jsondata.substring(1, jsondata.length-1);
   jsondata = JSON.parse(jsondata);
 
-  // Create vars for the two datasets, init to empty arrays
   var dcdataset = [];
   var idcdataset = [];
 
-  // We are going to add the credits(refunds) from direct cost to the overall award
   var dctotal = 0;
   for(var i = 0; i < jsondata.length; i++){
     if(!jsondata[i]["Headers Category"].includes("24") && !jsondata[i]["Headers Category"].includes("63") && !jsondata[i]["Headers Category"].includes("62")){
       dctotal += jsondata[i]["Credit Amount"];
     }
   }
+
   dc_award = +dc_award + +dctotal;
 
-  // Adding the credits(refunds) from the indirect costs to the overall award
   var idctotal = 0;
   for(var i = 0; i < jsondata.length; i++){
     if(jsondata[i]["Headers Category"].includes("24")){
       idctotal += jsondata[i]["Credit Amount"];
     }
   }
+
   idc_award = +idc_award + +idctotal;
 
-  // Now we push each debit to the dataset for dc and idc
   for(var i = 0; i < jsondata.length; i++){
     if(!jsondata[i]["Headers Category"].includes("24") && !jsondata[i]["Headers Category"].includes("63")){
       var date = dateFormatChange(jsondata[i]["Ledger Date"]);
@@ -412,7 +434,6 @@ function linearTimeChart(jsondata, dc_award, idc_award) {
     }
   }
 
-  // Sort the dc dataset by the date of the transaction
   dcdataset.sort(function(a,b){
     var c = new Date(a.x);
     var d = new Date(b.x);
@@ -423,7 +444,6 @@ function linearTimeChart(jsondata, dc_award, idc_award) {
     dcdataset[i].y = dc_award;
   }
 
-  // Sort the idc dataset by the date of the transaction
   idcdataset.sort(function(a,b){
     var c = new Date(a.x);
     var d = new Date(b.x);
@@ -433,8 +453,8 @@ function linearTimeChart(jsondata, dc_award, idc_award) {
     idc_award = idc_award - idcdataset[i].y;
     idcdataset[i].y = idc_award;
   }
-
-  // Setting up the chartjs object
+  console.log(dcdataset);
+  console.log(dcdataset[0].x);
   var ctx = document.getElementById('timeChart').getContext('2d');
    var linearTimeChart = new Chart(ctx, {
     type: 'line',
@@ -576,7 +596,7 @@ function linearTimeChart(jsondata, dc_award, idc_award) {
         //  var yLabel = data.datasets[datasetIndex].data[barIndex];
 
         //  console.log(yLabel);
-      }
+        //}
     }
   })
 }

@@ -66,6 +66,7 @@ if ($result->num_rows > 0) {
 		{
 			$formattedIDCAward = $row["idc_award"];
 		}
+		echo "<script>setBreadcrumb('" . "<a href=\'javascript:openViewGrants()\'>Grants</a> / " . $row["name"] . "')</script>";
 
 		$timeChart = "<canvas id='timeChart'></canvas><script>linearTimeChart('" . $json . "','" . $row["dc_award"] . "','" . $row["idc_award"] . "');</script>";
 		$dcRemaining = "<canvas id='dcLeftPieChart'></canvas><script>dcMoneyLeftPieChart('dcLeftPieChart','" . $row["dc_award"] . "','" . $json . "');</script>";
