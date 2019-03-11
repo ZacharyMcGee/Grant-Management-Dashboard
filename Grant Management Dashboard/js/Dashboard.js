@@ -345,6 +345,7 @@ linearTimeChart.update();
   console.log(linearTimeChart);
 }
 
+// Fix the date format in the Excel file from 00-Mon-00 to 00/00/00
 function dateFormatChange(date) {
   date = date.replace("-", "/");
   date = date.replace("-", "/");
@@ -363,37 +364,35 @@ function dateFormatChange(date) {
   return date;
 }
 
-function sortByDate(arr) {
-  var dateA = arr[1].getTime();
-  var dateB = arr[1].getTime();
-  return dateA > dateB ? 1 : -1;
-  }
-
+// For the spending timeline chart on the grant page
+// Graphs the points of spending for Direct Cost and Indirect Cost
 function linearTimeChart(jsondata, dc_award, idc_award) {
   jsondata = jsondata.substring(1, jsondata.length-1);
   jsondata = JSON.parse(jsondata);
 
+  // Create vars for the two datasets, init to empty arrays
   var dcdataset = [];
   var idcdataset = [];
 
+  // We are going to add the credits(refunds) from direct cost to the overall award
   var dctotal = 0;
   for(var i = 0; i < jsondata.length; i++){
     if(!jsondata[i]["Headers Category"].includes("24") && !jsondata[i]["Headers Category"].includes("63") && !jsondata[i]["Headers Category"].includes("62")){
       dctotal += jsondata[i]["Credit Amount"];
     }
   }
-
   dc_award = +dc_award + +dctotal;
 
+  // Adding the credits(refunds) from the indirect costs to the overall award
   var idctotal = 0;
   for(var i = 0; i < jsondata.length; i++){
     if(jsondata[i]["Headers Category"].includes("24")){
       idctotal += jsondata[i]["Credit Amount"];
     }
   }
-
   idc_award = +idc_award + +idctotal;
 
+  // Now we push each debit to the dataset for dc and idc
   for(var i = 0; i < jsondata.length; i++){
     if(!jsondata[i]["Headers Category"].includes("24") && !jsondata[i]["Headers Category"].includes("63")){
       var date = dateFormatChange(jsondata[i]["Ledger Date"]);
@@ -413,6 +412,7 @@ function linearTimeChart(jsondata, dc_award, idc_award) {
     }
   }
 
+  // Sort the dc dataset by the date of the transaction
   dcdataset.sort(function(a,b){
     var c = new Date(a.x);
     var d = new Date(b.x);
@@ -423,6 +423,7 @@ function linearTimeChart(jsondata, dc_award, idc_award) {
     dcdataset[i].y = dc_award;
   }
 
+  // Sort the idc dataset by the date of the transaction
   idcdataset.sort(function(a,b){
     var c = new Date(a.x);
     var d = new Date(b.x);
@@ -432,8 +433,8 @@ function linearTimeChart(jsondata, dc_award, idc_award) {
     idc_award = idc_award - idcdataset[i].y;
     idcdataset[i].y = idc_award;
   }
-  console.log(dcdataset);
-  console.log(dcdataset[0].x);
+
+  // Setting up the chartjs object
   var ctx = document.getElementById('timeChart').getContext('2d');
    var linearTimeChart = new Chart(ctx, {
     type: 'line',
@@ -563,7 +564,19 @@ function linearTimeChart(jsondata, dc_award, idc_award) {
                   return 'Transaction Date: ' + newDate[0] + " "  + newDate[1] + " " + newDate[2];
                 },
             }
-        }
+        },
+        //onClick: function(event, element) {
+        //  var activeElement = element[0];
+        //  var data = activeElement._chart.data;
+        //  var barIndex = activeElement._index;
+        //  var datasetIndex = activeElement._datasetIndex;
+        //  console.log(activeElement);
+        //  var datasetLabel = data.datasets[datasetIndex].label;
+        //  var xLabel = data.labels[barIndex];
+        //  var yLabel = data.datasets[datasetIndex].data[barIndex];
+
+        //  console.log(yLabel);
+      }
     }
   })
 }
