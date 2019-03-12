@@ -85,16 +85,13 @@ function validateNewGrantForm(){
 <div class="full-card">
   <div class="card-title">
     <div class="card-title-text">
-      <i class="fas fa-plus-circle"></i><span class="parent-link">Create New Grant</span>
+      <i class="fas fa-plus-circle"></i><span class="parent-link">Grant Information</span>
     </div>
     <div class="card-title-button">
     </div>
   </div>
 
   <div class="card-body">
-    <div class="information-grant-header">
-      <p>Grant Information</p>
-    </div>
     <div class="information-container">
     <div class="input-grant-title">
       <p>Grant Name</p><span class="small-asterix">*</span>
@@ -132,29 +129,37 @@ function validateNewGrantForm(){
       </div>
     </div>
   </div>
-    <div class="information-grant-header">
-      <p>Grant Data</p>
+  </div>
+</div>
+
+<div class="full-card">
+  <div class="card-title">
+    <div class="card-title-text">
+      <i class="fas fa-plus-circle"></i><span class="parent-link">Grant Data</span>
     </div>
-    <div class="data-container">
-    <div class="drag-and-drop-description">
-      <p id="upload-excel-p">Upload Excel Data</p><span id="small-hint" class="small-hint">(.xlsx format)</span>
-    </div>
-    <div id="drag-and-drop" class="drag-and-drop">
-      <div class="drag-and-drop-text">
-        <p>Drag and Drop File Here</p>
-      </div>
-      <div class="drag-and-drop-text-or">
-        <p>or</p>
-      </div>
-      <label for="file-upload" class="custom-file-upload">
-          Select File
-      </label>
-      <input id="file-upload" type="file"/>
+    <div class="card-title-button">
     </div>
   </div>
-    <div class="button-bar-bottom">
-      <button id="cancel-new-grant" class="cancel-button" type="button"><i class="fas fa-ban" style="padding-right:10px;"></i>Cancel</button>
-      <button id="save-new-grant" class="save-button" type="button"><i class="far fa-save" style="padding-right:10px;"></i>Save Grant</button>
-    </div>
+  <div class="data-container">
+  <div class="drag-and-drop-description">
+    <p id="upload-excel-p">Upload Excel Data</p><span id="small-hint" class="small-hint">(.xlsx format)</span>
   </div>
+  <div id="drag-and-drop" class="drag-and-drop">
+    <div class="drag-and-drop-text">
+      <p>Drag and Drop File Here</p>
+    </div>
+    <div class="drag-and-drop-text-or">
+      <p>or</p>
+    </div>
+    <label for="file-upload" class="custom-file-upload">
+        Select File
+    </label>
+    <input id="file-upload" type="file"/>
+  </div>
+</div>
+</div>
+
+<div class="button-bar-bottom">
+  <button id="cancel-new-grant" class="cancel-button" type="button"><i class="fas fa-ban" style="padding-right:10px;"></i>Cancel</button>
+  <button id="save-new-grant" class="save-button" type="button"><i class="far fa-save" style="padding-right:10px;"></i>Save Grant</button>
 </div>
