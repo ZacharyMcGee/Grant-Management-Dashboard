@@ -132,7 +132,7 @@ function validateNewGrantForm(){
   </div>
 </div>
 
-<div class="full-card">
+<div class="full-card" style="margin-top:20px">
   <div class="card-title">
     <div class="card-title-text">
       <i class="fas fa-plus-circle"></i><span class="parent-link">Grant Data</span>
