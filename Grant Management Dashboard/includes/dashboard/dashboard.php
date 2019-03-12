@@ -14,6 +14,8 @@ $result = $con->query($sql);
 
 if ($result->num_rows > 0) {
     // output data of each row
+		$totalActiveGrantDC = 0;
+		$totalActiveGrantIDC = 0;
     $numOfActiveGrants = 0;
     $numOfInactiveGrants = 0;
 		$grantList = "<table><tr><th>Status</th><th>Grant Name</th><th>Budget Purpose #</th><th>Direct Cost Award</th><th>Indirect Cost Award</th><th>Funding Agency</th><th>Creation Date</th></tr>";
@@ -74,6 +76,10 @@ if ($result->num_rows > 0) {
       if($row["active"] == 1){
         $numOfActiveGrants++;
 				$activeImage = "<img src='images/active-icon.png'>";
+				$totalActiveGrantDC = $totalActiveGrantDC + $row["dc_award"];
+				if(is_numeric($row["idc_award"])){
+					$totalActiveGrantIDC = $totalActiveGrantIDC + $row["idc_award"];
+				}
       }
       else
       {
@@ -81,6 +87,8 @@ if ($result->num_rows > 0) {
 				$activeImage = "<img src='images/inactive-icon.png'>";
       }
 
+			$formattedTotalIDCAward = '$' . number_format($totalActiveGrantIDC, 2);
+			$formattedTotalDCAward = '$' . number_format($totalActiveGrantDC, 2);
 			$formattedDCAward = '$' . number_format($row["dc_award"], 2);
 
 			if(is_numeric($row["idc_award"])){
@@ -106,6 +114,36 @@ $con->close();
 <div class="fourth-card">
   <div class="card-title">
     <div class="card-title-text">
+      <i class="fas fa-file-invoice-dollar" style="color:#4bc0c0;"></i><span class="parent-link">Total Direct Cost Awards</span>
+    </div>
+    <div class="card-title-button">
+    </div>
+  </div>
+
+	<div class="total-grants-card">
+		<div class="view-all"><i class="fas fa-info-circle"></i> Total DC Awards for <a href="">Active Grants</a></div>
+		 <div class="current-active-grants"><?php echo $formattedTotalDCAward ?></div>
+		</div>
+</div>
+
+<div class="fourth-card">
+  <div class="card-title">
+    <div class="card-title-text">
+      <i class="fas fa-file-invoice-dollar" style="color:#ff6384;"></i><span class="parent-link">Total Indirect Cost Awards</span>
+    </div>
+    <div class="card-title-button">
+    </div>
+  </div>
+
+  <div class="total-grants-card">
+		<div class="view-all"><i class="fas fa-info-circle"></i> Total IDC Awards for <a href="">Active Grants</a></div>
+		 <div class="current-active-grants"><?php echo $formattedTotalIDCAward ?></div>
+  </div>
+</div>
+
+<div class="fourth-card">
+  <div class="card-title">
+    <div class="card-title-text">
       <i class="fas fa-play-circle" style="color:#93cca3;"></i><span class="parent-link">Total Active Grants</span>
     </div>
     <div class="card-title-button">
@@ -118,7 +156,7 @@ $con->close();
   </div>
 </div>
 
-<div class="fourth-card">
+<div class="fourth-card" style="margin-right: 0px;">
   <div class="card-title">
     <div class="card-title-text">
       <i class="fas fa-stop-circle" style="color:#ffbd94;"></i><span class="parent-link">Total Inactive Grants</span>
@@ -132,34 +170,6 @@ $con->close();
 		 <div class="current-active-grants"><?php echo $numOfInactiveGrants ?> / <?php echo ($numOfActiveGrants + $numOfInactiveGrants) ?></div>
 		</div>
   </div>
-
-<div class="fourth-card">
-  <div class="card-title">
-    <div class="card-title-text">
-      <i class="fas fa-exclamation-circle" style="color:#f37066;"></i><span class="parent-link">Grants Needing Update</span>
-    </div>
-    <div class="card-title-button">
-    </div>
-  </div>
-
-  <div class="total-grants-card">
-
-  </div>
-</div>
-
-<div class="fourth-card" style="margin-right: 0px;">
-  <div class="card-title">
-    <div class="card-title-text">
-      <i class="fas fa-plus-circle" style="color:#ffbd94;"></i><span class="parent-link">Total Inactive Grants</span>
-    </div>
-    <div class="card-title-button">
-    </div>
-  </div>
-
-  <div class="total-grants-card">
-
-  </div>
-</div>
 
 <div class="full-card" style="margin-top: 135px;">
 	<div class="card-title">
