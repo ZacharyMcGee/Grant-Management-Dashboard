@@ -75,7 +75,7 @@
       <div class="input-icon"><i class="fas fa-lock"></i></div>
       <input type="password" id="password" name="password" placeholder="Password">
       <button type="submit" id="login-button">Login</button>
-      <h6>Don't have an account? <a href="#">Sign up.</a></h6>
+      <h6>Don't have an account? <a href="signup.php">Sign up.</a></h6>
     </form>
   </div>
 </div>
