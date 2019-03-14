@@ -68,7 +68,7 @@
   <div class="login-left">
     <form action="auth.php" method="post">
       <div class="login-left-header">
-        <a href="index.html"><img src="images\logo.png"></a>
+        <a href="index.php"><img src="images\logo.png"></a>
       </div>
       <div class="input-icon"><i class="fas fa-user"></i></div>
       <input type="text" id="username" name="username" placeholder="Username">
