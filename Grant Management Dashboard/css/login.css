@@ -83,6 +83,7 @@ body {
 }
 
 .login-left button {
+  cursor: pointer;
   font-family: 'Open Sans', sans-serif;
   background-color: #aff0ed;
   border: none;
@@ -201,6 +202,78 @@ body {
   margin-top: 40px;
   margin-left: 30px;
   color: #263544;
+}
+
+.signup {
+  background-color: #263544;
+  height: 100%;
+  padding-left: 38%;
+  padding-right: 38%;
+  padding-top: 8%;
+}
+
+.signup-header {
+  margin-left: 20px;
+  margin-bottom: 20px;
+}
+
+.signup-header img{
+  width: 90%;
+}
+
+.signup form {
+  background-color: #3a4f65;
+  padding: 20px;
+  border-radius: 5px;
+  border: 1px solid #3f5163;
+}
+
+.signup input {
+  width: calc(100% - 40px);
+  display: inline-block;
+  margin-bottom: 20px;
+  padding: 10px 7px 10px 30px;
+  background-color: #1d2a36;
+  border: 1px solid #c2dde91a;
+  box-shadow: none;
+  color: #798999;
+}
+
+.signup button {
+  cursor: pointer;
+  font-family: 'Open Sans', sans-serif;
+  background-color: #aff0ed;
+  border: none;
+  padding: 10px 45px;
+  width: 100%;
+  border: 1px solid #364e66;
+  color: #263544;
+}
+
+.signup label {
+  color: #a7b1ba;
+  font-family: 'Source Sans Pro', sans-serif;
+  font-weight: 200;
+}
+
+.signup h6 {
+  color: #a7b1ba;
+  margin-top: 10px;
+}
+
+.signup a {
+  text-decoration: none;
+  color: #c2dde9;
+}
+
+.signup a:link:visited{
+  text-decoration: none;
+  color: #c2dde9;
+}
+
+.signup a:link:hover{
+  text-decoration: none;
+  color: #fff;
 }
 
 .mySlides {display: none}
