@@ -226,6 +226,8 @@ body {
   padding: 20px;
   border-radius: 5px;
   border: 1px solid #3f5163;
+  min-width: 284px;
+  max-width: 284px;
 }
 
 .signup input {
@@ -237,6 +239,26 @@ body {
   border: 1px solid #c2dde91a;
   box-shadow: none;
   color: #798999;
+}
+
+.bad {
+  background-color: #471b1b4d !important;
+  border: 1px solid #362d2db3 !important;
+}
+
+.bad-icon {
+  color: #f34a4a;
+  position: absolute;
+  margin-left: 260px;
+  margin-top: -50px;
+}
+
+.hidden {
+  visibility: hidden;
+}
+
+.visible {
+  visibility: visible;
 }
 
 .signup button {
@@ -376,6 +398,38 @@ img {vertical-align: middle;}
   animation-duration: 1.5s;
 }
 
+#alertbar {
+  visibility: hidden;
+  font-family: 'Open Sans', sans-serif;
+  color: #fff;
+  position: fixed;
+  z-index: 0;
+  width: 100%;
+  top:0px;
+  text-align: center;
+}
+
+.error-alert {
+  background-color: #db6161b3;
+  border-bottom: 1px solid #bd5555;
+}
+
+.warning-alert {
+  background-color: #ffd339b3;
+  border-bottom: 1px solid #e1d119;
+}
+
+.success-alert {
+  background-color: #85C389B3;
+  border-bottom: 1px solid #5eb363;
+}
+
+.show {
+    visibility: visible !important;
+    -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+    animation: fadein 0.5s, fadeout 0.5s 2.5s;
+}
+
 @-webkit-keyframes fade {
   from {opacity: 0.4}
   to {opacity: 1}
@@ -388,4 +442,24 @@ img {vertical-align: middle;}
 
 @media only screen and (max-width: 300px) {
   .prev, .next,.text {font-size: 11px}
+}
+
+@-webkit-keyframes fadein {
+    from {top: -20; opacity: 0;}
+    to {top: 0px; opacity: 1;}
+}
+
+@keyframes fadein {
+    from {top: -20; opacity: 0;}
+    to {top: 0px; opacity: 1;}
+}
+
+@-webkit-keyframes fadeout {
+    from {top: 0px; opacity: 1;}
+    to {top: -20; opacity: 0;}
+}
+
+@keyframes fadeout {
+    from {top: 0px; opacity: 1;}
+    to {top: -20; opacity: 0;}
 }

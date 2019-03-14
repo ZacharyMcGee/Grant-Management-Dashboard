@@ -18,7 +18,7 @@ VALUES ('$username', '$hashed_password', '$email')";
 if ($con->query($sql) === TRUE) {
     echo "Successfuly created account!";
 } else {
-    echo "Error updating record: " . $con->error;
+    echo "Error creating account: " . $con->error;
 }
 
 $con->close();
