@@ -769,7 +769,7 @@ body {
 .preset {
   height: calc(.25 * (100% - 105px));
   background-color: #e6e6e6;
-  color: #7d7d7d;
+  color: #263544;
   font-family: 'Open Sans', sans-serif;
   border-radius: 3px;
   border: 1px solid #dadada;

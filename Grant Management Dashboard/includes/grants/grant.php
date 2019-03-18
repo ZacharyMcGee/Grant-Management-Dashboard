@@ -119,6 +119,27 @@ $("#update-grant-data").click(function(){
         }
         });
 });
+    
+$("#delete-grant").click(function(){
+    var el = this;
+    var id = this.id;
+    var splitid = id.split("_");
+    
+    var deleteid = splitid[1];
+    
+    $.ajax({
+        url:'delete-grant.php',
+        type:'POST',
+        data: {id:deleteid},
+        success: function (response) {
+          console.log(response);
+          showAlert("success", response);
+        },
+        error: function(jqXHR, textStatus, errorThrown) {
+            console.log(textStatus, errorThrown);
+        }
+    });
+});
 </script>
 </head>
 <div class="fourth-card-tall">
