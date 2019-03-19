@@ -805,6 +805,10 @@ function openGrant(id) {
   $("#content").load("includes/grants/grant.php?id=" + id);
 }
 
+function deleteGrant(id) {
+  $("#content").load("functions/delete-grant.php?id=" + id);
+}
+
 
 function showAlert(type, message) {
       var x = document.getElementById("alertbar")
