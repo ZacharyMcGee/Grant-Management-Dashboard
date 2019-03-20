@@ -1,4 +1,31 @@
 <html>
+  <style>
+    #Steele{
+      background-color: #f3f3f3;
+    }
+    .calendar-table{
+      width: 100%;
+      border-collapse: collapse;
+      border: 1px solid black;
+    }
+    .current-day{
+      background-color: yellow;
+      border: 1px solid black;
+    }
+    .month{
+      border: 1px solid black;
+
+    }
+    .head{
+      border: 1px solid black;
+    }
+    .data{
+      border: 1px solid black;
+    }
+    .week{
+      text-align:center;
+    }
+  </style>
   <body>
     <div id="Steele"></div>
     <script>
@@ -119,21 +146,21 @@
       	var wcount=0;
       	var wk=7;
       	var calendar;
-        calendar="<table><tr><th colspan=7>";
+        calendar="<table class=\"calendar-table\"><tr><th class=\"month\" colspan=7>";
         calendar+=m;
         calendar+=" ";
         calendar+=year;
-        calendar+="</th></tr><tr><th>Sunday</th><th>Monday</th><th>Tuesday</th><th>Wednesday</th><th>Thursday</th><th>Friday</th><th>Saturday</th></tr>";
+        calendar+="</th></tr><tr><th class=\"head\">Sunday</th><th class=\"head\">Monday</th><th class=\"head\">Tuesday</th><th class=\"head\">Wednesday</th><th class=\"head\">Thursday</th><th class=\"head\">Friday</th><th class=\"head\">Saturday</th></tr>";
         switch(dayone){
       		case 1:
-      			calendar+="<tr style=text-align:center;><td></td>";
+      			calendar+="<tr class=\"week\"><td class=\"data\"></td>";
             if(day==a){
-        			calendar+="<td style=background-color:yellow>";
+        			calendar+="<td class=\"current-day\">";
               calendar+=a;
               calendar+="</td>";
         		}
         		else{
-              calendar+="<td>";
+              calendar+="<td class=\"data\">";
               calendar+=a;
               calendar+="</td>";
         		}
@@ -141,14 +168,14 @@
       			wcount=2;
       			break;
       		case 2:
-      			calendar+="<tr style=text-align:center;><td></td><td></td>";
+      			calendar+="<tr class=\"week\"><td class=\"data\"></td><td class=\"data\"></td>";
             if(day==a){
-        			calendar+="<td style=background-color:yellow>";
+        			calendar+="<td class=\"current-day\">";
               calendar+=a;
               calendar+="</td>";
         		}
         		else{
-              calendar+="<td>";
+              calendar+="<td class=\"data\">";
               calendar+=a;
               calendar+="</td>";
         		}
@@ -156,14 +183,14 @@
       			wcount=3;
       			break;
       		case 3:
-      			calendar+="<tr style=text-align:center;><td></td><td></td><td></td>";
+      			calendar+="<tr class=\"week\"><td class=\"data\"></td><td class=\"data\"></td><td class=\"data\"></td>";
             if(day==a){
-        			calendar+="<td style=background-color:yellow>";
+        			calendar+="<td class=\"current-day\">";
               calendar+=a;
               calendar+="</td>";
         		}
         		else{
-              calendar+="<td>";
+              calendar+="<td class=\"data\">";
               calendar+=a;
               calendar+="</td>";
         		}
@@ -171,14 +198,14 @@
       			wcount=4;
       			break;
       		case 4:
-      			calendar+="<tr style=text-align:center;><td></td><td></td><td></td><td></td>";
+      			calendar+="<tr class=\"week\"><td class=\"data\"></td><td class=\"data\"></td><td class=\"data\"></td><td class=\"data\"></td>";
             if(day==a){
-        			calendar+="<td style=background-color:yellow>";
+        			calendar+="<td class=\"current-day\">";
               calendar+=a;
               calendar+="</td>";
         		}
         		else{
-              calendar+="<td>";
+              calendar+="<td class=\"data\">";
               calendar+=a;
               calendar+="</td>";
         		}
@@ -186,14 +213,14 @@
       			wcount=5;
       			break;
       		case 5:
-      			calendar+="<tr style=text-align:center;><td></td><td></td><td></td><td></td><td></td>";
+      			calendar+="<tr class=\"week\"><td class=\"data\"></td><td class=\"data\"></td><td class=\"data\"></td><td class=\"data\"></td><td class=\"data\"></td>";
             if(day==a){
-        			calendar+="<td style=background-color:yellow>";
+        			calendar+="<td class=\"current-day\">";
               calendar+=a;
               calendar+="</td>";
         		}
         		else{
-              calendar+="<td>";
+              calendar+="<td class=\"data\">";
               calendar+=a;
               calendar+="</td>";
         		}
@@ -201,14 +228,14 @@
       			wcount=6;
       			break;
       		case 6:
-      			calendar+="<tr style=text-align:center;><td></td><td></td><td></td><td></td><td></td><td></td>";
+      			calendar+="<tr class=\"week\"><td class=\"data\"></td><td class=\"data\"></td><td class=\"data\"></td><td class=\"data\"></td><td class=\"data\"></td><td class=\"data\"></td>";
             if(day==a){
-        			calendar+="<td style=background-color:yellow>";
+        			calendar+="<td class=\"current-day\">";
               calendar+=a;
               calendar+="</td>";
         		}
         		else{
-              calendar+="<td>";
+              calendar+="<td class=\"data\">";
               calendar+=a;
               calendar+="</td>";
         		}
@@ -216,7 +243,7 @@
       			calendar+="</tr>";
       			break;
       		default:
-      			break;
+
       	}
       	switch(m){
       		case 'January':
@@ -265,15 +292,15 @@
       	}
       	while(a<tcount){
       		if(wcount==0){
-      			calendar+="<tr style=text-align:center;>";
+      			calendar+="<tr class=\"week\">";
       		}
       		if(day==a){
-      			calendar+="<td style=background-color:yellow>";
+      			calendar+="<td class=\"current-day\">";
             calendar+=a;
             calendar+="</td>";
       		}
       		else{
-            calendar+="<td>";
+            calendar+="<td class=\"data\">";
             calendar+=a;
             calendar+="</td>";
       		}
@@ -283,6 +310,28 @@
       			calendar+="</tr>";
       			wcount=0;
       		}
+      	}
+        switch(wcount){
+      		case 1:
+      			calendar+="<td class=\"data\"></td><td class=\"data\"></td><td class=\"data\"></td><td class=\"data\"></td><td class=\"data\"></td><td class=\"data\"></td></tr>";
+      			break;
+      		case 2:
+      			calendar+="<td class=\"data\"></td><td class=\"data\"></td><td class=\"data\"></td><td class=\"data\"></td><td class=\"data\"></td></tr>";
+      			break;
+      		case 3:
+      			calendar+="<td class=\"data\"></td><td class=\"data\"></td><td class=\"data\"></td><td class=\"data\"></td></tr>";
+      			break;
+      		case 4:
+      			calendar+="<td class=\"data\"></td><td class=\"data\"></td><td class=\"data\"></td></tr>";
+      			break;
+      		case 5:
+      			calendar+="<td class=\"data\"></td><td class=\"data\"></td></tr>";
+      			break;
+      		case 6:
+      			calendar+="<td class=\"data\"></td></tr>";
+      			break;
+      		default:
+
       	}
         calendar+="</table>";
         return calendar;
