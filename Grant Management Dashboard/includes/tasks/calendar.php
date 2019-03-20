@@ -34,6 +34,8 @@
       var day=date.getDate();
       var year=date.getFullYear();
       var month=date.getMonth();
+      var t=month;
+      var u=year;
       var m;
       function nameMonth(month){
         var m;
@@ -337,8 +339,181 @@
         return calendar;
       }
       document.getElementById('Steele').innerHTML=createCalendar(findFirstDayOfMonth(day, week), day, m, year);
+
+      function createNotCurrentCalendar(dayone, m, year){
+        var a=1;
+        var tone=32;
+        var tzero=31;
+        var teight=29;
+        var tnine=30;
+        var leap=leapYear(year);
+        var tcount=0;
+        var wcount=0;
+        var wk=7;
+        var calendar;
+        calendar="<table class=\"calendar-table\"><tr><th class=\"month\" colspan=7>";
+        calendar+=m;
+        calendar+=" ";
+        calendar+=year;
+        calendar+="</th></tr><tr><th class=\"head\">Sunday</th><th class=\"head\">Monday</th><th class=\"head\">Tuesday</th><th class=\"head\">Wednesday</th><th class=\"head\">Thursday</th><th class=\"head\">Friday</th><th class=\"head\">Saturday</th></tr>";
+        switch(dayone){
+          case 1:
+            calendar+="<tr class=\"week\"><td class=\"data\"></td>";
+            calendar+="<td class=\"data\">";
+            calendar+=a;
+            calendar+="</td>";
+            a++;
+            wcount=2;
+            break;
+          case 2:
+            calendar+="<tr class=\"week\"><td class=\"data\"></td><td class=\"data\"></td>";
+            calendar+="<td class=\"data\">";
+            calendar+=a;
+            calendar+="</td>";
+            a++;
+            wcount=3;
+            break;
+          case 3:
+            calendar+="<tr class=\"week\"><td class=\"data\"></td><td class=\"data\"></td><td class=\"data\"></td>";
+            calendar+="<td class=\"data\">";
+            calendar+=a;
+            calendar+="</td>";
+            a++;
+            wcount=4;
+            break;
+          case 4:
+            calendar+="<tr class=\"week\"><td class=\"data\"></td><td class=\"data\"></td><td class=\"data\"></td><td class=\"data\"></td>";
+            calendar+="<td class=\"data\">";
+            calendar+=a;
+            calendar+="</td>";
+            a++;
+            wcount=5;
+            break;
+          case 5:
+            calendar+="<tr class=\"week\"><td class=\"data\"></td><td class=\"data\"></td><td class=\"data\"></td><td class=\"data\"></td><td class=\"data\"></td>";
+            calendar+="<td class=\"data\">";
+            calendar+=a;
+            calendar+="</td>";
+            a++;
+            wcount=6;
+            break;
+          case 6:
+            calendar+="<tr class=\"week\"><td class=\"data\"></td><td class=\"data\"></td><td class=\"data\"></td><td class=\"data\"></td><td class=\"data\"></td><td class=\"data\"></td>";
+            calendar+="<td class=\"data\">";
+            calendar+=a;
+            calendar+="</td>";
+            a++;
+            calendar+="</tr>";
+            break;
+          default:
+
+        }
+        switch(m){
+          case 'January':
+            tcount=tone;
+            break;
+          case 'February':
+            if(leap==1){
+              tcount=tnine;
+            }
+            else{
+              tcount=teight;
+            }
+            break;
+          case 'March':
+            tcount=tone;
+            break;
+          case 'April':
+            tcount=tzero;
+            break;
+          case 'May':
+            tcount=tone;
+            break;
+          case 'June':
+            tcount=tzero;
+            break;
+          case 'July':
+            tcount=tone;
+            break;
+          case 'August':
+            tcount=tone;
+            break;
+          case 'September':
+            tcount=tzero;
+            break;
+          case 'October':
+            tcount=tone;
+            break;
+          case 'November':
+            tcount=tzero;
+            break;
+          case 'December':
+            tcount=tone;
+            break;
+          default:
+
+        }
+        while(a<tcount){
+          if(wcount==0){
+            calendar+="<tr class=\"week\">";
+          }
+          calendar+="<td class=\"data\">";
+          calendar+=a;
+          calendar+="</td>";
+          a++;
+          wcount++;
+          if(wcount>=wk){
+            calendar+="</tr>";
+            wcount=0;
+          }
+        }
+        switch(wcount){
+          case 1:
+            calendar+="<td class=\"data\"></td><td class=\"data\"></td><td class=\"data\"></td><td class=\"data\"></td><td class=\"data\"></td><td class=\"data\"></td></tr>";
+            break;
+          case 2:
+            calendar+="<td class=\"data\"></td><td class=\"data\"></td><td class=\"data\"></td><td class=\"data\"></td><td class=\"data\"></td></tr>";
+            break;
+          case 3:
+            calendar+="<td class=\"data\"></td><td class=\"data\"></td><td class=\"data\"></td><td class=\"data\"></td></tr>";
+            break;
+          case 4:
+            calendar+="<td class=\"data\"></td><td class=\"data\"></td><td class=\"data\"></td></tr>";
+            break;
+          case 5:
+            calendar+="<td class=\"data\"></td><td class=\"data\"></td></tr>";
+            break;
+          case 6:
+            calendar+="<td class=\"data\"></td></tr>";
+            break;
+          default:
+
+        }
+        calendar+="</table>";
+        return calendar;
+      }
+
+      function printNextMonthCalendar(month, year){
+        month=month+1;
+        var nxtdate;
+        if(month==12){
+          month=0;
+          year++;
+          nxtdate=new Date(year, month, 12);
+        }
+        else{
+          nxtdate=new Date(year, month, 12);
+        }
+        var nxtmonth=nxtdate.getMonth();
+        var nxtyear=nxtdate.getFullYear();
+        var nxtday=nxtdate.getDate();
+        var nxtweek=nxtdate.getDay();
+        var nxtdayone=findFirstDayOfMonth(nxtday, nxtweek);
+        var m=nameMonth(month);
+        return createNotCurrentCalendar(nxtdayone, m, nxtyear);
+      }
     </script>
     <button onclick=>Last Month</button>
-    <button onclick="">Next Month</button>
+    <button id="get-next-month" onclick="document.getElementById('Steele').innerHTML=printNextMonthCalendar(t++, u);">Next Month</button>
   </body>
 </html>
