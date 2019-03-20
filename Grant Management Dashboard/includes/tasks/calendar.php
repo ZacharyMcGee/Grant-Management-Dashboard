@@ -1,28 +1,35 @@
 <html>
   <style>
+  /*css for the table*/
     #Steele{
+      /*css for the div that the table is printed into*/
       background-color: #f3f3f3;
     }
     .calendar-table{
+      /*css for the actual table*/
       width: 100%;
       border-collapse: collapse;
       border: 1px solid black;
     }
     .current-day{
+      /*css for the table data of the current day, turns the current day yellow*/
       background-color: yellow;
       border: 1px solid black;
     }
     .month{
+      /*css for the table header that contains the month and year*/
       border: 1px solid black;
-
     }
     .head{
+      /*css for table headers.  used only for the names of the week*/
       border: 1px solid black;
     }
     .data{
+      /*css for table data.  used for the days of the week (excluding the current day)*/
       border: 1px solid black;
     }
     .week{
+      /*css for table rows*/
       text-align:center;
     }
   </style>
@@ -37,6 +44,7 @@
       var t=month;
       var u=year;
       var m;
+      /*returns the name of the month. input is the integer returned from the getMonth() function.*/
       function nameMonth(month){
         var m;
         switch(month){
@@ -83,6 +91,8 @@
       }
       m=nameMonth(month);
 
+      /*finds the first day of the month. returns the numerical representation for the day of the week (0-6). inputs
+      should be the results of getDate() and getDay().*/
       function findFirstDayOfMonth(day, week){
         var wnum=week;
 				var dnum=day;
@@ -101,6 +111,7 @@
 				return wnum;
       }
 
+      /*decides whether the year is a leap year, returns 1 if so, 0 if not. input is the result of getFullYear()*/
       function leapYear(year){
       	var s=(year/4);
       	if(Math.floor(s)==s){
@@ -137,6 +148,9 @@
       		return 0;
       	}
       }
+
+      /*creates a table containing that month's calendar, inputs are the result of the findFirstDayOfMonth() function,
+      getDate(), result of nameMonth(), and getFullYear(). highlights current day.*/
       function createCalendar(dayone, day, m, year){
       	var a=1;
       	var tone=32;
@@ -338,8 +352,12 @@
         calendar+="</table>";
         return calendar;
       }
+      //prints the calendar to the Steele div
       document.getElementById('Steele').innerHTML=createCalendar(findFirstDayOfMonth(day, week), day, m, year);
 
+      /*creates a table containing that month's calendar, inputs are the result of the findFirstDayOfMonth() function,
+      result of nameMonth(), and getFullYear(). only difference from createCalendar() is that it doesn't highlight the
+      current day.*/
       function createNotCurrentCalendar(dayone, m, year){
         var a=1;
         var tone=32;
@@ -493,6 +511,7 @@
         return calendar;
       }
 
+      /*prints the calendar for the next month. inputs needed are the month and year*/
       function printNextMonthCalendar(month, year){
         month=month+1;
         var nxtdate;
