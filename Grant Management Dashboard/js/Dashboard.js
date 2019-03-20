@@ -807,8 +807,24 @@ function openGrant(id) {
 
 function deleteGrant(id) {
   $("#content").load("functions/delete-grant.php?id=" + id);
+  closeModal();
 }
 
+function showModal(id) {
+  var modal = document.getElementById('myModal');
+  var modalTitle = document.getElementById('modalTitle');
+  var modalContent = document.getElementById('modalContent');
+
+  modal.style.display = "block";
+
+  modalTitle.innerHTML = "<p><i class='fas fa-exclamation-circle'> </i> Warning!</p><span onClick='javascript:closeModal()' class='close'>&times;</span>";
+  modalContent.innerHTML = "<p>Are you sure you want to delete this grant? This action cannot be undone!</p><div class='modalButtons'><button onClick='javascript:deleteGrant(" + id + ")'>Yes</button><button onClick='javascript:closeModal()'>No</button></div>";
+}
+
+function closeModal() {
+  var modal = document.getElementById('myModal');
+  modal.style.display = "none";
+}
 
 function showAlert(type, message) {
       var x = document.getElementById("alertbar")

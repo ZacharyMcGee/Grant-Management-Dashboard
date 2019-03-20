@@ -122,6 +122,15 @@ if ($result->num_rows > 0) {
 
   <div class="footer">
 		<div class="alertbar" id="alertbar"></div>
+		<div id="myModal" class="modal">
+		<div id="modalTitle" class="modal-title">
+
+		</div>
+  	<div id="modalContent" class="modal-content">
+
+  	</div>
+
+</div>
     <div class="footer_text">
 
     </div>
