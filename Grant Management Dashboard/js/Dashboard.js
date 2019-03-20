@@ -72,6 +72,8 @@ for (i = 0; i < acc.length; i++) {
 //         GRANTS
 //         - new grant
 //         - view grants
+//         TASKS
+//         - calendar
 ////////////////////////////////////
 
 /* NEW GRANT BUTTON */
@@ -115,6 +117,13 @@ $("#custom").click(function(){
     $.ajax({url: "includes/dashboard/custom.php", success: function(result){
         $("#content").html(result);
         $("#breadcrumbs").html("<p><a href='dashboard.php'><i class='fas fa-home'></i></a> / Customize</p>");
+    }});
+});
+
+$("#calendar").click(function(){
+    $.ajax({url: "includes/tasks/calendar.php", success: function(result){
+        $("#content").html(result);
+        $("#breadcrumbs").html("<p><a href='dashboard.php'><i class='fas fa-home'></i></a> / Schedule Alert</p>");
     }});
 });
 

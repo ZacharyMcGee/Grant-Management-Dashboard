@@ -58,7 +58,7 @@ if ($result->num_rows > 0) {
 
 <button class="accordion"><i class="fas fa-tasks"></i>Tasks</button>
 <div class="panel">
-  <a href="#" class="sidebar-button" id="tasks"><i class="fas fa-calendar-alt"></i>Schedule Alert</a>
+  <a href="#" class="sidebar-button" id="calendar"><i class="fas fa-calendar-alt"></i>Schedule Alert</a>
 </div>
 
 <button class="accordion"><i class="fas fa-user"></i>Profile</button>
