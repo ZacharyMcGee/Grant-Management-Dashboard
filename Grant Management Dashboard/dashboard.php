@@ -63,7 +63,7 @@ if ($result->num_rows > 0) {
 
 <button class="accordion"><i class="fas fa-user"></i>Profile</button>
 <div class="panel">
-  <a href="#" class="sidebar-button" id="tasks"><i class="fas fa-user-edit"></i>Edit Profile</a>
+  <a href="#" class="sidebar-button" id="edit-profile"><i class="fas fa-user-edit"></i>Edit Profile</a>
 </div>
     </div>
 

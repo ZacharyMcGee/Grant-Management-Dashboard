@@ -72,6 +72,8 @@ for (i = 0; i < acc.length; i++) {
 //         GRANTS
 //         - new grant
 //         - view grants
+//         PROFILE
+//         - edit profile
 ////////////////////////////////////
 
 /* NEW GRANT BUTTON */
@@ -110,6 +112,13 @@ function openGrantHome() {
       $("#breadcrumbs").html("<p><a href='dashboard.php'><i class='fas fa-home'></i></a> / Dashboard</p>");
   }});
 }
+
+$("#edit-profile").click(function(){
+  $.ajax({url: "includes/profile/edit-profile.php", success: function(result){
+      $("#content").html(result);
+      $("#breadcrumbs").html("<p><a href='dashboard.php'><i class='fas fa-home'></i></a> / Edit Profile</p>");
+    }});
+  });
 
 $("#custom").click(function(){
     $.ajax({url: "includes/dashboard/custom.php", success: function(result){
