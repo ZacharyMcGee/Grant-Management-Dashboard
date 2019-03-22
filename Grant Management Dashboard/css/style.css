@@ -1057,6 +1057,100 @@ input[type="file"] {
   border: 1px solid #5eb363;
 }
 
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  padding-top: calc(25% - 120px);
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  color: #7d7d7d;
+  font-family: 'Open Sans', sans-serif;
+  overflow: auto;
+  background-color: rgb(0,0,0);
+  background-color: rgba(0,0,0,0.4);
+}
+
+.modal-title {
+  border-radius: 5px 5px 0px 0px;
+  background-color: #fefefe;
+  margin: auto;
+  border: 1px solid #e6e6e6;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-top: 10px;
+  height: 32px;
+  margin-left: calc(20% + 220px);
+  margin-right: calc(20% + 30px);
+}
+
+.modal-title i {
+  color: #ff8080;
+  margin-right: 5px;
+}
+
+.modal-title p {
+  float: left;
+  padding: 0px;
+  margin: 0px;
+}
+
+.modal-content {
+  border-radius: 0px 0px 5px 5px;
+  background-color: #fefefe;
+  margin: auto;
+  padding: 20px;
+  border-bottom: 1px solid #e6e6e6;
+  border-left: 1px solid #e6e6e6;
+  border-right: 1px solid #e6e6e6;
+  margin-left: calc(20% + 220px);
+  margin-right: calc(20% + 30px);
+}
+
+.modal-content p {
+  margin: 0px;
+  padding: 0px;
+  padding-bottom: 20px;
+}
+
+.modal-content button {
+  background-color: #e6e6e6;
+  border: 1px solid #dadada;
+  border-radius: 3px;
+  width: 100px;
+  height: 25px;
+  color: #7d7d7d;
+  cursor: pointer;
+  margin-right: 5px;
+}
+
+.modal-content button:hover {
+  background-color: #f8f8f8;
+  border: 1px solid #bdbdbd;
+  border-radius: 3px;
+  width: 100px;
+  height: 25px;
+  color: #7d7d7d;
+  cursor: pointer;
+}
+
+.close {
+  margin-top: -10px;
+  color: #aaaaaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: #ff8080;
+  text-decoration: none;
+  cursor: pointer;
+}
+
 #alertbar {
   visibility: hidden;
   font-family: 'Open Sans', sans-serif;
@@ -1068,6 +1162,39 @@ input[type="file"] {
   top: 61px;
   text-align: center;
 }
+
+/*css for the calendar*/
+  #Steele{
+    /*css for the div that the table is printed into*/
+    background-color: #f3f3f3;
+  }
+  .calendar-table{
+    /*css for the actual table*/
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid black;
+  }
+  .current-day{
+    /*css for the table data of the current day, turns the current day yellow*/
+    background-color: yellow;
+    border: 1px solid black;
+  }
+  .month{
+    /*css for the table header that contains the month and year*/
+    border: 1px solid black;
+  }
+  .head{
+    /*css for table headers.  used only for the names of the week*/
+    border: 1px solid black;
+  }
+  .data{
+    /*css for table data.  used for the days of the week (excluding the current day)*/
+    border: 1px solid black;
+  }
+  .week{
+    /*css for table rows*/
+    text-align:center;
+  }
 
 /* ADD ON STYLES */
 
