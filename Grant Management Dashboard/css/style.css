@@ -1163,6 +1163,39 @@ input[type="file"] {
   text-align: center;
 }
 
+/*css for the calendar*/
+  #Steele{
+    /*css for the div that the table is printed into*/
+    background-color: #f3f3f3;
+  }
+  .calendar-table{
+    /*css for the actual table*/
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid black;
+  }
+  .current-day{
+    /*css for the table data of the current day, turns the current day yellow*/
+    background-color: yellow;
+    border: 1px solid black;
+  }
+  .month{
+    /*css for the table header that contains the month and year*/
+    border: 1px solid black;
+  }
+  .head{
+    /*css for table headers.  used only for the names of the week*/
+    border: 1px solid black;
+  }
+  .data{
+    /*css for table data.  used for the days of the week (excluding the current day)*/
+    border: 1px solid black;
+  }
+  .week{
+    /*css for table rows*/
+    text-align:center;
+  }
+
 /* ADD ON STYLES */
 
 .dragging {
