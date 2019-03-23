@@ -1164,34 +1164,41 @@ input[type="file"] {
 }
 
 /*css for the calendar*/
-  #Steele{
+ #Steele{
     /*css for the div that the table is printed into*/
     background-color: #f3f3f3;
   }
+  #Kilmister{
+    /*css for the div that contains the Last and Next Month buttons*/
+    background-color: #f3f3f3;
+  }
+  #next-last-month{
+    /*css for the next and last month buttons*/
+  }
   .calendar-table{
-    /*css for the actual table*/
+    /*css for the actual table of the calendar*/
     width: 100%;
     border-collapse: collapse;
     border: 1px solid black;
   }
-  .current-day{
+  .calendar-current-day{
     /*css for the table data of the current day, turns the current day yellow*/
     background-color: yellow;
     border: 1px solid black;
   }
-  .month{
+  .calendar-month{
     /*css for the table header that contains the month and year*/
     border: 1px solid black;
   }
-  .head{
+  .calendar-head{
     /*css for table headers.  used only for the names of the week*/
     border: 1px solid black;
   }
-  .data{
+  .calendar-data{
     /*css for table data.  used for the days of the week (excluding the current day)*/
     border: 1px solid black;
   }
-  .week{
+  .calendar-week{
     /*css for table rows*/
     text-align:center;
   }
