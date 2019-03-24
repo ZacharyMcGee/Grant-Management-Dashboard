@@ -244,14 +244,14 @@
           calendar+="<tr class=\"calendar-week\">";
         }
         if(day==a){
-          calendar+="<td class=\"calendar-current-day\">";
+          calendar+="<td class=\"calendar-current-day\"><span class=\"current-data-text\">";
           calendar+=a;
-          calendar+="</td>";
+          calendar+="</span></td>";
         }
         else{
-          calendar+="<td class=\"calendar-data\">";
+          calendar+="<td class=\"calendar-data\"><span class=\"data-text\">";
           calendar+=a;
-          calendar+="</td>";
+          calendar+="</span></td>";
         }
         a++;
         wcount++;

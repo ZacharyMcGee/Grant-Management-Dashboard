@@ -1173,13 +1173,11 @@ input[type="file"] {
   }
   .calendar-current-day{
     /*css for the table data of the current day, turns the current day yellow*/
-    background-color: #f0f0f0;
-    color: #7d7d7d;
+    background-color: #ffffff;
+    color: #ffffff;
     border: 1px solid #eaeaea;
-    -webkit-box-shadow: inset 0px -6px 0px -3px #6fcee1;
-    -moz-box-shadow: inset 0px -6px 0px -3px #6fcee1;
-    box-shadow: inset 0px -6px 0px -3px #6fcee1;
     border-bottom: none;
+    vertical-align: top;
   }
   .calendar-month{
     /*css for the table header that contains the month and year*/
@@ -1199,20 +1197,37 @@ input[type="file"] {
     padding-bottom: 10px;
     border: 1px solid #eaeaea;
   }
-  .calendar-data{
+  .calendar-data {
     /*css for table data.  used for the days of the week (excluding the current day)*/
     border: 1px solid #eaeaea;
     height: 80px;
     color: #7d7d7d;
+    vertical-align: top;
   }
 
   .calendar-table td:hover {
     background-color: #0591ad1a;
     cursor: pointer;
   }
-  .calendar-week{
+  .calendar-week {
     /*css for table rows*/
     text-align:center;
+  }
+
+  .data-text {
+    background-color: #eaeaea;
+    float: left;
+    width: 94%;
+    margin-left: 3%;
+    margin-top: 5px;
+  }
+
+  .current-data-text {
+    background-color: #6fcee1;
+    float: left;
+    width: 94%;
+    margin-left: 3%;
+    margin-top: 5px;
   }
 
   .left-calendar-button {
