@@ -185,7 +185,7 @@ $con->close();
 <div class="full-card" style="margin-top: 20px;">
 	<div class="card-title" style="border-bottom: none">
 		<div class="card-title-text">
-			<i class="fas fa-list" style="color:#7d7d7d;"></i><span class="parent-link">Calendar</span>
+			<i class="fas fa-calendar-alt" style="color:#7d7d7d;"></i><span class="parent-link">Calendar</span>
 		</div>
 	</div>
 	<?php include_once('includes/tasks/calendar.php'); ?>
