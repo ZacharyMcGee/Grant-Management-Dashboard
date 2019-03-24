@@ -510,7 +510,5 @@
       }
     }
   </script>
-  <div id="Kilmister">
-  </div>
 </body>
 </html>

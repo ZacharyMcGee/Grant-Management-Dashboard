@@ -263,7 +263,6 @@ body {
   font-family: 'Open Sans', sans-serif;
   border-radius: 3px;
   width: calc(100% - 20px);
-  padding-bottom: 20px;
   -webkit-box-shadow: 0px 0px 3px 0px rgba(87, 87, 87, 0.1);
   -moz-box-shadow: 0px 0px 3px 0px rgba(87, 87, 87, 0.1);
   box-shadow: 0px 0px 3px 0px rgba(87, 87, 87, 0.1);
@@ -1172,13 +1171,16 @@ input[type="file"] {
     /*css for the actual table*/
     width: 100%;
     border-collapse: collapse;
-    border: 1px solid #eaeaea;
   }
   .calendar-current-day{
     /*css for the table data of the current day, turns the current day yellow*/
     background-color: #f0f0f0;
     color: #7d7d7d;
     border: 1px solid #eaeaea;
+    -webkit-box-shadow: inset 0px -6px 0px -3px #6fcee1;
+    -moz-box-shadow: inset 0px -6px 0px -3px #6fcee1;
+    box-shadow: inset 0px -6px 0px -3px #6fcee1;
+    border-bottom: none;
   }
   .calendar-month{
     /*css for the table header that contains the month and year*/
@@ -1196,12 +1198,18 @@ input[type="file"] {
     font-weight: 400;
     padding-top: 10px;
     padding-bottom: 10px;
+    border: 1px solid #eaeaea;
   }
   .calendar-data{
     /*css for table data.  used for the days of the week (excluding the current day)*/
     border: 1px solid #eaeaea;
     height: 80px;
     color: #7d7d7d;
+  }
+
+  .calendar-table td:hover {
+    background-color: #0591ad1a;
+    cursor: pointer;
   }
   .calendar-week{
     /*css for table rows*/
