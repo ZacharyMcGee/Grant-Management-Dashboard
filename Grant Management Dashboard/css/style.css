@@ -1017,10 +1017,9 @@ input[type="file"] {
   float: right;
   margin-top: 30px;
   padding-top: 0px;
-  width: calc(100% - 40px);
+  width: calc(100% - 20px);
   border-top: 1px solid #eaeaea;
   padding-top: 20px;
-  margin-left: 20px;
   margin-right: 20px;
 }
 

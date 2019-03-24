@@ -82,7 +82,7 @@ function validateNewGrantForm(){
 }
 </script>
 </head>
-<div class="full-card">
+<div class="full-card" style="padding-bottom:20px;">
   <div class="card-title">
     <div class="card-title-text">
       <i class="fas fa-file-alt"></i><span class="parent-link">Grant Information</span>
@@ -132,7 +132,7 @@ function validateNewGrantForm(){
   </div>
 </div>
 
-<div class="full-card" style="margin-top:20px">
+<div class="full-card" style="margin-top:20px; padding-bottom: 20px;">
   <div class="card-title">
     <div class="card-title-text">
       <i class="fas fa-table"></i><span class="parent-link">Grant Data</span>
