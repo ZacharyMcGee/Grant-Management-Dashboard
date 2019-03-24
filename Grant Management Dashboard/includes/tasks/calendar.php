@@ -95,11 +95,11 @@
       var wcount=0;
       var wk=7;
       var calendar;
-      calendar="<table class=\"calendar-table\"><tr><th class=\"calendar-month\" colspan=7>";
+      calendar="<table class=\"calendar-table\"><tr><th class=\"calendar-month\" colspan=7> <button class=\"left-calendar-button\" id=\"next-last-month\" onclick=\"document.getElementById('Steele').innerHTML=printLastMonthCalendar(t--, u);\">\< Last Month</button>";
       calendar+=m;
       calendar+=" ";
       calendar+=year;
-      calendar+="</th></tr><tr><th class=\"calendar-head\">Sunday</th><th class=\"calendar-head\">Monday</th><th class=\"calendar-head\">Tuesday</th><th class=\"calendar-head\">Wednesday</th><th class=\"calendar-head\">Thursday</th><th class=\"calendar-head\">Friday</th><th class=\"calendar-head\">Saturday</th></tr>";
+      calendar+="<button class=\"right-calendar-button\" id=\"next-last-month\" onclick=\"document.getElementById('Steele').innerHTML=printNextMonthCalendar(t++, u);\">Next Month \></button></th></tr><tr><th class=\"calendar-head\">Sunday</th><th class=\"calendar-head\">Monday</th><th class=\"calendar-head\">Tuesday</th><th class=\"calendar-head\">Wednesday</th><th class=\"calendar-head\">Thursday</th><th class=\"calendar-head\">Friday</th><th class=\"calendar-head\">Saturday</th></tr>";
       switch(dayone){
         case 1:
           calendar+="<tr class=\"calendar-week\"><td class=\"calendar-data\"></td>";
@@ -302,11 +302,11 @@
       var wcount=0;
       var wk=7;
       var calendar;
-      calendar="<table class=\"calendar-table\"><tr><th class=\"calendar-month\" colspan=7>";
+      calendar="<table class=\"calendar-table\"><tr><th class=\"calendar-month\" colspan=7> <button class=\"left-calendar-button\" id=\"next-last-month\" onclick=\"document.getElementById('Steele').innerHTML=printLastMonthCalendar(t--, u);\">\< Last Month</button>";
       calendar+=m;
       calendar+=" ";
       calendar+=year;
-      calendar+="</th></tr><tr><th class=\"calendar-head\">Sunday</th><th class=\"calendar-head\">Monday</th><th class=\"calendar-head\">Tuesday</th><th class=\"calendar-head\">Wednesday</th><th class=\"calendar-head\">Thursday</th><th class=\"calendar-head\">Friday</th><th class=\"calendar-head\">Saturday</th></tr>";
+      calendar+="<button class=\"right-calendar-button\" id=\"next-last-month\" onclick=\"document.getElementById('Steele').innerHTML=printNextMonthCalendar(t++, u);\">Next Month \></button></th></tr><tr><th class=\"calendar-head\">Sunday</th><th class=\"calendar-head\">Monday</th><th class=\"calendar-head\">Tuesday</th><th class=\"calendar-head\">Wednesday</th><th class=\"calendar-head\">Thursday</th><th class=\"calendar-head\">Friday</th><th class=\"calendar-head\">Saturday</th></tr>";
       switch(dayone){
         case 1:
           calendar+="<tr class=\"calendar-week\"><td class=\"calendar-data\"></td>";
@@ -511,9 +511,6 @@
     }
   </script>
   <div id="Kilmister">
-    <button id="next-last-month" onclick="document.getElementById('Steele').innerHTML=printLastMonthCalendar(t--, u);">Last Month</button>
-    <button id="next-last-month" onclick="document.getElementById('Steele').innerHTML=printNextMonthCalendar(t++, u);">Next Month</button>
   </div>
 </body>
 </html>
-

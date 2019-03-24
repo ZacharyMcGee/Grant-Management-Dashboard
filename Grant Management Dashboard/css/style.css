@@ -1164,43 +1164,68 @@ input[type="file"] {
 }
 
 /*css for the calendar*/
- #Steele{
+  #Steele{
     /*css for the div that the table is printed into*/
-    background-color: #f3f3f3;
-  }
-  #Kilmister{
-    /*css for the div that contains the Last and Next Month buttons*/
-    background-color: #f3f3f3;
-  }
-  #next-last-month{
-    /*css for the next and last month buttons*/
+    background-color: #fff;
   }
   .calendar-table{
-    /*css for the actual table of the calendar*/
+    /*css for the actual table*/
     width: 100%;
     border-collapse: collapse;
-    border: 1px solid black;
+    border: 1px solid #eaeaea;
   }
   .calendar-current-day{
     /*css for the table data of the current day, turns the current day yellow*/
-    background-color: yellow;
-    border: 1px solid black;
+    background-color: #f0f0f0;
+    color: #7d7d7d;
+    border: 1px solid #eaeaea;
   }
   .calendar-month{
     /*css for the table header that contains the month and year*/
-    border: 1px solid black;
+    border: 1px solid #eaeaea;
+    color: #7d7d7d;
+    font-size: 16px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-weight: 600;
   }
   .calendar-head{
     /*css for table headers.  used only for the names of the week*/
-    border: 1px solid black;
+    width: 14%;
+    color: #7d7d7d;
+    font-weight: 400;
+    padding-top: 10px;
+    padding-bottom: 10px;
   }
   .calendar-data{
     /*css for table data.  used for the days of the week (excluding the current day)*/
-    border: 1px solid black;
+    border: 1px solid #eaeaea;
+    height: 80px;
+    color: #7d7d7d;
   }
   .calendar-week{
     /*css for table rows*/
     text-align:center;
+  }
+
+  .left-calendar-button {
+    float: left;
+    margin-left: 20px;
+    background-color: #0000;
+    border: none;
+    cursor: pointer;
+    color: #0591ad;
+    padding-top: 3px;
+  }
+
+  .right-calendar-button {
+    float: right;
+    margin-right: 20px;
+    background-color: #0000;
+    border: none;
+    cursor: pointer;
+    color: #0591ad;
+    padding-top: 3px;
   }
 
 /* ADD ON STYLES */
