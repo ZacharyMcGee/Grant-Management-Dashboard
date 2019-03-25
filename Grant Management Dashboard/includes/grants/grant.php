@@ -170,7 +170,7 @@ $("#update-grant-data").click(function(){
 		</div>
 	</div>
 </div>
-<div class='full-card' style="margin-top:160px;">
+<div class='full-card' style="margin-top:160px; padding-bottom: 20px;">
   <div class='card-title'>
     <div class='card-title-text'><span class='parent-link'>Spending Timeline</span></div>
   </div>
@@ -181,7 +181,7 @@ $("#update-grant-data").click(function(){
 	</div>
 </div>
 
-<div class='full-card' style='margin-top: 20px;'>
+<div class='full-card' style='margin-top: 20px; padding-bottom: 20px;'>
 	<div class='card-title'>
 		<div class='card-title-text'><span class='parent-link'>Update Grant Data</span></div>
 	</div>
