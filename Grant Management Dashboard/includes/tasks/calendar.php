@@ -104,14 +104,14 @@
         case 1:
           calendar+="<tr class=\"calendar-week\"><td class=\"calendar-data\"></td>";
           if(day==a){
-            calendar+="<td class=\"calendar-current-day\">";
+            calendar+="<td class=\"calendar-current-day\"><span class=\"data-text\">";
             calendar+=a;
-            calendar+="</td>";
+            calendar+="</span></td>";
           }
           else{
-            calendar+="<td class=\"calendar-data\">";
+            calendar+="<td class=\"calendar-data\"><span class=\"data-text\">";
             calendar+=a;
-            calendar+="</td>";
+            calendar+="</span></td>";
           }
           a++;
           wcount=2;
@@ -119,14 +119,14 @@
         case 2:
           calendar+="<tr class=\"calendar-week\"><td class=\"calendar-data\"></td><td class=\"calendar-data\"></td>";
           if(day==a){
-            calendar+="<td class=\"calendar-current-day\">";
+            calendar+="<td class=\"calendar-current-day\"><span class=\"data-text\">";
             calendar+=a;
-            calendar+="</td>";
+            calendar+="</span></td>";
           }
           else{
-            calendar+="<td class=\"calendar-data\">";
+            calendar+="<td class=\"calendar-data\"><span class=\"data-text\">";
             calendar+=a;
-            calendar+="</td>";
+            calendar+="</span></td>";
           }
           a++;
           wcount=3;
@@ -134,14 +134,14 @@
         case 3:
           calendar+="<tr class=\"calendar-week\"><td class=\"calendar-data\"></td><td class=\"calendar-data\"></td><td class=\"calendar-data\"></td>";
           if(day==a){
-            calendar+="<td class=\"calendar-current-day\">";
+            calendar+="<td class=\"calendar-current-day\"><span class=\"data-text\">";
             calendar+=a;
-            calendar+="</td>";
+            calendar+="</span></td>";
           }
           else{
-            calendar+="<td class=\"calendar-data\">";
+            calendar+="<td class=\"calendar-data\"><span class=\"data-text\">";
             calendar+=a;
-            calendar+="</td>";
+            calendar+="</span></td>";
           }
           a++;
           wcount=4;
@@ -149,14 +149,14 @@
         case 4:
           calendar+="<tr class=\"calendar-week\"><td class=\"calendar-data\"></td><td class=\"calendar-data\"></td><td class=\"calendar-data\"></td><td class=\"calendar-data\"></td>";
           if(day==a){
-            calendar+="<td class=\"calendar-current-day\">";
+            calendar+="<td class=\"calendar-current-day\"><span class=\"data-text\">";
             calendar+=a;
-            calendar+="</td>";
+            calendar+="</span></td>";
           }
           else{
-            calendar+="<td class=\"calendar-data\">";
+            calendar+="<td class=\"calendar-data\"><span class=\"data-text\">";
             calendar+=a;
-            calendar+="</td>";
+            calendar+="</span></td>";
           }
           a++;
           wcount=5;
@@ -164,14 +164,14 @@
         case 5:
           calendar+="<tr class=\"calendar-week\"><td class=\"calendar-data\"></td><td class=\"calendar-data\"></td><td class=\"calendar-data\"></td><td class=\"calendar-data\"></td><td class=\"calendar-data\"></td>";
           if(day==a){
-            calendar+="<td class=\"calendar-current-day\">";
+            calendar+="<td class=\"calendar-current-day\"><span class=\"data-text\">";
             calendar+=a;
-            calendar+="</td>";
+            calendar+="</span></td>";
           }
           else{
-            calendar+="<td class=\"calendar-data\">";
+            calendar+="<td class=\"calendar-data\"><span class=\"data-text\">";
             calendar+=a;
-            calendar+="</td>";
+            calendar+="</span></td>";
           }
           a++;
           wcount=6;
@@ -179,14 +179,14 @@
         case 6:
           calendar+="<tr class=\"calendar-week\"><td class=\"calendar-data\"></td><td class=\"calendar-data\"></td><td class=\"calendar-data\"></td><td class=\"calendar-data\"></td><td class=\"calendar-data\"></td><td class=\"calendar-data\"></td>";
           if(day==a){
-            calendar+="<td class=\"calendar-current-day\">";
+            calendar+="<td class=\"calendar-current-day\"><span class=\"data-text\">";
             calendar+=a;
-            calendar+="</td>";
+            calendar+="</span></td>";
           }
           else{
-            calendar+="<td class=\"calendar-data\">";
+            calendar+="<td class=\"calendar-data\"><span class=\"data-text\">";
             calendar+=a;
-            calendar+="</td>";
+            calendar+="</span></td>";
           }
           a++;
           calendar+="</tr>";
@@ -310,49 +310,49 @@
       switch(dayone){
         case 1:
           calendar+="<tr class=\"calendar-week\"><td class=\"calendar-data\"></td>";
-          calendar+="<td class=\"calendar-data\">";
+          calendar+="<td class=\"calendar-data\"><span class=\"data-text\">";
           calendar+=a;
-          calendar+="</td>";
+          calendar+="</span></td>";
           a++;
           wcount=2;
           break;
         case 2:
           calendar+="<tr class=\"calendar-week\"><td class=\"calendar-data\"></td><td class=\"calendar-data\"></td>";
-          calendar+="<td class=\"calendar-data\">";
+          calendar+="<td class=\"calendar-data\"><span class=\"data-text\">";
           calendar+=a;
-          calendar+="</td>";
+          calendar+="</span></td>";
           a++;
           wcount=3;
           break;
         case 3:
           calendar+="<tr class=\"calendar-week\"><td class=\"calendar-data\"></td><td class=\"calendar-data\"></td><td class=\"calendar-data\"></td>";
-          calendar+="<td class=\"calendar-data\">";
+          calendar+="<td class=\"calendar-data\"><span class=\"data-text\">";
           calendar+=a;
-          calendar+="</td>";
+          calendar+="</span></td>";
           a++;
           wcount=4;
           break;
         case 4:
           calendar+="<tr class=\"calendar-week\"><td class=\"calendar-data\"></td><td class=\"calendar-data\"></td><td class=\"calendar-data\"></td><td class=\"calendar-data\"></td>";
-          calendar+="<td class=\"calendar-data\">";
+          calendar+="<td class=\"calendar-data\"><span class=\"data-text\">";
           calendar+=a;
-          calendar+="</td>";
+          calendar+="</span></td>";
           a++;
           wcount=5;
           break;
         case 5:
           calendar+="<tr class=\"calendar-week\"><td class=\"calendar-data\"></td><td class=\"calendar-data\"></td><td class=\"calendar-data\"></td><td class=\"calendar-data\"></td><td class=\"calendar-data\"></td>";
-          calendar+="<td class=\"calendar-data\">";
+          calendar+="<td class=\"calendar-data\"><span class=\"data-text\">";
           calendar+=a;
-          calendar+="</td>";
+          calendar+="</span></td>";
           a++;
           wcount=6;
           break;
         case 6:
           calendar+="<tr class=\"calendar-week\"><td class=\"calendar-data\"></td><td class=\"calendar-data\"></td><td class=\"calendar-data\"></td><td class=\"calendar-data\"></td><td class=\"calendar-data\"></td><td class=\"calendar-data\"></td>";
-          calendar+="<td class=\"calendar-data\">";
+          calendar+="<td class=\"calendar-data\"><span class=\"data-text\">";
           calendar+=a;
-          calendar+="</td>";
+          calendar+="</span></td>";
           a++;
           calendar+="</tr>";
           break;
@@ -409,9 +409,9 @@
         if(wcount==0){
           calendar+="<tr class=\"calendar-week\">";
         }
-        calendar+="<td class=\"calendar-data\">";
+        calendar+="<td class=\"calendar-data\"><span class=\"data-text\">";
         calendar+=a;
-        calendar+="</td>";
+        calendar+="</span></td>";
         a++;
         wcount++;
         if(wcount>=wk){
