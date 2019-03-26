@@ -74,6 +74,8 @@ if ($result->num_rows > 0) {
 
 		$idcRemaining = "<canvas id='idcLeftPieChart'></canvas><script>idcMoneyLeftPieChart('idcLeftPieChart','" . $row["idc_award"] . "','" . $json . "');</script>";
 		$idcSpendingBreakdown = "<div class='idc-breakdown'>Award: <span class='awarded'>" . $formattedIDCAward . "</span>\nSpent: <span class='spent' id='idc-spent'></span><hr class='custom-hr'><span class='remaining' id='idc-remaining'></span></div><script>setIDCBreakdown('" . $json . "','" . $row["idc_award"] . "');</script>";
+
+		$categoryBreakdown = "<canvas id='categoryBreakdownChart'></canvas><script>categoryBreakdownChart('categoryBreakdownChart','" . $json . "');</script>";
 }
 else
 {
@@ -151,7 +153,7 @@ $("#update-grant-data").click(function(){
 
 <div class="fourth-card-tall">
 	<div class='card-title'>
-		<div class='card-title-text'><span class='parent-link'>Something Else</span></div>
+		<div class='card-title-text'><span class='parent-link'>Category Breakdown</span></div>
 	</div>
 	<div class="remaining-awards">
 		<div class="dc-award-chart">

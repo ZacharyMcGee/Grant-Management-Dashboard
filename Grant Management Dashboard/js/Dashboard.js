@@ -821,6 +821,48 @@ function idcMoneyLeftPieChart(id, award, jsondata){
   });
 }
 
+function categoryBreakdownChart(id, jsondata){
+  console.log("json = " + jsondata);
+  jsondata = jsondata.substring(1, jsondata.length-1);
+  jsondata = JSON.parse(jsondata);
+
+  var ctx = document.getElementById(id).getContext('2d');
+  var chart = new Chart(ctx, {
+      // The type of chart we want to create
+      type: 'doughnut',
+      // The data for our dataset
+      data: {
+          labels: ["Spent", "Remaining"],
+          datasets: [{
+              data: [netDirectCostExpenditures, amountLeft],
+              backgroundColor: [
+                'rgb(230,230,230)',
+                'rgb(96,202,119)',
+              ]
+          }]
+      },
+
+      // Configuration options go here
+      options: {
+        cutoutPercentage: 70,
+        responsive: true,
+        maintainAspectRatio: false,
+        aspectRatio: 1,
+        elements: {
+            center: {
+            text: "$" + amountLeft,
+            color: '#60ca77',
+            fontStyle: 'Helvetica',
+            sidePadding: 25
+          }
+        },
+        legend: {
+           display: false,
+        },
+      }
+  });
+}
+
 function openGrant(id) {
   $("#content").load("includes/grants/grant.php?id=" + id);
 }

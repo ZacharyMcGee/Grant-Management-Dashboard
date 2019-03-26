@@ -85,7 +85,20 @@ function validateSaveChanges(){
 
 .left-half {
     text-align: justify;
-    width: 400px;
+    width: 300px;
+    float: left;
+    display: block;
+}
+
+.left-half h1 {
+  margin: 0px;
+  padding: 0px;
+}
+
+.right-half {
+  width: calc(100% - 300px);
+  float: left;
+  display: block;
 }
 
 .images {
@@ -109,14 +122,16 @@ function validateSaveChanges(){
 }
 
 #profile-container {
-    width: 150px;
-    height: 150px;
-    overflow: hidden;
-    -webkit-border-radius: 50%;
-    -moz-border-radius: 50%;
-    -ms-border-radius: 50%;
-    -o-border-radius: 50%;
-    border-radius: 50%;
+  margin-top: 20px;
+  margin-left: 50px;
+  width: 150px;
+  height: 150px;
+  overflow: hidden;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  -o-border-radius: 50%;
+  border-radius: 50%;
 }
 
 #profile-container img {
@@ -127,24 +142,30 @@ function validateSaveChanges(){
 </style>
 </head>
 
-<div class="container">
+<div class="container" style="padding-bottom: 20px;">
+  <div class="full-card">
+    <div class="card-title" style="height: 41px;">
+  		<div class="card-title-text">
+  			<i class="fas fa-list" style="color:#7d7d7d;"></i><span class="parent-link">Edit Profile</span>
+  		</div>
+  	</div>
   <div class="left-half">
-    <h1>Edit Profile</h1>
     <div>
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-      <div id="profile-container">
-        <image id="profileImage" src="http://lorempixel.com/100/100" />
+      <div class="profile-container" id="profile-container">
+        <image id="profileImage" src="images/boyd.jpg" />
       </div>
       <input id="imageUpload" type="file" name="profile_photo" placeholder="Photo" required="" capture>
+      <h3 style="margin-left:70px; font-weight:400;">Profile Picture</h3>
     </div>
   </div>
   <div class="right-half">
-    <h3>Personal info</h3>
+    <h3 style="font-weight: 400;margin-bottom: 10px;border-bottom: 1px solid #e6e6e6;margin-right: 55px;">Personal info</h3>
     <div>
       <label class="font">Name:</label>
       <div class="input-grant-input-container">
         <i class="fas fa-user-circle"></i>
-        <input class="input-text" id="input-name" type="text" value="name">
+        <input class="input-text" id="input-name" type="text" value="Boyd Goodson">
       </div>
     </div>
     <div>
@@ -174,10 +195,11 @@ function validateSaveChanges(){
     <div>
       <label></label>
       <div>
-        <input type="button" id="profile-save" class="save-button" value="Save Changes">
+        <input style="margin-right: 53px;" type="button" id="profile-save" class="save-button" value="Save Changes">
         <span></span>
         <input type="reset" id="profile-cancel" class="cancel-button" value="Cancel">
       </div>
     </div>
+</div>
 </div>
 </div>
