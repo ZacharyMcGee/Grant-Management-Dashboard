@@ -95,8 +95,8 @@ if ($result->num_rows > 0) {
      <i class="fas fa-caret-down fa-sm" onclick="openDropdown('account-dropdown')" style="color: #263544; margin-top: 4px; cursor: pointer;"></i>
       <div class="account-dropdown" id="account-dropdown">
         <i class="fas fa-caret-up" style="margin-top:-20px;position: absolute;top: 9px;color: white;left: 142px;"></i>
-        <a href="#">Link 1</a>
-        <a href="#">Link 2</a>
+        <a href="#">My Account</a>
+        <a href="#">Help</a>
         <a href="logout.php">Logout</a>
       </div>
     </div>
