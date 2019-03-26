@@ -47,6 +47,46 @@ $("#save-new-grant").click(function(){
 
         });
     //JSON.parse(sessionStorage.getItem("result"));
+
+    var deadlineNot=document.getElementById('notification-deadline').value;
+    var timeDeadline=document.getElementById('notification-deadline-time').value;
+    if(timeDeadline==""){
+      timeDeadline="00:00:00";
+    }
+    if(timeDeadline!=""){
+      var pattern=new RegExp('[0-9]{2}:[0-9]{2}:[0-9]{2}');
+      var patterntest=pattern.test(timeDeadline);
+      if(patterntest==false){
+        timeDeadline="00:00:00";
+      }
+    }
+    var repDeadline;
+    var emailDeadline;
+    if(document.getElementById('yerepeat').checked){
+      repDeadline=document.getElementById('yerepeat').value;
+    }
+    else{
+      repDeadline=document.getElementById('norepeat').value;
+    }
+    if(document.getElementById('yeemail').checked){
+      emailDeadline=document.getElementById('yeemail').value;
+    }
+    else{
+      emailDeadline=document.getElementById('noemail').value;
+    }
+    console.log(sessionStorage.getItem("result"));
+    $.ajax({
+        url: "functions/save-notification.php",
+        type: "post",
+        data: { 'deadline' : deadlineNot, 'times' : timeDeadline, 'repeat' : repDeadline, 'email' : emailDeadline } ,
+        success: function (response) {
+          console.log(response);
+          showAlert("success", response);
+        },
+        error: function(jqXHR, textStatus, errorThrown) {
+            console.log(textStatus, errorThrown);
+        }
+      });
   }
 });
 
@@ -61,6 +101,7 @@ function validateNewGrantForm(){
   var grantNameForm = document.getElementById('input-title');
   var budgetPurposeForm = document.getElementById('input-bp');
   var dcAwardAmountForm = document.getElementById('input-dc-award');
+  var deadlineForm=document.getElementById('notification-deadline').value;
 
   if(grantNameForm.value == ""){
     showAlert("error", "You must enter a grant name!");
@@ -77,6 +118,18 @@ function validateNewGrantForm(){
   else if(isNaN(dcAwardAmountForm.value)){
     showAlert("error", "Award must be a valid dollar amount!");
     return false;
+  }
+  else if(deadlineForm== ""){
+    showAlert("error", "Please enter a deadline");
+    return false;
+  }
+  else if (deadlineForm!="") {
+    var pattern=new RegExp('[0-9]{4}[/-][0-9]{2}[/-][0-9]{2}');
+    var patterntest=pattern.test(deadlineForm);
+    if(patterntest==false){
+      showAlert("error", "Please input deadline as \"YYYY/MM/DD\" or \"YYYY-MM-DD\"");
+      return false;
+    }
   }
   return true;
 }
@@ -130,6 +183,49 @@ function validateNewGrantForm(){
     </div>
   </div>
   </div>
+</div>
+
+<br>
+<div class="full-card">
+  <div class="card-title">
+    <div class="card-title-text">
+      <i class="fas fa-calendar"></i><span class="parent-link">Notifications</span>
+    </div>
+    <div class="card-title-button">
+    </div>
+  </div>
+<div class="card-body">
+  <div class="information-container">
+  <div class="input-grant-title"><!--<div class="input-deadline-notifications">-->
+    <p>Deadline</p><span class="small-asterix">*</span>
+    <div class="input-grant-input-container">
+      <i class="fas fa-calendar-times fa-lg fa-fw" aria-hidden="true"></i>
+      <input type="text" id="notification-deadline" class="input-text" placeholder="YYYY/MM/DD" pattern="[1-9]{4}/[1-9]{2}/[1-9]{2}">
+    </div>
+  </div>
+  <div class="input-grant-description"><!--<div class="input-time-notifications">-->
+    <p>Time Deadline</p>
+    <div class="input-grant-input-container">
+      <i class="fas fa-clock fa-lg fa-fw" aria-hidden="true"></i>
+      <input type="text" id="notification-deadline-time" class="input-text" placeholder="HH:MM:SS" pattern="[1-9]{2}:[1-9]{2}:[1-9]{2}">
+    </div>
+  </div>
+  <div class="input-grant-title"><!--<div class="input-repeat-notifications">-->
+    <p>Repeated Notifications</p>
+    <div class="input-grant-input-container">
+      <input type="radio" id="yerepeat" name="repnot" value="1" checked>Yes
+      <input type="radio" id="norepeat" name="repnot" value="0">No
+    </div>
+  </div>
+  <div class="input-grant-description"><!--<div class="input-email-notifications">-->
+    <p>Email Notifications</p>
+    <div class="input-grant-input-container">
+      <input type="radio" id="yeemail" name="email" value="1">Yes
+      <input type="radio" id="noemail" name="email" value="0" checked>No
+    </div>
+  </div>
+</div>
+</div>
 </div>
 
 <div class="full-card" style="margin-top:20px; padding-bottom: 20px;">
