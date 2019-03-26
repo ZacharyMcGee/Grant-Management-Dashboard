@@ -201,6 +201,8 @@ body {
   -webkit-box-shadow: 0px 0px 1px 0px rgba(87,87,87,0.19);
   -moz-box-shadow: 0px 0px 1px 0px rgba(87,87,87,0.19);
   box-shadow: 0px 0px 1px 0px rgba(87,87,87,0.19);  z-index: 1;
+  border: 1px solid #ededed;
+  transition: 0s all;
 }
 
 .account-dropdown a {
@@ -214,6 +216,10 @@ body {
 
 .account-dropdown a:hover {
     background-color: #f3f3f3;
+}
+
+.show-dropdown {
+  display: block;
 }
 
 .main {
