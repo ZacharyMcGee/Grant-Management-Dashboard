@@ -198,10 +198,6 @@ function closeFullscreen() {
   }
 }
 
-function openDropdown(id) {
-  document.getElementById(id).classList.toggle("show-dropdown");
-}
-
   /////////////////////////////////////
  /*      READ EXCEL FILE DATA       */
 /////////////////////////////////////

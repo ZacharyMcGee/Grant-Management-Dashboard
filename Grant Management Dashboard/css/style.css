@@ -201,8 +201,6 @@ body {
   -webkit-box-shadow: 0px 0px 1px 0px rgba(87,87,87,0.19);
   -moz-box-shadow: 0px 0px 1px 0px rgba(87,87,87,0.19);
   box-shadow: 0px 0px 1px 0px rgba(87,87,87,0.19);  z-index: 1;
-  border: 1px solid #ededed;
-  transition: 0s all;
 }
 
 .account-dropdown a {
@@ -216,10 +214,6 @@ body {
 
 .account-dropdown a:hover {
     background-color: #f3f3f3;
-}
-
-.show-dropdown {
-  display: block;
 }
 
 .main {
@@ -1221,7 +1215,7 @@ input[type="file"] {
   }
 
   .data-text {
-    background-color: #eaeaea;
+    background-color: #f3f3f3;
     float: left;
     width: 94%;
     margin-left: 3%;
@@ -1255,77 +1249,6 @@ input[type="file"] {
     color: #0591ad;
     padding-top: 3px;
   }
-
-/*CSS for Create Notifications*/
-.input-deadline-notifications {
-  float: left;
-  height: 70px;
-  width: calc(50% - 20px); /* IE 9,10 , Chrome, Firefox */
-  width: -webkit-calc(50% - 20px); /*For safari 6.0*/
-  padding-top: 10px;
-  padding-left: 20px;
-}
-
-.input-deadline-notifications p {
-  float: left;
-  margin: 0px;
-  margin-bottom: 5px;
-  margin-top: 5px;
-  font-size: 12px;
-}
-
-.input-time-notifications {
-  display: inline-block;
-  float: left;
-  height: 70px;
-  width: calc(50% - 20px); /* IE 9,10 , Chrome, Firefox */
-  width: -webkit-calc(50% - 20px); /*For safari 6.0*/
-  padding-top: 10px;
-  padding-left: 20px;
-}
-
-.input-time-notifications p {
-  float: left;
-  margin: 0px;
-  margin-bottom: 5px;
-  margin-top: 5px;
-  font-size: 12px;
-}
-
-.input-repeat-notifications {
-  float: left;
-  height: 70px;
-  width: calc(50% - 20px); /* IE 9,10 , Chrome, Firefox */
-  width: -webkit-calc(50% - 20px); /*For safari 6.0*/
-  padding-top: 10px;
-  padding-left: 20px;
-}
-
-.input-repeat-notifications p {
-  float: left;
-  margin: 0px;
-  margin-bottom: 5px;
-  margin-top: 5px;
-  font-size: 12px;
-}
-
-.input-email-notifications {
-  display: inline-block;
-  float: left;
-  height: 70px;
-  width: calc(50% - 20px); /* IE 9,10 , Chrome, Firefox */
-  width: -webkit-calc(50% - 20px); /*For safari 6.0*/
-  padding-top: 10px;
-  padding-left: 20px;
-}
-
-.input-email-notifications p {
-  float: left;
-  margin: 0px;
-  margin-bottom: 5px;
-  margin-top: 5px;
-  font-size: 12px;
-}
 
 /* ADD ON STYLES */
 
