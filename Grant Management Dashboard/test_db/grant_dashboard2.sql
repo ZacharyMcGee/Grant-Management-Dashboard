@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 29, 2019 at 08:12 PM
+-- Generation Time: Mar 26, 2019 at 04:43 PM
 -- Server version: 10.1.37-MariaDB
 -- PHP Version: 7.3.0
 
@@ -30,17 +30,21 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `accounts` (
   `id` int(11) NOT NULL,
+  `userid` int(11) NOT NULL,
+  `name` varchar(20) NOT NULL,
   `username` varchar(50) NOT NULL,
   `password` varchar(255) NOT NULL,
-  `email` varchar(100) NOT NULL
+  `email` varchar(100) NOT NULL,
+  `photo` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `accounts`
 --
 
-INSERT INTO `accounts` (`id`, `username`, `password`, `email`) VALUES
-(1, 'test', '$1$zlnYwMy4$XJXe7it14YoWwr0lrK3M4.', 'test@test.com');
+INSERT INTO `accounts` (`id`, `userid`, `name`, `username`, `password`, `email`, `photo`) VALUES
+(1, 0, '', 'test', '$1$zlnYwMy4$XJXe7it14YoWwr0lrK3M4.', 'test@test.com', ''),
+(0, 0, 'test1', 'test1', '$2y$10$l6Ov53JbSi.OfR1TrtfATujdmWKICZsLrGyg9oM4R5amw8YBOsqOO', 'test1@test.com', '');
 
 -- --------------------------------------------------------
 
@@ -124,7 +128,7 @@ ALTER TABLE `grant_archive`
 -- AUTO_INCREMENT for table `grants`
 --
 ALTER TABLE `grants`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `grant_archive`
