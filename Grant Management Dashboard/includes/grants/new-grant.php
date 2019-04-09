@@ -50,15 +50,8 @@ $("#save-new-grant").click(function(){
 
     var deadlineNot=document.getElementById('notification-deadline').value;
     var timeDeadline=document.getElementById('notification-deadline-time').value;
-    if(timeDeadline==""){
+    if(timeDeadline===""){
       timeDeadline="00:00:00";
-    }
-    if(timeDeadline!=""){
-      var pattern=new RegExp('[0-9]{2}:[0-9]{2}:[0-9]{2}');
-      var patterntest=pattern.test(timeDeadline);
-      if(patterntest==false){
-        timeDeadline="00:00:00";
-      }
     }
     var repDeadline;
     var emailDeadline;
@@ -102,6 +95,7 @@ function validateNewGrantForm(){
   var budgetPurposeForm = document.getElementById('input-bp');
   var dcAwardAmountForm = document.getElementById('input-dc-award');
   var deadlineForm=document.getElementById('notification-deadline').value;
+  var timeDeadlineForm=document.getElementById('notification-deadline-time');
 
   if(grantNameForm.value == ""){
     showAlert("error", "You must enter a grant name!");
@@ -119,15 +113,49 @@ function validateNewGrantForm(){
     showAlert("error", "Award must be a valid dollar amount!");
     return false;
   }
-  else if(deadlineForm== ""){
-    showAlert("error", "Please enter a deadline");
+  else if(deadlineForm.value===""){
+    showAlert("error", "Please enter a deadline!");
     return false;
   }
-  else if (deadlineForm!="") {
-    var pattern=new RegExp('[0-9]{4}[/-][0-9]{2}[/-][0-9]{2}');
+  else if (deadlineForm.value!=="") {
+    var pattern=new RegExp('^([0-9]{4}\/((0[1-9]){1}|(1[0-2]){1})\/((0[1-9]){1}|([1-2][0-9]){1}|(3[0-1]){1}))$');
     var patterntest=pattern.test(deadlineForm);
     if(patterntest==false){
-      showAlert("error", "Please input deadline as \"YYYY/MM/DD\" or \"YYYY-MM-DD\"");
+      showAlert("error", "Please input deadline as \"YYYY/MM/DD\"!");
+      return false;
+    }
+    var replaceMonth=deadlineForm.split("/");
+    if(replaceMonth[1]==='02'){
+      var febPattern;
+      if(isLeapYear(replaceMonth[0])){
+        febPattern=new RegExp('^([0-9]{4}\/(02)\/((0[1-9]){1}|(1[0-9]){1}|(2[0-9]{1})))$');
+      }
+      else{
+        febPattern=new RegExp('^([0-9]{4}\/(02)\/((0[1-9]){1}|(1[0-9]){1}|(2[0-8]{1})))$');
+      }
+      var febPatternTest=febPattern.test(deadlineForm);
+      if(febPatternTest==false){
+        showAlert("error", "Incorrect input for February, please input date from 01-28 or 01-29 if leap year!");
+        return false;
+      }
+    }
+    if(replaceMonth[1]==='04'||replaceMonth[1]==='06'||replaceMonth[1]==='09'||replaceMonth[1]==='11'){
+      var thirtyPattern=new RegExp('^([0-9]{4}\/((04){1}|(06){1}|(09){1}|(11){1})\/((0[1-9]){1}|([1-2][0-9]){1}|(30){1}))$');
+      var thirtyPatternTest=thirtyPattern.test(deadlineForm);
+      if(thirtyPatternTest==false){
+        showAlert("error", "Incorrect input for April, June, September, or November. Please input date from 01-30!");
+        return false;
+      }
+    }
+  }
+  else if(timeDeadlineForm.value===""){
+    return true;
+  }
+  else if(timeDeadlineForm.value!==""){
+    var patterntwo=new RegExp('^(([0-1][0-9]|2[0-3]){1}:([0-5][0-9]){1}:([0-5][0-9]){1})$');
+    var patterntestplus=patterntwo.test(timeDeadlineForm);
+    if(patterntestplus==false){
+      showAlert("error", "Please input your time as \"HH:MM:SS\"!");
       return false;
     }
   }
@@ -186,7 +214,7 @@ function validateNewGrantForm(){
 </div>
 
 <br>
-<div class="full-card">
+<div class="full-card" style="padding-bottom:20px;">
   <div class="card-title">
     <div class="card-title-text">
       <i class="fas fa-calendar"></i><span class="parent-link">Notifications</span>
@@ -200,14 +228,14 @@ function validateNewGrantForm(){
     <p>Deadline</p><span class="small-asterix">*</span>
     <div class="input-grant-input-container">
       <i class="fas fa-calendar-times fa-lg fa-fw" aria-hidden="true"></i>
-      <input type="text" id="notification-deadline" class="input-text" placeholder="YYYY/MM/DD" pattern="[1-9]{4}/[1-9]{2}/[1-9]{2}">
+      <input type="text" id="notification-deadline" class="input-text" placeholder="YYYY/MM/DD">
     </div>
   </div>
   <div class="input-grant-description"><!--<div class="input-time-notifications">-->
-    <p>Time Deadline</p>
+    <p>Time Deadline</p><span class="small-tip">(optional)</span>
     <div class="input-grant-input-container">
       <i class="fas fa-clock fa-lg fa-fw" aria-hidden="true"></i>
-      <input type="text" id="notification-deadline-time" class="input-text" placeholder="HH:MM:SS" pattern="[1-9]{2}:[1-9]{2}:[1-9]{2}">
+      <input type="text" id="notification-deadline-time" class="input-text" placeholder="HH:MM:SS">
     </div>
   </div>
   <div class="input-grant-title"><!--<div class="input-repeat-notifications">-->
