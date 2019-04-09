@@ -122,6 +122,19 @@ $("#update-grant-data").click(function(){
         });
 });
 </script>
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.5/jspdf.debug.js"></script>
+    
+<script>
+    $("#generate-grant-report").click(function(){
+        var doc = new jsPDF();
+        
+        doc.text('DC Award: ', '10', '10');
+        doc.save('Report.pdf')
+    })
+    
+</script>
+    
 </head>
 <div class="fourth-card-tall">
 	<div class='card-title'>
@@ -164,12 +177,10 @@ $("#update-grant-data").click(function(){
 
 <div class="fourth-card-tall">
 	<div class='card-title'>
-		<div class='card-title-text'><span class='parent-link'>Something Else</span></div>
+		<div class='card-title-text'><span class='parent-link'>Generate Report</span></div>
 	</div>
 	<div class="remaining-awards">
-		<div class="dc-award-chart">
-
-		</div>
+        <button id="generate-grant-report" class="gen-button" type="button"><i class="" ></i>Generate Report</button>
 	</div>
 </div>
 <div class='full-card' style="margin-top:160px; padding-bottom: 20px;">

@@ -629,6 +629,12 @@ body {
   width: 100%;
   padding-bottom: 30px;
 }
+
+.generate-grant-report {
+    width: 100%;
+    padding-bottom: 30px;
+}
+
 .sidebar {
   background-color: #263544;
     height: 100%;
@@ -1059,6 +1065,22 @@ input[type="file"] {
   margin-right: 20px;
   margin-left: 20px;
   float: right;
+  border: 1px solid #5eb363;
+}
+
+.gen-button {
+  background-color: #85C389;
+  width: calc(100% - 30px);
+  color: white;
+  margin-top: 20px;
+  margin-left: 15px;
+  height: 50px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 14px;
+  font-family: 'Open Sans', sans-serif;
+  cursor: pointer;
   border: 1px solid #5eb363;
 }
 
