@@ -27,6 +27,7 @@ if ($result2->num_rows > 0) {
 			$myObj->y = $row["jsondata"];
 
 			array_push($a, $myObj);
+            
 	}
 }
 else
@@ -76,6 +77,8 @@ if ($result->num_rows > 0) {
 		$idcSpendingBreakdown = "<div class='idc-breakdown'>Award: <span class='awarded'>" . $formattedIDCAward . "</span>\nSpent: <span class='spent' id='idc-spent'></span><hr class='custom-hr'><span class='remaining' id='idc-remaining'></span></div><script>setIDCBreakdown('" . $json . "','" . $row["idc_award"] . "');</script>";
 
 		$categoryBreakdown = "<canvas id='categoryBreakdownChart'></canvas><script>categoryBreakdownChart('categoryBreakdownChart','" . $json . "');</script>";
+    
+        echo '<button onclick= "generateGrantReport(' . $row["dc_award"] . ',' . $row["bp"] . ')"></button>';
 }
 else
 {
@@ -124,14 +127,54 @@ $("#update-grant-data").click(function(){
 </script>
     
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.5/jspdf.debug.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.1.1/jspdf.plugin.autotable.js"></script>
     
-<script>
-    $("#generate-grant-report").click(function(){
-        var doc = new jsPDF();
+<script type="text/javascript">
+    //var dc = "hi";
+    //var idc = echo 'json_encode($formattedIDCAward)';
+    
+   function generateGrantReport(dc, bp){
+        var doc = new jsPDF({orientation: 'landscape'});
+       
+        var newdc = '$' + dc.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        var newbp = bp.toString();
+        var title = "Report for Grant #" + newbp;
+       
+        //var canv = document.getElementById('timeChart');
+        //var img = canv.toDataURL("image/png");
+       
+        doc.setFontSize(24);
+        doc.text(title, '10', '15');
+        doc.line(10, 20, 287, 20);
+        //doc.text(newdc, '10', '20');
+        doc.setFontSize(18);
+        doc.text("Direct Cost", 10, 35);
+        doc.setFontSize(12);
+        doc.text('Direct Cost Awarded:', 10, 40);
+        doc.text('Direct Cost Spent:', 10, 45);
+        doc.text('Direct Cost Remaining:', 10, 50);
+
+        doc.setFontSize(18);
+        doc.text("Indirect Cost", 10, 65);
+        doc.setFontSize(12);
+        doc.text('Indirect Cost Awarded:', 10, 70);
+        doc.text('Indirect Cost Spent:', 10, 75);
+        doc.text('Indirect Cost Remaining:', 10, 80);
+       
+        //doc.addImage(img, "PNG", 10, 90, 200, 50);
+       
+        doc.save('Report.pdf');
         
-        doc.text('DC Award: ', '10', '10');
-        doc.save('Report.pdf')
-    })
+        
+        
+        
+        
+
+    };
+    
+    $("#generate-grant-report").click(function(){
+        
+    });
     
 </script>
     
