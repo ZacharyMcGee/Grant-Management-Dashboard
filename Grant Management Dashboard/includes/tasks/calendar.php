@@ -30,37 +30,6 @@
   $con->close();
 ?>
 <html>
-<style>
-.calendar-deadline{
-  /*deadline*/
-  border: 1px solid #eaeaea;
-  height: 80px;
-  color: #C0C0C0;
-  vertical-align: top;
-}
-.calendar-current-day-deadline{
-  /*deadline that's also the current day*/
-  background-color: #ffffff;
-  color: #800000;
-  border: 1px solid #eaeaea;
-  border-bottom: none;
-  vertical-align: top;
-}
-.deadline-data-text {
-  background-color: #800000;
-  float: left;
-  width: 94%;
-  margin-left: 3%;
-  margin-top: 5px;
-}
-.current-deadline-data-text {
-  background-color: #6fcee1;
-  float: left;
-  width: 94%;
-  margin-left: 3%;
-  margin-top: 5px;
-}
-</style>
 <body>
   <div id="Steele"></div>
   <script>
