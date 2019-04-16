@@ -78,7 +78,7 @@ if ($result->num_rows > 0) {
 
 		$categoryBreakdown = "<canvas id='categoryBreakdownChart'></canvas><script>categoryBreakdownChart('categoryBreakdownChart','" . $json . "');</script>";
     
-        echo '<button onclick= "generateGrantReport(' . $row["dc_award"] . ',' . $row["bp"] . ')"></button>';
+    
 }
 else
 {
@@ -131,17 +131,19 @@ $("#update-grant-data").click(function(){
     
 <script type="text/javascript">
     //var dc = "hi";
-    //var idc = echo 'json_encode($formattedIDCAward)';
-    
+   
    function generateGrantReport(dc, bp){
         var doc = new jsPDF({orientation: 'landscape'});
        
-        var newdc = '$' + dc.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        var newdc = moneyFormat(dc);
+            //'$' + dc.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
         var newbp = bp.toString();
         var title = "Report for Grant #" + newbp;
+        //var spdc = 5;
+        //var newspdc = moneyFormat(spdc);
        
-        //var canv = document.getElementById('timeChart');
-        //var img = canv.toDataURL("image/png");
+        var canv = document.getElementById('timeChart');
+        var img = canv.toDataURL("image/png");
        
         doc.setFontSize(24);
         doc.text(title, '10', '15');
@@ -150,9 +152,12 @@ $("#update-grant-data").click(function(){
         doc.setFontSize(18);
         doc.text("Direct Cost", 10, 35);
         doc.setFontSize(12);
-        doc.text('Direct Cost Awarded:', 10, 40);
-        doc.text('Direct Cost Spent:', 10, 45);
-        doc.text('Direct Cost Remaining:', 10, 50);
+        var tempdc = 'Direct Cost Awarded: ' + newdc;
+        doc.text(tempdc, 10, 40);
+        //var temspdc = 'Direct Cost Spent: ' + newspdc;
+        //doc.text(tempspdc, 10, 45);
+        //var tempdcr = 'Direct Cost Remaining: ' + newdcr;
+        //doc.text(tempdcr, 10, 50);
 
         doc.setFontSize(18);
         doc.text("Indirect Cost", 10, 65);
@@ -161,7 +166,7 @@ $("#update-grant-data").click(function(){
         doc.text('Indirect Cost Spent:', 10, 75);
         doc.text('Indirect Cost Remaining:', 10, 80);
        
-        //doc.addImage(img, "PNG", 10, 90, 200, 50);
+        doc.addImage(img, "PNG", 48.5, 90, 200, 110);
        
         doc.save('Report.pdf');
         
@@ -188,7 +193,8 @@ $("#update-grant-data").click(function(){
 			<?php echo $dcRemaining ?>
 		</div>
 		<div class="spending-breakdown">
-			<?php echo $dcSpendingBreakdown ?>
+			
+            <?php echo $dcSpendingBreakdown ?>
 		</div>
 	</div>
 </div>
@@ -223,7 +229,8 @@ $("#update-grant-data").click(function(){
 		<div class='card-title-text'><span class='parent-link'>Generate Report</span></div>
 	</div>
 	<div class="remaining-awards">
-        <button id="generate-grant-report" class="gen-button" type="button"><i class="" ></i>Generate Report</button>
+       <?php echo '<button id="generate-grant-report" class="gen-button" type="button" 
+       onclick= "generateGrantReport(' . $row["dc_award"] . ',' . $row["bp"] . ')"><i class=""></i>Generate Report</button>' ?>
 	</div>
 </div>
 <div class='full-card' style="margin-top:160px; padding-bottom: 20px;">
@@ -232,7 +239,7 @@ $("#update-grant-data").click(function(){
   </div>
   <div class='body'>
 			<div class="timechart">
-				<?php echo $timeChart ?>
+                <?php echo "<canvas id='timeChart'></canvas><script>linearTimeChart('" . $json . "','" . $row["dc_award"] . "','" . $row["idc_award"] . "');</script>" ?>
 		</div>
 	</div>
 </div>

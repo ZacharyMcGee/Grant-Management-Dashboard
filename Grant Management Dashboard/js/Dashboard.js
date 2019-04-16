@@ -712,6 +712,28 @@ function setDCBreakdown(jsondata, award) {
   document.getElementById("dc-remaining").innerHTML = "= " + moneyFormat(amountLeft);
 }
 
+function getDCSpent(jsondata, award) {
+  jsondata = jsondata.substring(1, jsondata.length-1);
+  jsondata = JSON.parse(jsondata);
+  var totalDirectCostExpenditures = calculateTotalDirectCostExpenditures(jsondata);
+  var totalDirectCostRefunds = calculateTotalDirectCostRefunds(jsondata);
+  var netDirectCostExpenditures = calculateNetDirectCostExpenditures(totalDirectCostExpenditures, totalDirectCostRefunds);
+  var amountLeft = calculateNetDirectCostLeft(award, netDirectCostExpenditures);
+
+  return moneyFormat(netDirectCostExpenditures);
+}
+
+function getDCRem(jsondata, award) {
+  jsondata = jsondata.substring(1, jsondata.length-1);
+  jsondata = JSON.parse(jsondata);
+  var totalDirectCostExpenditures = calculateTotalDirectCostExpenditures(jsondata);
+  var totalDirectCostRefunds = calculateTotalDirectCostRefunds(jsondata);
+  var netDirectCostExpenditures = calculateNetDirectCostExpenditures(totalDirectCostExpenditures, totalDirectCostRefunds);
+  var amountLeft = calculateNetDirectCostLeft(award, netDirectCostExpenditures);
+
+  return moneyFormat(amountLeft);
+}
+
 function setIDCBreakdown(jsondata, award) {
   jsondata = jsondata.substring(1, jsondata.length-1);
   jsondata = JSON.parse(jsondata);
@@ -721,6 +743,28 @@ function setIDCBreakdown(jsondata, award) {
   var amountLeft = calculateNetIndirectCostLeft(award, netIndirectCostExpenditures);
   document.getElementById("idc-spent").innerHTML = "-" + moneyFormat(netIndirectCostExpenditures);
   document.getElementById("idc-remaining").innerHTML = "= " + moneyFormat(amountLeft);
+}
+
+function getIDCSpent(jsondata, award) {
+  jsondata = jsondata.substring(1, jsondata.length-1);
+  jsondata = JSON.parse(jsondata);
+  var totalIndirectCostExpenditures = calculateTotalIndirectCostExpenditures(jsondata);
+  var totalIndirectCostRefunds = calculateTotalIndirectCostRefunds(jsondata);
+  var netIndirectCostExpenditures = calculateNetIndirectCostExpenditures(totalIndirectCostExpenditures, totalIndirectCostRefunds);
+  var amountLeft = calculateNetIndirectCostLeft(award, netIndirectCostExpenditures);
+  
+  return moneyFormat(netIndirectCostExpenditures);
+}
+
+function getIDCSpent(jsondata, award) {
+  jsondata = jsondata.substring(1, jsondata.length-1);
+  jsondata = JSON.parse(jsondata);
+  var totalIndirectCostExpenditures = calculateTotalIndirectCostExpenditures(jsondata);
+  var totalIndirectCostRefunds = calculateTotalIndirectCostRefunds(jsondata);
+  var netIndirectCostExpenditures = calculateNetIndirectCostExpenditures(totalIndirectCostExpenditures, totalIndirectCostRefunds);
+  var amountLeft = calculateNetIndirectCostLeft(award, netIndirectCostExpenditures);
+  
+  return moneyFormat(amountLeft);
 }
 
 function moneyFormat(money) {
