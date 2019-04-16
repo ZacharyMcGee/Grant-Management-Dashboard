@@ -136,42 +136,6 @@ function validateNewGrantForm(){
 }
 </script>
 </head>
-<style>
-.input-deadline-notifications {
-  float: left;
-  height: 70px;
-  width: calc(50% - 20px); /* IE 9,10 , Chrome, Firefox */
-  width: -webkit-calc(50% - 20px); /*For safari 6.0*/
-  padding-top: 10px;
-  padding-left: 20px;
-}
-
-.input-deadline-notifications p {
-  float: left;
-  margin: 0px;
-  margin-bottom: 5px;
-  margin-top: 5px;
-  font-size: 12px;
-}
-
-.input-email-notifications {
-  display: inline-block;
-  float: left;
-  height: 70px;
-  width: calc(50% - 20px); /* IE 9,10 , Chrome, Firefox */
-  width: -webkit-calc(50% - 20px); /*For safari 6.0*/
-  padding-top: 10px;
-  padding-left: 20px;
-}
-
-.input-email-notifications p {
-  float: left;
-  margin: 0px;
-  margin-bottom: 5px;
-  margin-top: 5px;
-  font-size: 12px;
-}
-</style>
 <div class="full-card" style="padding-bottom:20px;">
   <div class="card-title">
     <div class="card-title-text">
