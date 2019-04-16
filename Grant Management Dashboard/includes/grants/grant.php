@@ -132,7 +132,7 @@ $("#update-grant-data").click(function(){
 <script type="text/javascript">
     //var dc = "hi";
    
-   function generateGrantReport(dc, bp){
+   function generateGrantReport(dc, bp, jsondata){
         var doc = new jsPDF({orientation: 'landscape'});
        
         var newdc = moneyFormat(dc);
@@ -229,8 +229,9 @@ $("#update-grant-data").click(function(){
 		<div class='card-title-text'><span class='parent-link'>Generate Report</span></div>
 	</div>
 	<div class="remaining-awards">
-       <?php echo '<button id="generate-grant-report" class="gen-button" type="button" 
-       onclick= "generateGrantReport(' . $row["dc_award"] . ',' . $row["bp"] . ')"><i class=""></i>Generate Report</button>' ?>
+       <?php echo "<button id='generate-grant-report' class='gen-button' type='button' 
+       onclick='generateGrantReport('" . $row["dc_award"] . "','" . $row["bp"] . "','" . $json . "')'><i class=''></i>Generate Report</button>" ?>
+        
 	</div>
 </div>
 <div class='full-card' style="margin-top:160px; padding-bottom: 20px;">
