@@ -1326,41 +1326,6 @@ input[type="file"] {
   font-size: 12px;
 }
 
-.input-time-notifications {
-  display: inline-block;
-  float: left;
-  height: 70px;
-  width: calc(50% - 20px); /* IE 9,10 , Chrome, Firefox */
-  width: -webkit-calc(50% - 20px); /*For safari 6.0*/
-  padding-top: 10px;
-  padding-left: 20px;
-}
-
-.input-time-notifications p {
-  float: left;
-  margin: 0px;
-  margin-bottom: 5px;
-  margin-top: 5px;
-  font-size: 12px;
-}
-
-.input-repeat-notifications {
-  float: left;
-  height: 70px;
-  width: calc(50% - 20px); /* IE 9,10 , Chrome, Firefox */
-  width: -webkit-calc(50% - 20px); /*For safari 6.0*/
-  padding-top: 10px;
-  padding-left: 20px;
-}
-
-.input-repeat-notifications p {
-  float: left;
-  margin: 0px;
-  margin-bottom: 5px;
-  margin-top: 5px;
-  font-size: 12px;
-}
-
 .input-email-notifications {
   display: inline-block;
   float: left;
