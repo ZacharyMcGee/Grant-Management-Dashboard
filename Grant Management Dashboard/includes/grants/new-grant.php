@@ -49,18 +49,7 @@ $("#save-new-grant").click(function(){
     //JSON.parse(sessionStorage.getItem("result"));
 
     var deadlineNot=document.getElementById('notification-deadline').value;
-    var timeDeadline=document.getElementById('notification-deadline-time').value;
-    if(timeDeadline===""){
-      timeDeadline="00:00:00";
-    }
-    var repDeadline;
     var emailDeadline;
-    if(document.getElementById('yerepeat').checked){
-      repDeadline=document.getElementById('yerepeat').value;
-    }
-    else{
-      repDeadline=document.getElementById('norepeat').value;
-    }
     if(document.getElementById('yeemail').checked){
       emailDeadline=document.getElementById('yeemail').value;
     }
@@ -71,7 +60,7 @@ $("#save-new-grant").click(function(){
     $.ajax({
         url: "functions/save-notification.php",
         type: "post",
-        data: { 'deadline' : deadlineNot, 'times' : timeDeadline, 'repeat' : repDeadline, 'email' : emailDeadline } ,
+        data: { 'deadline' : deadlineNot, 'email' : emailDeadline } ,
         success: function (response) {
           console.log(response);
           showAlert("success", response);
@@ -95,7 +84,6 @@ function validateNewGrantForm(){
   var budgetPurposeForm = document.getElementById('input-bp');
   var dcAwardAmountForm = document.getElementById('input-dc-award');
   var deadlineForm=document.getElementById('notification-deadline').value;
-  var timeDeadlineForm=document.getElementById('notification-deadline-time');
 
   if(grantNameForm.value == ""){
     showAlert("error", "You must enter a grant name!");
@@ -113,11 +101,7 @@ function validateNewGrantForm(){
     showAlert("error", "Award must be a valid dollar amount!");
     return false;
   }
-  else if(deadlineForm.value===""){
-    showAlert("error", "Please enter a deadline!");
-    return false;
-  }
-  else if (deadlineForm.value!=="") {
+  else if (deadlineForm!=="") {
     var pattern=new RegExp('^([0-9]{4}\/((0[1-9]){1}|(1[0-2]){1})\/((0[1-9]){1}|([1-2][0-9]){1}|(3[0-1]){1}))$');
     var patterntest=pattern.test(deadlineForm);
     if(patterntest==false){
@@ -148,21 +132,46 @@ function validateNewGrantForm(){
       }
     }
   }
-  else if(timeDeadlineForm.value===""){
-    return true;
-  }
-  else if(timeDeadlineForm.value!==""){
-    var patterntwo=new RegExp('^(([0-1][0-9]|2[0-3]){1}:([0-5][0-9]){1}:([0-5][0-9]){1})$');
-    var patterntestplus=patterntwo.test(timeDeadlineForm);
-    if(patterntestplus==false){
-      showAlert("error", "Please input your time as \"HH:MM:SS\"!");
-      return false;
-    }
-  }
   return true;
 }
 </script>
 </head>
+<style>
+.input-deadline-notifications {
+  float: left;
+  height: 70px;
+  width: calc(50% - 20px); /* IE 9,10 , Chrome, Firefox */
+  width: -webkit-calc(50% - 20px); /*For safari 6.0*/
+  padding-top: 10px;
+  padding-left: 20px;
+}
+
+.input-deadline-notifications p {
+  float: left;
+  margin: 0px;
+  margin-bottom: 5px;
+  margin-top: 5px;
+  font-size: 12px;
+}
+
+.input-email-notifications {
+  display: inline-block;
+  float: left;
+  height: 70px;
+  width: calc(50% - 20px); /* IE 9,10 , Chrome, Firefox */
+  width: -webkit-calc(50% - 20px); /*For safari 6.0*/
+  padding-top: 10px;
+  padding-left: 20px;
+}
+
+.input-email-notifications p {
+  float: left;
+  margin: 0px;
+  margin-bottom: 5px;
+  margin-top: 5px;
+  font-size: 12px;
+}
+</style>
 <div class="full-card" style="padding-bottom:20px;">
   <div class="card-title">
     <div class="card-title-text">
@@ -224,28 +233,14 @@ function validateNewGrantForm(){
   </div>
 <div class="card-body">
   <div class="information-container">
-  <div class="input-grant-title"><!--<div class="input-deadline-notifications">-->
-    <p>Deadline</p><span class="small-asterix">*</span>
+  <div class="input-deadline-notifications">
+    <p>Annual Report Deadline</p><span class="small-tip">(optional)</span>
     <div class="input-grant-input-container">
       <i class="fas fa-calendar-times fa-lg fa-fw" aria-hidden="true"></i>
       <input type="text" id="notification-deadline" class="input-text" placeholder="YYYY/MM/DD">
     </div>
   </div>
-  <div class="input-grant-description"><!--<div class="input-time-notifications">-->
-    <p>Time Deadline</p><span class="small-tip">(optional)</span>
-    <div class="input-grant-input-container">
-      <i class="fas fa-clock fa-lg fa-fw" aria-hidden="true"></i>
-      <input type="text" id="notification-deadline-time" class="input-text" placeholder="HH:MM:SS">
-    </div>
-  </div>
-  <div class="input-grant-title"><!--<div class="input-repeat-notifications">-->
-    <p>Repeated Notifications</p>
-    <div class="input-grant-input-container">
-      <input type="radio" id="yerepeat" name="repnot" value="1" checked>Yes
-      <input type="radio" id="norepeat" name="repnot" value="0">No
-    </div>
-  </div>
-  <div class="input-grant-description"><!--<div class="input-email-notifications">-->
+  <div class="input-email-notifications">
     <p>Email Notifications</p>
     <div class="input-grant-input-container">
       <input type="radio" id="yeemail" name="email" value="1">Yes
