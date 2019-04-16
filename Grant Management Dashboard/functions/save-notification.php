@@ -11,12 +11,10 @@ $userId = $_SESSION['id'];
 
 // Get POST values
 $deadline = $_POST['deadline'];
-$timedead = $_POST['times'];
-$repeat_not = $_POST['repeat'];
 $email_not = $_POST['email'];
 
-$sql = "INSERT INTO `notifications` (`id`, `email`, `repeat`, `time`, `deadline`, `jsondata`, `userid`)
-VALUES (NULL, '$email_not', '$repeat_not', '$timedead', '$deadline', NULL, '$userId')";
+$sql = "INSERT INTO `notifications` (`id`, `email`, `deadline`, `userid`)
+VALUES (NULL, '$email_not', '$deadline', '$userId')";
 
 if ($con->query($sql) === TRUE) {
     echo "Successfuly created grant and notification!";
