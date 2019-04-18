@@ -78,7 +78,8 @@ if ($result->num_rows > 0) {
 
 		$categoryBreakdown = "<canvas id='categoryBreakdownChart'></canvas><script>categoryBreakdownChart('categoryBreakdownChart','" . $json . "');</script>";
     
-    
+        $report = '<button id="generate-grant-report" class="gen-button" type="button"
+       onclick="generateGrantReport(' . $row["dc_award"] . ',' . $row["bp"] . ')"></button>';
 }
 else
 {
@@ -131,16 +132,29 @@ $("#update-grant-data").click(function(){
     
 <script type="text/javascript">
     //var dc = "hi";
-   
-   function generateGrantReport(dc, bp, jsondata){
+
+
+   $.ajax({
+       type: 'get',
+       url: 'functions/gen-grant.php',
+       data: 'dc_award',
+       success: function(dc_award) {
+           //Test code to see if grabbing any variable is working
+           $('#generate-grant-report').html(dc_award.toString());
+           console.log(complete);
+       }
+   });
+  
+   //var y = x.toString();
+   //document.getElementById("generate-grant-report").innerHTML = y;
+    
+   function generateGrantReport(dc, bp){
         var doc = new jsPDF({orientation: 'landscape'});
        
         var newdc = moneyFormat(dc);
-            //'$' + dc.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
         var newbp = bp.toString();
+       
         var title = "Report for Grant #" + newbp;
-        //var spdc = 5;
-        //var newspdc = moneyFormat(spdc);
        
         var canv = document.getElementById('timeChart');
         var img = canv.toDataURL("image/png");
@@ -170,16 +184,7 @@ $("#update-grant-data").click(function(){
        
         doc.save('Report.pdf');
         
-        
-        
-        
-        
-
-    };
-    
-    $("#generate-grant-report").click(function(){
-        
-    });
+   }
     
 </script>
     
@@ -229,8 +234,7 @@ $("#update-grant-data").click(function(){
 		<div class='card-title-text'><span class='parent-link'>Generate Report</span></div>
 	</div>
 	<div class="remaining-awards">
-       <?php echo "<button id='generate-grant-report' class='gen-button' type='button' 
-       onclick='generateGrantReport('" . $row["dc_award"] . "','" . $row["bp"] . "','" . $json . "')'><i class=''></i>Generate Report</button>" ?>
+       <?php echo $report ?>
         
 	</div>
 </div>

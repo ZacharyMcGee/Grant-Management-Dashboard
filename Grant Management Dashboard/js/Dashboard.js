@@ -720,7 +720,7 @@ function getDCSpent(jsondata, award) {
   var netDirectCostExpenditures = calculateNetDirectCostExpenditures(totalDirectCostExpenditures, totalDirectCostRefunds);
   var amountLeft = calculateNetDirectCostLeft(award, netDirectCostExpenditures);
 
-  return moneyFormat(netDirectCostExpenditures);
+  document.getElementById('generate-grant-report').innerHTML = moneyFormat(netDirectCostExpenditures);
 }
 
 function getDCRem(jsondata, award) {
