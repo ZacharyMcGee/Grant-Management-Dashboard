@@ -134,6 +134,12 @@ $("#calendar").click(function(){
     }});
 });
 
+$("#notifications-print").click(function(){
+    $.ajax({url: "includes/tasks/notifications-system.php", success: function(result){
+        $("#content").html(result);
+    }});
+});
+
     /////////////////////////////////////
   /*      SEARCH FUNCTIONALITY       */
 /////////////////////////////////////
