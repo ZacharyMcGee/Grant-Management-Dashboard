@@ -752,7 +752,7 @@ function getIDCSpent(jsondata, award) {
   var totalIndirectCostRefunds = calculateTotalIndirectCostRefunds(jsondata);
   var netIndirectCostExpenditures = calculateNetIndirectCostExpenditures(totalIndirectCostExpenditures, totalIndirectCostRefunds);
   var amountLeft = calculateNetIndirectCostLeft(award, netIndirectCostExpenditures);
-  
+
   return moneyFormat(netIndirectCostExpenditures);
 }
 
@@ -763,7 +763,7 @@ function getIDCSpent(jsondata, award) {
   var totalIndirectCostRefunds = calculateTotalIndirectCostRefunds(jsondata);
   var netIndirectCostExpenditures = calculateNetIndirectCostExpenditures(totalIndirectCostExpenditures, totalIndirectCostRefunds);
   var amountLeft = calculateNetIndirectCostLeft(award, netIndirectCostExpenditures);
-  
+
   return moneyFormat(amountLeft);
 }
 

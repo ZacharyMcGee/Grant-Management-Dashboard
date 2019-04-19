@@ -27,7 +27,7 @@ if ($result2->num_rows > 0) {
 			$myObj->y = $row["jsondata"];
 
 			array_push($a, $myObj);
-            
+
 	}
 }
 else
@@ -76,10 +76,8 @@ if ($result->num_rows > 0) {
 		$idcRemaining = "<canvas id='idcLeftPieChart'></canvas><script>idcMoneyLeftPieChart('idcLeftPieChart','" . $row["idc_award"] . "','" . $json . "');</script>";
 		$idcSpendingBreakdown = "<div class='idc-breakdown'>Award: <span class='awarded'>" . $formattedIDCAward . "</span>\nSpent: <span class='spent' id='idc-spent'></span><hr class='custom-hr'><span class='remaining' id='idc-remaining'></span></div><script>setIDCBreakdown('" . $json . "','" . $row["idc_award"] . "');</script>";
 
-		$categoryBreakdown = "<canvas id='categoryBreakdownChart'></canvas><script>categoryBreakdownChart('categoryBreakdownChart','" . $json . "');</script>";
-    
-        $report = '<button id="generate-grant-report" class="gen-button" type="button"
-       onclick="generateGrantReport(' . $row["dc_award"] . ',' . $row["bp"] . ')"></button>';
+		//$categoryBreakdown = "<canvas id='categoryBreakdownChart'></canvas><script>categoryBreakdownChart('categoryBreakdownChart','" . $json . "');</script>";
+		$report = "<button onClick=generateGrantReport('" . $row["dc_award"] . "','" . $row["idc_award"] . "','" . $row["bp"] . "'); </button>";
 }
 else
 {
@@ -125,69 +123,77 @@ $("#update-grant-data").click(function(){
         }
         });
 });
+
+$.ajax({
+		type: 'get',
+		url: 'functions/gen-grant.php',
+		data: 'dc_award',
+		success: function(dc_award) {
+				//Test code to see if grabbing any variable is working
+				$('#generate-grant-report').html(dc_award.toString());
+				console.log(complete);
+		}
+});
+
+//var y = x.toString();
+//document.getElementById("generate-grant-report").innerHTML = y;
+
+function generateGrantReport(dc, idc, bp){
+		var dcspent = document.getElementById("dc-spent").innerHTML;
+		var idcspent = document.getElementById("idc-spent").innerHTML;
+
+		 var dcremaining = document.getElementById("dc-remaining").innerHTML;
+		 var idcremaining = document.getElementById("idc-remaining").innerHTML;
+
+		 dcremaining = dcremaining.replace('= ', '');
+		 idcremaining = idcremaining.replace('= ', '');
+
+		 var doc = new jsPDF({orientation: 'landscape'});
+
+		 var newdc = moneyFormat(dc);
+		 var newidc = moneyFormat(idc);
+		 var newbp = bp.toString();
+
+		 var title = "Report for Grant #" + newbp;
+
+		 var canv = document.getElementById('timeChart');
+		 var img = canv.toDataURL("image/png");
+
+		 doc.setFontSize(24);
+		 doc.text(title, '10', '15');
+		 doc.line(10, 20, 287, 20);
+		 //doc.text(newdc, '10', '20');
+		 doc.setFontSize(18);
+		 doc.text("Direct Cost", 10, 35);
+		 doc.setFontSize(12);
+		 var tempdc = 'Direct Cost Awarded: ' + newdc;
+		 doc.text(tempdc, 10, 40);
+		 var tempspdc = 'Direct Cost Spent: ' + dcspent;
+		 doc.text(tempspdc, 10, 45);
+		 var tempdcr = 'Direct Cost Remaining: ' + dcremaining;
+		 doc.text(tempdcr, 10, 50);
+
+		 doc.setFontSize(18);
+		 doc.text("Indirect Cost", 10, 65);
+		 doc.setFontSize(12);
+		 var tempidc = 'Indirect Cost Awarded: ' + newidc;
+		 doc.text(tempidc, 10, 70);
+		 var tempsidc = 'Indirect Cost Spent: ' + idcspent;
+		 doc.text(tempsidc, 10, 75);
+		 var tempsidcr = 'Indirect Cost Remaining: ' + idcremaining;
+		 doc.text(tempsidcr, 10, 80);
+
+		 doc.addImage(img, "PNG", 48.5, 90, 200, 110);
+
+		 doc.save('Report.pdf');
+
+}
+
 </script>
-    
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.5/jspdf.debug.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.1.1/jspdf.plugin.autotable.js"></script>
-    
-<script type="text/javascript">
-    //var dc = "hi";
 
-
-   $.ajax({
-       type: 'get',
-       url: 'functions/gen-grant.php',
-       data: 'dc_award',
-       success: function(dc_award) {
-           //Test code to see if grabbing any variable is working
-           $('#generate-grant-report').html(dc_award.toString());
-           console.log(complete);
-       }
-   });
-  
-   //var y = x.toString();
-   //document.getElementById("generate-grant-report").innerHTML = y;
-    
-   function generateGrantReport(dc, bp){
-        var doc = new jsPDF({orientation: 'landscape'});
-       
-        var newdc = moneyFormat(dc);
-        var newbp = bp.toString();
-       
-        var title = "Report for Grant #" + newbp;
-       
-        var canv = document.getElementById('timeChart');
-        var img = canv.toDataURL("image/png");
-       
-        doc.setFontSize(24);
-        doc.text(title, '10', '15');
-        doc.line(10, 20, 287, 20);
-        //doc.text(newdc, '10', '20');
-        doc.setFontSize(18);
-        doc.text("Direct Cost", 10, 35);
-        doc.setFontSize(12);
-        var tempdc = 'Direct Cost Awarded: ' + newdc;
-        doc.text(tempdc, 10, 40);
-        //var temspdc = 'Direct Cost Spent: ' + newspdc;
-        //doc.text(tempspdc, 10, 45);
-        //var tempdcr = 'Direct Cost Remaining: ' + newdcr;
-        //doc.text(tempdcr, 10, 50);
-
-        doc.setFontSize(18);
-        doc.text("Indirect Cost", 10, 65);
-        doc.setFontSize(12);
-        doc.text('Indirect Cost Awarded:', 10, 70);
-        doc.text('Indirect Cost Spent:', 10, 75);
-        doc.text('Indirect Cost Remaining:', 10, 80);
-       
-        doc.addImage(img, "PNG", 48.5, 90, 200, 110);
-       
-        doc.save('Report.pdf');
-        
-   }
-    
-</script>
-    
 </head>
 <div class="fourth-card-tall">
 	<div class='card-title'>
@@ -198,7 +204,7 @@ $("#update-grant-data").click(function(){
 			<?php echo $dcRemaining ?>
 		</div>
 		<div class="spending-breakdown">
-			
+
             <?php echo $dcSpendingBreakdown ?>
 		</div>
 	</div>
@@ -235,7 +241,7 @@ $("#update-grant-data").click(function(){
 	</div>
 	<div class="remaining-awards">
        <?php echo $report ?>
-        
+
 	</div>
 </div>
 <div class='full-card' style="margin-top:160px; padding-bottom: 20px;">
