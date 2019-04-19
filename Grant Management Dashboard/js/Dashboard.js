@@ -134,6 +134,11 @@ $("#calendar").click(function(){
     }});
 });
 
+/////////////////////////////////////
+/*      NOTIFICATIONS SYSTEM       */
+/*  DEADLINES AND GRANT REMINDERS  */
+/////////////////////////////////////
+
 $("#notifications-print").click(function(){
     $.ajax({url: "includes/tasks/notifications-system.php", success: function(result){
         $("#content").html(result);
