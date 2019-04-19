@@ -77,7 +77,7 @@ if ($result->num_rows > 0) {
 		$idcSpendingBreakdown = "<div class='idc-breakdown'>Award: <span class='awarded'>" . $formattedIDCAward . "</span>\nSpent: <span class='spent' id='idc-spent'></span><hr class='custom-hr'><span class='remaining' id='idc-remaining'></span></div><script>setIDCBreakdown('" . $json . "','" . $row["idc_award"] . "');</script>";
 
 		//$categoryBreakdown = "<canvas id='categoryBreakdownChart'></canvas><script>categoryBreakdownChart('categoryBreakdownChart','" . $json . "');</script>";
-		$report = "<button onClick=generateGrantReport('" . $row["dc_award"] . "','" . $row["idc_award"] . "','" . $row["bp"] . "'); </button>";
+		$report = "<button id='generate-grant-report' class='gen-button' onClick=generateGrantReport('" . $row["dc_award"] . "','" . $row["idc_award"] . "','" . $row["bp"] . "');> Generate Report</button>";
 }
 else
 {
@@ -124,19 +124,7 @@ $("#update-grant-data").click(function(){
         });
 });
 
-$.ajax({
-		type: 'get',
-		url: 'functions/gen-grant.php',
-		data: 'dc_award',
-		success: function(dc_award) {
-				//Test code to see if grabbing any variable is working
-				$('#generate-grant-report').html(dc_award.toString());
-				console.log(complete);
-		}
-});
 
-//var y = x.toString();
-//document.getElementById("generate-grant-report").innerHTML = y;
 
 function generateGrantReport(dc, idc, bp){
 		var dcspent = document.getElementById("dc-spent").innerHTML;
