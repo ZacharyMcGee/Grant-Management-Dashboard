@@ -922,6 +922,10 @@ function openGrant(id) {
   $("#content").load("includes/grants/grant.php?id=" + id);
 }
 
+function editGrant(id) {
+  $("#content").load("includes/grants/edit-grant.php?id=" + id);
+}
+
 function deleteGrant(id) {
   $("#content").load("functions/delete-grant.php?id=" + id);
   closeModal();
