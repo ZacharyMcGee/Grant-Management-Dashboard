@@ -86,7 +86,7 @@ if ($result->num_rows > 0) {
     </div>
     <div class="header-account-info">
     <div class="header-menu-buttons">
-      <i class="fas fa-bell fa-lg" style="color: #263544; margin-right:10px;"></i>
+      <i class="fas fa-bell fa-lg" id="notifications-print" style="color: #263544; margin-right:10px;"></i>
       <i class="fas fa-question-circle fa-lg" style="color: #263544;"></i>
     </div>
     <div class="header-account-username">
