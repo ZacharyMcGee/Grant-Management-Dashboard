@@ -1,5 +1,62 @@
 <head>
 <script type="text/javascript">
+
+var currentTab = 0; // Current tab is set to be the first tab (0)
+showTab(currentTab); // Display the current tab
+
+function showTab(n) {
+  // This function will display the specified tab of the form...
+  var x = document.getElementsByClassName("tab");
+  x[n].style.display = "block";
+  //... and fix the Previous/Next buttons:
+  if (n == 0) {
+    document.getElementById("prev-new-grant").style.display = "none";
+  } else {
+    document.getElementById("prev-new-grant").style.display = "inline";
+  }
+  if (n == (x.length - 1)) {
+    document.getElementById("save-new-grant").innerHTML = "<i class='far fa-save' style='padding-right:10px;'></i>Create New Grant";
+  } else {
+    document.getElementById("save-new-grant").innerHTML = "Next<i class='fas fa-angle-right' style='padding-left:10px;'></i>";
+  }
+}
+
+function nextPrev(n) {
+  if(currentTab == 0) {
+    if(document.getElementsByClassName("excelData").length == 0) {
+      showAlert("error", "You must enter a grant Excel file!");
+      return false;
+    }
+  }
+  // This function will figure out which tab to display
+  var x = document.getElementsByClassName("tab");
+  // Exit the function if any field in the current tab is invalid:
+  //if (n == 1 && !validateForm()) return false;
+  // Hide the current tab:
+  x[currentTab].style.display = "none";
+  // Increase or decrease the current tab by 1:
+  currentTab = currentTab + n;
+  // if you have reached the end of the form...
+
+  if(currentTab == 0) {
+    document.getElementById("button-bar-progress").setAttribute("style", "width:0%;");
+    showTab(currentTab);
+  }
+  if(currentTab == 1) {
+    document.getElementById("button-bar-progress").setAttribute("style", "width:50%;");
+    showTab(currentTab);
+  }
+  if(currentTab == 2) {
+    document.getElementById("button-bar-progress").setAttribute("style", "width:100%;");
+    showTab(currentTab);
+  }
+  if (currentTab >= x.length) {
+    // ... the form gets submitted:
+    createGrant();
+    return false;
+  }
+}
+
 var dragarea = document.getElementById('drag-and-drop');
 var fileInput = document.getElementById('file-upload');
 
@@ -16,10 +73,11 @@ dragarea.addEventListener('drop', (e) => {
   e.preventDefault();
   dragarea.classList.remove('dragging');
   fileInput.files = e.dataTransfer.files;
+  console.log("hey");
   readSingleFile(e);
 });
 
-$("#save-new-grant").click(function(){
+function createGrant(){
   if(validateNewGrantForm()){
     var grantName = document.getElementById('input-title').value;
     var budgetPurpose = document.getElementById('input-bp').value;
@@ -70,7 +128,7 @@ $("#save-new-grant").click(function(){
         }
       });
   }
-});
+}
 
 $("#cancel-new-grant").click(function(){
   $.ajax({url: "includes/dashboard/dashboard.php", success: function(result){
@@ -136,6 +194,36 @@ function validateNewGrantForm(){
 }
 </script>
 </head>
+<div class="tab">
+<div class="full-card" style="padding-bottom: 20px;">
+  <div class="card-title">
+    <div class="card-title-text">
+      <i class="fas fa-table"></i><span class="parent-link">Upload Grant</span>
+    </div>
+    <div class="card-title-button">
+    </div>
+  </div>
+  <div class="data-container">
+  <div class="drag-and-drop-description">
+    <p id="upload-excel-p">Upload Excel Data</p><span id="small-hint" class="small-hint">(.xlsx format)</span>
+  </div>
+  <div id="drag-and-drop" class="drag-and-drop">
+    <div class="drag-and-drop-text">
+      <p>Drag and Drop File Here</p>
+    </div>
+    <div class="drag-and-drop-text-or">
+      <p>or</p>
+    </div>
+    <label for="file-upload" class="custom-file-upload">
+        Select File
+    </label>
+    <input id="file-upload" type="file"/>
+  </div>
+</div>
+</div>
+</div>
+
+<div class="tab">
 <div class="full-card" style="padding-bottom:20px;">
   <div class="card-title">
     <div class="card-title-text">
@@ -185,9 +273,10 @@ function validateNewGrantForm(){
   </div>
   </div>
 </div>
-
+</div>
 <br>
-<div class="full-card" style="padding-bottom:20px;">
+<div class="tab">
+<div class="full-card" style="padding-bottom:20px;margin-top:-19px;">
   <div class="card-title">
     <div class="card-title-text">
       <i class="fas fa-calendar"></i><span class="parent-link">Notifications</span>
@@ -214,35 +303,13 @@ function validateNewGrantForm(){
 </div>
 </div>
 </div>
-
-<div class="full-card" style="margin-top:20px; padding-bottom: 20px;">
-  <div class="card-title">
-    <div class="card-title-text">
-      <i class="fas fa-table"></i><span class="parent-link">Grant Data</span>
-    </div>
-    <div class="card-title-button">
-    </div>
-  </div>
-  <div class="data-container">
-  <div class="drag-and-drop-description">
-    <p id="upload-excel-p">Upload Excel Data</p><span id="small-hint" class="small-hint">(.xlsx format)</span>
-  </div>
-  <div id="drag-and-drop" class="drag-and-drop">
-    <div class="drag-and-drop-text">
-      <p>Drag and Drop File Here</p>
-    </div>
-    <div class="drag-and-drop-text-or">
-      <p>or</p>
-    </div>
-    <label for="file-upload" class="custom-file-upload">
-        Select File
-    </label>
-    <input id="file-upload" type="file"/>
-  </div>
-</div>
 </div>
 
 <div class="button-bar-bottom">
-  <button id="cancel-new-grant" class="cancel-button" type="button"><i class="fas fa-ban" style="padding-right:10px;"></i>Cancel</button>
-  <button id="save-new-grant" class="save-button" type="button"><i class="far fa-save" style="padding-right:10px;"></i>Save Grant</button>
+  <div id="button-bar-progress" class="button-bar-progress" style="width:0%;">
+  </div>
+  <div class="prev-next-buttons">
+    <button id="prev-new-grant" class="prev-button" type="button" onclick="nextPrev(-1)"><i class="fas fa-angle-left" style="padding-right:10px;"></i>Previous</button>
+    <button id="save-new-grant" class="save-button" type="button" onclick="nextPrev(1)"><i class="far fa-save" style="padding-right:10px;"></i>Save Grant</button>
+  </div>
 </div>

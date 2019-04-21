@@ -242,6 +242,7 @@ function readSingleFile(e) {
     reader.onload = function(e) {
       var contents = e.target.result;
       loadExcel(contents);
+      document.getElementById('small-hint').innerHTML = "(" + file.name + ")";
     };
   }
 }
@@ -287,15 +288,15 @@ function loadExcel(contents){
     var totalDirectCostExpenditures = calculateTotalDirectCostExpenditures(result);
     var totalDirectCostRefunds = calculateTotalDirectCostRefunds(result);
     var netDirectCostExpenditures = calculateNetDirectCostExpenditures(totalDirectCostExpenditures, totalDirectCostRefunds);
-    console.log(totalDirectCostExpenditures);
-    console.log(totalDirectCostRefunds);
-    console.log(netDirectCostExpenditures);
+
+    document.getElementById("input-bp").value = result[0]["Budget Purpose"];
+
     result = JSON.stringify(result);
     result = result.split(String.fromCharCode(92)).join(String.fromCharCode(92,92));
 
     result = result.replace(/'/g, "");
     sessionStorage.setItem("result", result);
-    console.log(sessionStorage.getItem("result"));
+    //console.log(sessionStorage.getItem("result"));
     //console.log(JSON.parse(sessionStorage.getItem("result")));
 }
 
@@ -388,20 +389,7 @@ function addAllColumnHeaders(excelData, selector) {
   }
 
   $(selector).append(headerTr$);
-  str = 'hey what is;going on there;'
-  runCommands(str);
   return columnSet;
-
-}
-
-function runCommands(string){
-  var commands = string.split(';');
-  //for(var i = 0; i < commands.length; i++){
-    //tokens = commands[i].split(' ');
-  //}
-  //print(commands);
-  //print(tokens);
-
 }
 
 function addDataLinearTime(chartID) {

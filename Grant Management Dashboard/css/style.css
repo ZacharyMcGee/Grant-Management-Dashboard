@@ -319,6 +319,11 @@ body {
   margin-right: 20px;
 }
 
+.fourth-card-tall canvas {
+  z-index: 1000;
+  padding: 5px;
+}
+
 .full-card-left-border-active {
   background-color: #FFF;
   color: #7d7d7d;
@@ -1028,12 +1033,44 @@ input[type="file"] {
 
 .button-bar-bottom {
   float: right;
+  background-color: #fff;
   margin-top: 30px;
   padding-top: 0px;
-  width: calc(100% - 20px);
-  border-top: 1px solid #eaeaea;
-  padding-top: 20px;
+  width: calc(100% - 200px);
+  border: 1px solid #eaeaea;
+  padding-bottom: 20px;
+  margin-left: -20px;
   margin-right: 20px;
+  position: fixed;
+  top: calc(100% - 100px);
+}
+
+.button-bar-progress {
+  height:3px;
+  background-color: #85c389;
+  margin-bottom: 17px;
+  transition: all 1s;
+}
+
+/* Make circles that indicate the steps of the form: */
+.step {
+  height: 8px;
+  width: 8px;
+  margin: 0 2px;
+  background-color: #bbbbbb;
+  border: none;
+  border-radius: 50%;
+  display: inline-block;
+  opacity: 0.5;
+}
+
+.step.on {
+  opacity: 1;
+}
+
+/* Mark the steps that are finished and valid: */
+.step.finish {
+  background-color: #4CAF50;
 }
 
 .cancel-button {
@@ -1051,9 +1088,30 @@ input[type="file"] {
   float: right;
 }
 
+.prev-next-buttons {
+  float: right;
+}
+
+.prev-button {
+  background-color: #bdbdbd;
+  width: 200px;
+  border: 1px solid #9a9a9a;
+  color: white;
+  padding: 7px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 14px;
+  font-family: 'Open Sans', sans-serif;
+  cursor: pointer;
+  margin-right: 20px;
+  margin-left: 20px;
+  float: left;
+}
+
 .save-button {
   background-color: #85C389;
-  width: calc(25% - 30px);
+  width: 210px;
   color: white;
   padding: 7px 32px;
   text-align: center;
@@ -1346,6 +1404,10 @@ input[type="file"] {
   margin-bottom: 5px;
   margin-top: 5px;
   font-size: 12px;
+}
+
+.tab {
+  display: none;
 }
 
 /* ADD ON STYLES */
