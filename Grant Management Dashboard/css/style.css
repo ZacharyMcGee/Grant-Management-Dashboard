@@ -321,7 +321,6 @@ body {
 
 .fourth-card-tall canvas {
   z-index: 1000;
-  padding: 5px;
 }
 
 .full-card-left-border-active {
@@ -604,17 +603,59 @@ body {
   margin-top: 12px;
 }
 
+.category-breakdown-chart {
+  float: left;
+  padding-left: 10px;
+  width: 100px;
+  height: 100px;
+}
+
+.category-breakdown {
+  float: right;
+  width: 140px;
+  font-size: 11px;
+  margin-top: 2px;
+}
+
 .awarded {
   color: #60ca77;
+  float: right;
+  margin-right: 10px;
 }
 
 .spent {
   color: #c35b5b;
+  float: right;
+  margin-right: 10px;
 }
 
 .remaining {
   font-size: 18px;
   font-weight: 200;
+}
+
+.salaries {
+  color: rgb(235, 59, 90);
+}
+
+.fringe {
+  color: rgb(45, 152, 218);
+}
+
+.persfringe {
+  color: rgba(75, 101, 132);
+}
+
+.equipment {
+  color: rgba(136, 84, 208);
+}
+
+.travel {
+  color: rgba(32, 191, 107);
+}
+
+.commodity {
+  color: rgb(247, 183, 49);
 }
 
 .custom-hr {

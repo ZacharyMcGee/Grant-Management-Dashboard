@@ -76,7 +76,9 @@ if ($result->num_rows > 0) {
 		$idcRemaining = "<canvas id='idcLeftPieChart'></canvas><script>idcMoneyLeftPieChart('idcLeftPieChart','" . $row["idc_award"] . "','" . $json . "');</script>";
 		$idcSpendingBreakdown = "<div class='idc-breakdown'>Award: <span class='awarded'>" . $formattedIDCAward . "</span>\nSpent: <span class='spent' id='idc-spent'></span><hr class='custom-hr'><span class='remaining' id='idc-remaining'></span></div><script>setIDCBreakdown('" . $json . "','" . $row["idc_award"] . "');</script>";
 
-		//$categoryBreakdown = "<canvas id='categoryBreakdownChart'></canvas><script>categoryBreakdownChart('categoryBreakdownChart','" . $json . "');</script>";
+		$categoryBreakdown = "<canvas id='categoryBreakdownChart'></canvas><script>categoryBreakdownChart('categoryBreakdownChart','" . $json . "');</script>";
+		$categoryBreakdownLabels = "<div class='category-breakdown'><span class='salaries'>Salaries: </span><span class='spent' id='salaries'></span><br><span class='fringe'>Prof. Fringe: </span><span class='spent' id='fringe'></span><br><span class='persfringe'>Pers. Fringe: </span><span class='spent' id='persfringe'></span><br><span class='travel'>Travel: </span><span class='spent' id='travel'></span><br>\n<span class='equipment'>Equipment: </span><span class='spent' id='equipment'></span><br><span class='commodity'>Commodity: </span><span class='spent' id='commodities'></span></div><script>setCategoryBreakdown('" . $json . "','" . $row["idc_award"] . "');</script>";
+
 		$report = "<button id='generate-grant-report' class='gen-button' onClick=generateGrantReport('" . $row["dc_award"] . "','" . $row["idc_award"] . "','" . $row["bp"] . "');> Generate Report</button>";
 }
 else
@@ -214,11 +216,14 @@ function generateGrantReport(dc, idc, bp){
 
 <div class="fourth-card-tall">
 	<div class='card-title'>
-		<div class='card-title-text'><span class='parent-link'>Category Breakdown</span></div>
+		<div class='card-title-text'><span class='parent-link'>Direct Cost Breakdown</span></div>
 	</div>
 	<div class="remaining-awards">
-		<div class="dc-award-chart">
-
+		<div class="category-breakdown-chart">
+			<?php echo $categoryBreakdown ?>
+		</div>
+		<div class="category-breakdown">
+			<?php echo $categoryBreakdownLabels ?>
 		</div>
 	</div>
 </div>

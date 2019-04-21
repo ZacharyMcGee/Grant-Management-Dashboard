@@ -356,6 +356,149 @@ function calculateNetIndirectCostLeft(awardAmount, netDirectCostExpenditures){
   return (awardAmount - netDirectCostExpenditures).toFixed(2);
 }
 
+function calculatePayableExpenditures(obj) {
+  var total = 0;
+  for(var i = 0; i < obj.length; i++){
+    if(obj[i]["Headers Source"].includes("Payables") || obj[i]["Headers Source"].includes("Manual") || obj[i]["Headers Category"].includes("29")){
+      total += obj[i]["Debit Amount"];
+    }
+  }
+  return total;
+}
+
+function calculatePayableRefunds(obj) {
+  var total = 0;
+  for(var i = 0; i < obj.length; i++){
+    if(obj[i]["Headers Source"].includes("Payables") || obj[i]["Headers Source"].includes("Manual") || obj[i]["Headers Category"].includes("29")){
+      total += obj[i]["Credit Amount"];
+    }
+  }
+  return total;
+}
+
+function calculateNetPayables(expenditures, refunds) {
+  return expenditures - refunds;
+}
+
+function calculatePayrollExpenditures(obj) {
+  var total = 0;
+  for(var i = 0; i < obj.length; i++){
+    if(obj[i]["Headers Source"].includes("Payroll")){
+      total += obj[i]["Debit Amount"];
+    }
+  }
+  return total;
+}
+
+function calculatePayrollRefunds(obj) {
+  var total = 0;
+  for(var i = 0; i < obj.length; i++){
+    if(obj[i]["Headers Source"].includes("Payroll")){
+      total += obj[i]["Credit Amount"];
+    }
+  }
+  return total;
+}
+
+function calculateNetPayrolls(expenditures, refunds) {
+  return expenditures - refunds;
+}
+
+function calculateAdjustmentExpenditures(obj) {
+  var total = 0;
+  for(var i = 0; i < obj.length; i++){
+    if(obj[i]["Headers Category"].includes("Adjustment")){
+      total += obj[i]["Debit Amount"];
+    }
+  }
+  console.log(total);
+  return total;
+}
+
+function calculateAdjustmentRefunds(obj) {
+  var total = 0;
+  for(var i = 0; i < obj.length; i++){
+    if(obj[i]["Headers Category"].includes("Adjustment")){
+      total += obj[i]["Credit Amount"];
+    }
+  }
+  console.log(total);
+  return total;
+}
+
+function calculateNetAdjustments(expenditures, refunds) {
+  return expenditures - refunds;
+}
+
+function calculateFringe(obj) {
+  var total = 0;
+  for(var i = 0; i < obj.length; i++){
+    if(obj[i]["Object"].includes("4384") || obj[i]["Object"].includes("4344") || obj[i]["Object"].includes("4536")){
+      total += obj[i]["Debit Amount"];
+    }
+  }
+  return total;
+}
+
+function calculateSalaryExpenditures(obj) {
+  var total = 0;
+  for(var i = 0; i < obj.length; i++){
+    if(obj[i]["Headers Category"].includes("Adjustment") || obj[i]["Headers Category"].includes("127") || obj[i]["Headers Category"].includes("128") || obj[i]["Headers Category"].includes("129") || obj[i]["Headers Category"].includes("130") || obj[i]["Headers Category"].includes("55")  || obj[i]["Headers Category"].includes("29")){
+      total += obj[i]["Debit Amount"];
+    }
+  }
+  return total;
+}
+
+function calculateSalaryRefunds(obj) {
+  var total = 0;
+  for(var i = 0; i < obj.length; i++){
+    if(obj[i]["Headers Category"].includes("Adjustment") || obj[i]["Headers Category"].includes("127") || obj[i]["Headers Category"].includes("128") || obj[i]["Headers Category"].includes("129") || obj[i]["Headers Category"].includes("130") || obj[i]["Headers Category"].includes("55")  || obj[i]["Headers Category"].includes("29")){
+      total += obj[i]["Credit Amount"];
+    }
+  }
+  return total;
+}
+
+function calculateSalaryTotal(expenditures, refunds) {
+  return expenditures - refunds;
+}
+
+function calculatePrimaryCareFee(obj) {
+  var total = 0;
+  for(var i = 0; i < obj.length; i++){
+    if(obj[i]["Object"].includes("5652")){
+      total += obj[i]["Debit Amount"];
+    }
+  }
+  return total;
+}
+
+function calculateEquipment(obj) {
+  var total = 0;
+  for(var i = 0; i < obj.length; i++){
+    if(obj[i]["Headers Source"].includes("Payables") && obj[i]["Debit Amount"] > 5000){
+      for(var j = 0; j < obj.length; j++) {
+        if(obj[j]["Batches Reference"] == obj[i]["Batches Reference"] && obj[i] != obj[j]){
+          total += obj[j]["Debit Amount"];
+        }
+      }
+      total += obj[i]["Debit Amount"];
+    }
+  }
+  return total;
+}
+
+function calculateTravel(obj) {
+  var total = 0;
+  for(var i = 0; i < obj.length; i++){
+    if(obj[i]["Object"].includes("4386") || obj[i]["Object"].includes("4382") || obj[i]["Object"].includes("4322") || obj[i]["Object"].includes("4326") || obj[i]["Object"].includes("5192")){
+      total += obj[i]["Debit Amount"];
+    }
+  }
+  return total;
+}
+
   /////////////////////////////////////
  /* BUILD HTML TABLE FROM JSON DATA */
 /////////////////////////////////////
@@ -770,6 +913,48 @@ function moneyFormat(money) {
     return "$" + money.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
 
+function setCategoryBreakdown(jsondata, award) {
+  jsondata = jsondata.substring(1, jsondata.length-1);
+  jsondata = JSON.parse(jsondata);
+
+  var totalDirectCostExpenditures = calculateTotalDirectCostExpenditures(jsondata);
+  var totalDirectCostRefunds = calculateTotalDirectCostRefunds(jsondata);
+  var netDirectCostExpenditures = calculateNetDirectCostExpenditures(totalDirectCostExpenditures, totalDirectCostRefunds);
+
+  var payableExpenditures = calculatePayableExpenditures(jsondata);
+  var payableRefunds = calculatePayableRefunds(jsondata);
+  var payables = calculateNetPayables(payableExpenditures, payableRefunds).toFixed(2);
+
+  var payrollExpenditures = calculatePayrollExpenditures(jsondata);
+  var payrollRefunds = calculatePayrollRefunds(jsondata);
+  var payrolls = calculateNetPayrolls(payrollExpenditures, payrollRefunds).toFixed(2);
+
+  var adjustmentExpenditures = calculateAdjustmentExpenditures(jsondata);
+  var adjustmentRefunds = calculateAdjustmentRefunds(jsondata);
+  var adjustments = calculateNetAdjustments(adjustmentExpenditures, adjustmentRefunds).toFixed(2);
+
+  var salaryExpenditures = calculateSalaryExpenditures(jsondata);
+  var salaryRefunds = calculateSalaryRefunds(jsondata);
+  var salaries = calculateSalaryTotal(salaryExpenditures, salaryRefunds).toFixed(2);
+
+  var fringe = calculateFringe(jsondata).toFixed(2);
+
+  //var sub = subSalary(jsondata);
+  var primaryCareFee = calculatePrimaryCareFee(jsondata);
+  var equipment = calculateEquipment(jsondata);
+  var travel = calculateTravel(jsondata).toFixed(2);
+  var total = salaries + primaryCareFee + equipment + travel;
+
+  var commodities = (netDirectCostExpenditures - salaries - fringe - primaryCareFee - travel - equipment).toFixed(2);
+
+  document.getElementById("salaries").innerHTML = "-" + moneyFormat(payrolls);
+  document.getElementById("fringe").innerHTML = "-" + moneyFormat(fringe);
+  document.getElementById("persfringe").innerHTML = "-" + moneyFormat(primaryCareFee);
+  document.getElementById("travel").innerHTML = "-" + moneyFormat(travel);
+  document.getElementById("equipment").innerHTML = "-" + moneyFormat(equipment);
+  document.getElementById("commodities").innerHTML = "-" + moneyFormat(commodities);
+}
+
 function dcMoneyLeftPieChart(id, award, jsondata){
   console.log("json = " + jsondata);
   jsondata = jsondata.substring(1, jsondata.length-1);
@@ -818,10 +1003,8 @@ function dcMoneyLeftPieChart(id, award, jsondata){
 }
 
 function idcMoneyLeftPieChart(id, award, jsondata){
-  console.log("json = " + jsondata);
   jsondata = jsondata.substring(1, jsondata.length-1);
   jsondata = JSON.parse(jsondata);
-  console.log(award + " and ");
   var totalIndirectCostExpenditures = calculateTotalIndirectCostExpenditures(jsondata);
   var totalIndirectCostRefunds = calculateTotalIndirectCostRefunds(jsondata);
   var netIndirectCostExpenditures = calculateNetIndirectCostExpenditures(totalIndirectCostExpenditures, totalIndirectCostRefunds);
@@ -869,36 +1052,72 @@ function categoryBreakdownChart(id, jsondata){
   jsondata = jsondata.substring(1, jsondata.length-1);
   jsondata = JSON.parse(jsondata);
 
+  var totalDirectCostExpenditures = calculateTotalDirectCostExpenditures(jsondata);
+  var totalDirectCostRefunds = calculateTotalDirectCostRefunds(jsondata);
+  var netDirectCostExpenditures = calculateNetDirectCostExpenditures(totalDirectCostExpenditures, totalDirectCostRefunds);
+
+  var payableExpenditures = calculatePayableExpenditures(jsondata);
+  var payableRefunds = calculatePayableRefunds(jsondata);
+  var payables = calculateNetPayables(payableExpenditures, payableRefunds).toFixed(2);
+
+  var payrollExpenditures = calculatePayrollExpenditures(jsondata);
+  var payrollRefunds = calculatePayrollRefunds(jsondata);
+  var payrolls = calculateNetPayrolls(payrollExpenditures, payrollRefunds).toFixed(2);
+
+  var adjustmentExpenditures = calculateAdjustmentExpenditures(jsondata);
+  var adjustmentRefunds = calculateAdjustmentRefunds(jsondata);
+  var adjustments = calculateNetAdjustments(adjustmentExpenditures, adjustmentRefunds).toFixed(2);
+
+  var salaryExpenditures = calculateSalaryExpenditures(jsondata);
+  var salaryRefunds = calculateSalaryRefunds(jsondata);
+  var salaries = calculateSalaryTotal(salaryExpenditures, salaryRefunds).toFixed(2);
+
+  var fringe = calculateFringe(jsondata).toFixed(2);
+
+  //var sub = subSalary(jsondata);
+  var primaryCareFee = calculatePrimaryCareFee(jsondata);
+  var equipment = calculateEquipment(jsondata);
+  var travel = calculateTravel(jsondata).toFixed(2);
+  var total = salaries + primaryCareFee + equipment + travel;
+
+  var commodities = (netDirectCostExpenditures - salaries - fringe - primaryCareFee - travel - equipment).toFixed(2);
+
+  //console.log("Payables: " + payables);
+  //console.log("Payrolls: " + payrolls);
+  //console.log("Total: " + (parseFloat(payables) + parseFloat(payrolls)));
+  //console.log("Adjustments: " + adjustments);
+  //console.log("Salaries: " + salaries);
+  //console.log("Primary Care Free: " + primaryCareFee);
+  //console.log("Equipment: " + equipment);
+  //console.log("Travel: " + travel);
+  //console.log("Total: " + total);
+
   var ctx = document.getElementById(id).getContext('2d');
   var chart = new Chart(ctx, {
       // The type of chart we want to create
-      type: 'doughnut',
+      type: 'pie',
       // The data for our dataset
       data: {
-          labels: ["Spent", "Remaining"],
+          labels: ["Salaries", "Prof. Fringe", "Pers. Fringe", "Equipment", "Travel", "Commodity"],
           datasets: [{
-              data: [netDirectCostExpenditures, amountLeft],
+              data: [payrolls, fringe, primaryCareFee, equipment, travel, commodities],
               backgroundColor: [
-                'rgb(230,230,230)',
-                'rgb(96,202,119)',
+                'rgb(235, 59, 90)',
+                'rgb(45, 152, 218)',
+                'rgba(75, 101, 132)',
+                'rgba(136, 84, 208)',
+                'rgba(32, 191, 107)',
+                'rgb(247, 183, 49)',
               ]
           }]
       },
 
       // Configuration options go here
       options: {
-        cutoutPercentage: 70,
+        cutoutPercentage: 0,
         responsive: true,
         maintainAspectRatio: false,
         aspectRatio: 1,
-        elements: {
-            center: {
-            text: "$" + amountLeft,
-            color: '#60ca77',
-            fontStyle: 'Helvetica',
-            sidePadding: 25
-          }
-        },
         legend: {
            display: false,
         },
