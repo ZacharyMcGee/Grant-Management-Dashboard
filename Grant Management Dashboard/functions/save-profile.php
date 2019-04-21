@@ -10,18 +10,21 @@ if ( mysqli_connect_errno() ) {
 $userId = $_SESSION['id'];
 
 // Get POST values
-//$jsondata = json_encode($_POST['jsondata']);
 $name = $_POST['name'];
 $username = $_POST['un'];
 $email = $_POST['email'];
 $password = $_POST['password'];
-
 $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
-$sql = "UPDATE accounts
- SET name = '$name', username = '$username', email = '$email', password = '$hashed_password'
- WHERE id =" . $userId;
-//VALUES ('$userId', '$username', '$email', '$password')";
+if($password != ""){
+	$sql = "UPDATE accounts
+	SET name = '$name' , username = '$username', email = '$email', password = '$hashed_password'
+	WHERE id =" . $userId;
+}else{
+	$sql = "UPDATE accounts
+	SET name = '$name' , username = '$username', email = '$email'
+	WHERE id =" . $userId;
+}
 
 if ($con->query($sql) === TRUE) {
     echo "Successfuly updated profile!";

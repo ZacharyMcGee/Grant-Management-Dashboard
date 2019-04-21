@@ -1487,6 +1487,88 @@ input[type="file"] {
     animation: fadein 0.5s, fadeout 0.5s 2.5s;
 }
 
+/*CSS for profile page*/
+
+.edit-profile-container {
+  box-sizing: border-box;
+  background-color: #FFF;
+  display: table;
+  width: 100%;
+  padding-bottom: 20px
+}
+
+.left-half {
+    text-align: justify;
+    width: 300px;
+    float: left;
+    display: block;
+}
+
+.left-half h3 {
+  margin: 0px;
+  padding: 0px;
+  margin-left:70px;
+  font-weight:400;
+}
+
+.right-half {
+  width: calc(100% - 300px);
+  float: left;
+  display: block;
+}
+.right-half h3{
+  font-weight: 400;
+  margin-bottom: 10px;
+  border-bottom: 1px solid #e6e6e6;
+  margin-right: 55px;
+}
+.images {
+  float:left;
+}
+
+.font{
+  font-family: 'Open Sans', sans-serif;
+  font-size: 14px;
+  text-decoration: none;
+}
+
+#imageUpload
+{
+    display: none;
+}
+
+#profileImage
+{
+    cursor: pointer;
+}
+
+#profile-container {
+  margin-top: 20px;
+  margin-left: 50px;
+  width: 150px;
+  height: 150px;
+  overflow: hidden;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  -o-border-radius: 50%;
+  border-radius: 50%;
+}
+
+#profile-container img {
+    width: 150px;
+    height: 150px;
+}
+
+.card-title{
+  height: 41px;
+}
+
+.fasfa-list{
+  color:#7d7d7d;
+}
+
+
 /* CSS ANIMATIONS */
 
 @-webkit-keyframes fadein {
