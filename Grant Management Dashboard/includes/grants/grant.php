@@ -79,7 +79,9 @@ if ($result->num_rows > 0) {
 		$categoryBreakdown = "<canvas id='categoryBreakdownChart'></canvas><script>categoryBreakdownChart('categoryBreakdownChart','" . $json . "');</script>";
 		$categoryBreakdownLabels = "<div class='category-breakdown'><span class='salaries'>Salaries: </span><span class='spent' id='salaries'></span><br><span class='fringe'>Prof. Fringe: </span><span class='spent' id='fringe'></span><br><span class='persfringe'>Pers. Fringe: </span><span class='spent' id='persfringe'></span><br><span class='travel'>Travel: </span><span class='spent' id='travel'></span><br>\n<span class='equipment'>Equipment: </span><span class='spent' id='equipment'></span><br><span class='commodity'>Commodity: </span><span class='spent' id='commodities'></span></div><script>setCategoryBreakdown('" . $json . "','" . $row["idc_award"] . "');</script>";
 
-		$report = "<button id='generate-grant-report' class='gen-button' onClick=generateGrantReport('" . $row["dc_award"] . "','" . $row["idc_award"] . "','" . $row["bp"] . "');> Generate Report</button>";
+		$report = "<button class='gen-button' onClick=generateGrantReport('" . $row["dc_award"] . "','" . $row["idc_award"] . "','" . $row["bp"] . "');><i class='fas fa-file-invoice' style='float:left;margin-top:2px;'></i> Generate Report</button>";
+		$edit = "<button class='edit-grant-button' onClick='editGrant(" . $grantid . ")';><i class='far fa-edit' style='float:left;margin-top:2px;'></i> Edit Grant</button>";
+		$delete = "<button class='delete-grant-button' onClick='deleteGrant(" . $grantid . ")';><i class='far fa-trash-alt' style='float:left;margin-top:2px;'></i> Delete Grant</button>";
 }
 else
 {
@@ -230,11 +232,12 @@ function generateGrantReport(dc, idc, bp){
 
 <div class="fourth-card-tall">
 	<div class='card-title'>
-		<div class='card-title-text'><span class='parent-link'>Generate Report</span></div>
+		<div class='card-title-text'><span class='parent-link'>Grant Tools</span></div>
 	</div>
 	<div class="remaining-awards">
        <?php echo $report ?>
-
+			 <?php echo $edit ?>
+			 <?php echo $delete ?>
 	</div>
 </div>
 <div class='full-card' style="margin-top:160px; padding-bottom: 20px;">
