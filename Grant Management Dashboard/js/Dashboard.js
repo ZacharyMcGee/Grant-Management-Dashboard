@@ -941,7 +941,7 @@ function setCategoryBreakdown(jsondata, award) {
 
   //var sub = subSalary(jsondata);
   var primaryCareFee = calculatePrimaryCareFee(jsondata);
-  var equipment = calculateEquipment(jsondata);
+  var equipment = calculateEquipment(jsondata).toFixed(2);
   var travel = calculateTravel(jsondata).toFixed(2);
   var total = salaries + primaryCareFee + equipment + travel;
 
