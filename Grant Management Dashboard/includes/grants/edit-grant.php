@@ -47,35 +47,35 @@ require_once '../../config.php';
         <p>Grant Name</p><span class="small-asterix">*</span>
         <div class="input-grant-input-container">
           <i class="fas fa-file-signature fa-lg fa-fw" aria-hidden="true"></i>
-          <input type="text" id="input-title" class="input-text" maxlength="64">
+          <input type="text" id="input-title" class="input-text" maxlength="64" value="<?php echo $name ?>">
         </div>
       </div>
       <div class="input-grant-description">
         <p>Budget Purpose #</p><span class="small-asterix">*</span>
         <div class="input-grant-input-container">
           <i class="fas fa-hashtag fa-lg fa-fw" aria-hidden="true"></i>
-          <input type="text" id="input-bp" class="input-text" maxlength="64">
+          <input type="text" id="input-bp" class="input-text" maxlength="64" value="<?php echo $budget ?>">
         </div>
       </div>
       <div class="input-grant-award">
         <p>DC Award Amount</p><span class="small-asterix">*</span>
         <div class="input-grant-input-container">
           <i class="fas fa-dollar-sign fa-lg fa-fw" aria-hidden="true"></i>
-          <input type="text" id="input-dc-award" class="input-text" maxlength="64">
+          <input type="text" id="input-dc-award" class="input-text" maxlength="64" value="<?php echo $dc ?>">
         </div>
       </div>
       <div class="input-grant-award">
         <p>IDC Award Amount</p><span class="small-tip">(optional)</span>
         <div class="input-grant-input-container">
           <i class="fas fa-dollar-sign fa-lg fa-fw" aria-hidden="true"></i>
-          <input type="text" id="input-idc-award" class="input-text" maxlength="64">
+          <input type="text" id="input-idc-award" class="input-text" maxlength="64" value="<?php echo $idc ?>">
         </div>
       </div>
       <div class="input-grant-agency">
         <p>Funding Agency</p><span class="small-tip">(optional)</span>
         <div class="input-grant-input-container">
           <i class="fas fa-university fa-lg fa-fw" aria-hidden="true"></i>
-          <input type="text" id="input-agency" class="input-text" maxlength="64">
+          <input type="text" id="input-agency" class="input-text" maxlength="64" value="<?php echo $agency ?>">
         </div>
       </div>
     </div>
@@ -117,49 +117,12 @@ require_once '../../config.php';
 </body>
 
 <script>
-  var name=<?php echo json_encode($name)?>;
-  var bp=<?php echo json_encode($budget)?>;
-  var dc=<?php echo json_encode($dc)?>;
-  var idc=<?php echo json_encode($idc)?>;
-  var agency=<?php echo json_encode($agency)?>;
-
-  var email=<?php echo json_encode($email)?>;
-  var deadline=<?php echo json_encode($deadline)?>;
-
-  document.getElementById('input-title').value=name;
-  document.getElementById('input-bp').value=bp;
-  document.getElementById('input-dc-award').value=dc;
-  if(idc!=='n/a'){
-    document.getElementById('input-idc-award').value=idc;
-  }
-  document.getElementById('input-agency').value=agency;
-
-  document.getElementById('notification-deadline').value=deadline;
-  if(email==1){
-    document.getElementById('yeemail').checked=true;
-  }
-  else{
-    document.getElementById('noemail').checked=true;
-  }
-
   $("#save-edited-grant").click(function(){
-    if(validateGrant()){
-      var grantName = document.getElementById('input-title').value;
-      var budgetPurpose = document.getElementById('input-bp').value;
-      var dcAwardAmount = document.getElementById('input-dc-award').value;
-      var idcAwardAmount = document.getElementById('input-idc-award').value;
-      var fundingAgency = document.getElementById('input-agency').value;
-      var grantId=<?php echo json_encode($grantid)?>;
-
-      if(idcAwardAmount == ""){
-        idcAwardAmount = "n/a";
-      }
-
       console.log(sessionStorage.getItem("result"));
       $.ajax({
           url: "functions/save-edit-grant.php",
           type: "post",
-          data: { 'name' : grantName, 'bp' : budgetPurpose, 'dcaward' : dcAwardAmount, 'idcaward' : idcAwardAmount, 'agency' : fundingAgency, 'idGrant' : grantId} ,
+          data: { 'name' : document.getElementById("input-title").value, 'bp' : document.getElementById("input-bp").value, 'dcaward' : document.getElementById("input-dc-award").value, 'idcaward' : document.getElementById("input-idc-award").value, 'agency' : document.getElementById("input-agency").value } ,
           success: function (response) {
             console.log(response);
             showAlert("success", response);
@@ -184,7 +147,7 @@ require_once '../../config.php';
       $.ajax({
           url: "functions/save-edit-notification.php",
           type: "post",
-          data: { 'deadline' : deadlineNot, 'email' : emailDeadline, 'idGrant' : grantId} ,
+          data: { 'deadline' : deadlineNot, 'email' : emailDeadline } ,
           success: function (response) {
             console.log(response);
             showAlert("success", response);
@@ -193,7 +156,6 @@ require_once '../../config.php';
               console.log(textStatus, errorThrown);
           }
         });
-    }
   });
 
   $("#cancel-editing").click(function(){

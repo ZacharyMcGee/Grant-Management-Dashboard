@@ -1115,6 +1115,8 @@ input[type="file"] {
 }
 
 .cancel-button {
+  margin-top: 20px;
+  margin-right: 20px;
   background-color: #db6161;
   width: calc(25% - 30px);
   border: 1px solid #bd5555;
@@ -1151,6 +1153,7 @@ input[type="file"] {
 }
 
 .save-button {
+  margin-top: 20px;
   background-color: #85C389;
   width: 210px;
   color: white;
