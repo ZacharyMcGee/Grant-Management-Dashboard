@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once 'C:\Users\andys\OneDrive\Documents\GitHub\Grant-Management-Dashboard\Grant-Management-Dashboard\Grant Management Dashboard\config.php';
+require_once '../../config.php';
 // Create connection
 $con = mysqli_connect($DB_HOST, $DB_USER, $DB_PASS, $DB_NAME);
 if ( mysqli_connect_errno() ) {
