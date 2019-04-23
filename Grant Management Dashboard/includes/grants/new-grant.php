@@ -80,7 +80,6 @@ dragarea.addEventListener('drop', (e) => {
   e.preventDefault();
   dragarea.classList.remove('dragging');
   fileInput.files = e.dataTransfer.files;
-  console.log("hey");
   readSingleFile(e);
 });
 

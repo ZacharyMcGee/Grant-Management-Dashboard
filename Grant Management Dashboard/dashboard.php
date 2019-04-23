@@ -101,10 +101,10 @@ if ($result->num_rows > 0) {
 				<div id="notifications" class="notifications">
 				</div>
 			</div>
-      <i class="fas fa-question-circle" style="color: #263544;"></i>
+      <i class="fas fa-question-circle"></i>
     </div>
     <div class="header-account-username">
-      <i class="fas fa-user" style="color: #263544;"></i><?php echo "<a href='account.php'>" . $username . "</a>"?>
+      <i class="fas fa-user" style="color: #263544;"></i><?php echo "<a href='#' onClick='openProfile()'>" . $username . "</a>"?>
     </div>
      <i class="fas fa-caret-down fa-sm" onclick="openDropdown('account-dropdown')" style="color: #263544; margin-top: 4px; cursor: pointer;"></i>
       <div class="account-dropdown" id="account-dropdown">
@@ -116,9 +116,9 @@ if ($result->num_rows > 0) {
     </div>
     <div class="header-menu-bar">
       <ul>
-        <li><a href="dashboard.php"><i class="fas fa-home" style="color: #263544;"></i></a></li>
-        <li><a href="#" onClick="openNewGrant()"><i class="fas fa-plus-circle" style="color: #263544;"></i></a></li>
-        <li><a href="#" onClick="openViewGrants()"><i class="fas fa-eye" style="color: #263544;"></i></a></li>
+        <li><a href="dashboard.php"><i class="fas fa-home"></i></a></li>
+        <li><a href="#" onClick="openNewGrant()"><i class="fas fa-plus-circle"></i></a></li>
+        <li><a href="#" onClick="openViewGrants()"><i class="fas fa-eye"></i></a></li>
       </ul>
     </div>
 

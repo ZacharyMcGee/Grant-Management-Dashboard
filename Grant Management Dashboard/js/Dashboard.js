@@ -118,11 +118,15 @@ function openGrantHome() {
 }
 
 $("#edit-profile").click(function(){
+  openProfile();
+});
+
+function openProfile() {
   $.ajax({url: "includes/profile/edit-profile.php", success: function(result){
       $("#content").html(result);
       $("#breadcrumbs").html("<p><a href='dashboard.php'><i class='fas fa-home'></i></a> / Edit Profile</p>");
     }});
-  });
+}
 
 $("#custom").click(function(){
     $.ajax({url: "includes/dashboard/custom.php", success: function(result){
@@ -250,6 +254,7 @@ function readSingleFile(e) {
     var dragarea = document.getElementById('drag-and-drop');
     dragarea.classList.add('dropped');
     var reader = new FileReader();
+
     reader.readAsBinaryString(file);
 
     reader.onload = function(e) {
@@ -283,7 +288,6 @@ function validateFileType(file) {
 /////////////////////////////////////
 
 function loadExcel(contents){
-
     /* Call XLSX */
     var workbook = XLSX.read(contents, {
         type: "binary"
