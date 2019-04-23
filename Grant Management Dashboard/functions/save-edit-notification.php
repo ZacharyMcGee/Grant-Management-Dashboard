@@ -10,9 +10,8 @@ if ( mysqli_connect_errno() ) {
 // Get POST values
 $deadline = $_POST['deadline'];
 $email_not = $_POST['email'];
-$grantid = $_SESSION['current_grant'];
 
-$sql = "UPDATE notifications SET email='$email_not', deadline='$deadline' WHERE id='$grantid'";
+$sql = "UPDATE notifications SET email='$email_not', deadline='$deadline' WHERE id=" . $_SESSION['current_grant'];
 
 if ($con->query($sql) === TRUE) {
     echo "Successfuly edited grant and notification!";

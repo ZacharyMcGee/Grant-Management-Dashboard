@@ -11,11 +11,12 @@ if ( mysqli_connect_errno() ) {
 $grantid = json_encode($_GET['id']);
 
 $sql = "DELETE FROM grants WHERE id=" . $grantid;
+$sql2 = "DELETE FROM notifications WHERE id=" . $grantid;
 
 if ($con->query($sql) === TRUE) {
     echo "Successfuly deleted grant!";
 } else {
     echo "Error updating record: " . $con->error;
 }
-
+$con->query($sql2);
 ?>
