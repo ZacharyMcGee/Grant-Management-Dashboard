@@ -83,13 +83,17 @@ function setBreadcrumb(breadcrumb) {
 }
 
 $("#new-grant").click(function(){
-    $.ajax({url: "includes/grants/new-grant.php", success: function(result){
-        $("#content").html(result);
-        $("#breadcrumbs").html("<p><a href='dashboard.php'><i class='fas fa-home'></i></a> / New Grant</p>");
-        document.getElementById('file-upload')
-        .addEventListener('change', readSingleFile, false);
-    }});
+  openNewGrant();
 });
+
+function openNewGrant() {
+  $.ajax({url: "includes/grants/new-grant.php", success: function(result){
+      $("#content").html(result);
+      $("#breadcrumbs").html("<p><a href='dashboard.php'><i class='fas fa-home'></i></a> / New Grant</p>");
+      document.getElementById('file-upload')
+      .addEventListener('change', readSingleFile, false);
+  }});
+}
 
 $("#view-grants").click(function(){
   openViewGrants();

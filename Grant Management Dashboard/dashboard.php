@@ -115,10 +115,9 @@ if ($result->num_rows > 0) {
     </div>
     <div class="header-menu-bar">
       <ul>
-        <li><a href="#" id="button1">Home</a></li>
-        <li><a href="#" onClick="scrollToSection('#description')">New Grant</a></li>
-        <li><a href="#" onClick="scrollToSection('#definition')">Link</a></li>
-        <li><a href="#" onClick="scrollToSection('#design')">Link</a></li>
+        <li><a href="dashboard.php"><i class="fas fa-home" style="color: #263544;"></i></a></li>
+        <li><a href="#" onClick="openNewGrant()"><i class="fas fa-plus-circle" style="color: #263544;"></i></a></li>
+        <li><a href="#" onClick="openViewGrants()"><i class="fas fa-eye" style="color: #263544;"></i></a></li>
       </ul>
     </div>
 
