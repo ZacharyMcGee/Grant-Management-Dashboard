@@ -271,6 +271,6 @@ function generateGrantReport(dc, idc, bp){
 	</label>
 	<input id="file-upload" type="file"/>
 </div>
-<button id="update-grant-data" class="save-button" type="button"><i class="far fa-save" style="padding-right:10px;"></i>Update Grant</button>
+<button id="update-grant-data" class="save-button" type="button" style="margin-top:0px;"><i class="far fa-save" style="padding-right:10px;"></i>Update Grant</button>
 </div>
 </div>

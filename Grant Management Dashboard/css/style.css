@@ -287,6 +287,48 @@ body {
   box-shadow: 0px 0px 3px 0px rgba(87, 87, 87, 0.1);
 }
 
+.forty-card {
+  background-color: #FFF;
+  color: #7d7d7d;
+  font-family: 'Open Sans', sans-serif;
+  border-radius: 3px;
+  width: calc(40% - 20px);
+  -webkit-box-shadow: 0px 0px 3px 0px rgba(87, 87, 87, 0.1);
+  -moz-box-shadow: 0px 0px 3px 0px rgba(87, 87, 87, 0.1);
+  box-shadow: 0px 0px 3px 0px rgba(87, 87, 87, 0.1);
+  display: inline;
+  float: left;
+  margin-right: 20px;
+}
+
+.half-card {
+  background-color: #FFF;
+  color: #7d7d7d;
+  font-family: 'Open Sans', sans-serif;
+  border-radius: 3px;
+  width: calc(50% - 20px);
+  -webkit-box-shadow: 0px 0px 3px 0px rgba(87, 87, 87, 0.1);
+  -moz-box-shadow: 0px 0px 3px 0px rgba(87, 87, 87, 0.1);
+  box-shadow: 0px 0px 3px 0px rgba(87, 87, 87, 0.1);
+  display: inline;
+  float: left;
+  margin-right: 20px;
+}
+
+.sixty-card {
+  background-color: #FFF;
+  color: #7d7d7d;
+  font-family: 'Open Sans', sans-serif;
+  border-radius: 3px;
+  width: calc(60% - 20px);
+  -webkit-box-shadow: 0px 0px 3px 0px rgba(87, 87, 87, 0.1);
+  -moz-box-shadow: 0px 0px 3px 0px rgba(87, 87, 87, 0.1);
+  box-shadow: 0px 0px 3px 0px rgba(87, 87, 87, 0.1);
+  display: inline;
+  float: left;
+  margin-right: 20px;
+}
+
 .fourth-card {
   background-color: #FFF;
   color: #7d7d7d;
@@ -450,6 +492,35 @@ body {
   cursor: pointer;
 }
 
+.topExpenses table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.topExpenses th {
+  border-bottom: 1px solid #ededed;
+  border-top: none;
+  text-align: left;
+  padding: 8px;
+  font-weight: 600;
+  padding-left: 20px;
+  font-size: 12px;
+}
+
+.topExpenses td {
+  border-top: 1px solid #ededed;
+  text-align: left;
+  padding: 8px;
+  padding-left: 20px;
+  font-size: 12px;
+  font-weight: 200;
+}
+
+.topExpenses tr:not(:first-child):hover {
+  background-color: #edf5ff;
+  cursor: pointer;
+}
+
 .current-active-grants {
   font-size: 24px;
   font-weight: 200;
@@ -508,6 +579,7 @@ body {
 .view-grants-update {
   color: #bababa;
   float: left;
+  width: 100%;
   font-size: 12px;
   line-height: 10px;
   margin-left: 1px;
@@ -1216,6 +1288,73 @@ input[type="file"] {
   font-family: 'Open Sans', sans-serif;
   cursor: pointer;
   border: 1px solid #bd5555;
+}
+
+.day-spending-analysis {
+  margin-top: 10px;
+  width: 100%;
+}
+
+.business-spending-analysis {
+  margin-top: 30px;
+  width: 100%;
+}
+
+.business-spending-analysis canvas {
+  width: 100%;
+}
+
+.boxxcontainer {
+  margin-left:30px;
+  width: 90%;
+  float: left;
+}
+
+.boxx {
+  background-color: green;
+  width: 10%;
+  height: 15px;
+  margin-left: 0%;
+  float: left;
+  line-height: 100%;
+  display: block;
+  border-top: 1px solid white;
+}
+
+.boxxlabel {
+  color: grey;
+  font-size: 11px;
+  width: 86%;
+  margin-left: 2%;
+  float: left;
+  line-height: 125%;
+  display: block;
+  cursor: pointer;
+  -webkit-touch-callout: none;
+  /* iOS Safari */
+  -webkit-user-select: none;
+  /* Safari */
+  -khtml-user-select: none;
+  /* Konqueror HTML */
+  -moz-user-select: none;
+  /* Firefox */
+  -ms-user-select: none;
+  /* Internet Explorer/Edge */
+  user-select: none;
+  /* Non-prefixed version, currently
+                                  supported by Chrome and Opera */
+}
+
+.containerItem {
+  height: 30px;
+  min-width:150px;
+  float: left;
+  opacity: 1;
+}
+
+.legendamt {
+  margin-left: 10px;
+  color: #fff;
 }
 
 .modal {

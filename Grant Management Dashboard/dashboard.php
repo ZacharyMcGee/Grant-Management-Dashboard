@@ -61,6 +61,11 @@ if ($result->num_rows > 0) {
   <a href="#" class="sidebar-button" id="calendar"><i class="fas fa-calendar-alt"></i>Schedule Alert</a>
 </div>
 
+<button class="accordion"><i class="fas fa-toolbox"></i>Analytics</button>
+<div class="panel">
+  <a href="#" class="sidebar-button" id="spending-analyizer"><i class="fas fa-chart-bar"></i>Spending Trends</a>
+</div>
+
 <button class="accordion"><i class="fas fa-user"></i>Profile</button>
 <div class="panel">
   <a href="#" class="sidebar-button" id="edit-profile"><i class="fas fa-user-edit"></i>Edit Profile</a>

@@ -127,6 +127,13 @@ $("#custom").click(function(){
     }});
 });
 
+$("#spending-analyizer").click(function(){
+    $.ajax({url: "includes/analytics/spending-analytics.php", success: function(result){
+        $("#content").html(result);
+        $("#breadcrumbs").html("<p><a href='dashboard.php'><i class='fas fa-home'></i></a> / Spending Trends</p>");
+    }});
+});
+
 $("#calendar").click(function(){
     $.ajax({url: "includes/tasks/calendar.php", success: function(result){
         $("#content").html(result);
@@ -1123,6 +1130,332 @@ function categoryBreakdownChart(id, jsondata){
         },
       }
   });
+}
+
+function spendingDayAnalyizer(id, jsondata) {
+  var tokens = jsondata.split('][');
+  for(var i = 0; i < tokens.length; i++) {
+    if(i == 0)
+    {
+      tokens[i] = tokens[i] + "]";
+    }
+    else if(i == tokens.length - 1)
+    {
+      tokens[i] = "[" + tokens[i];
+    }
+    else
+    {
+      tokens[i] = "[" + tokens[i] + "]";
+    }
+    tokens[i] = JSON.parse(tokens[i]);
+
+    var total;
+
+    var sunday = 0;
+    var monday = 0;
+    var tuesday = 0;
+    var wednesday = 0;
+    var thursday = 0;
+    var friday = 0;
+    var saturday = 0;
+
+    for(var j = 0; j < tokens[i].length; j++){
+      if(tokens[i][j]["Headers Source"].includes("Payables")){
+        var date = dateFormatChange(tokens[i][j]["Ledger Date"]);
+        var dateSplit = date.split("/");
+        dateSplit[2] = "20" + dateSplit[2];
+        var dateFormat = new Date(dateSplit[2] + "-" + (dateSplit[1]) + "-" + dateSplit[0]);
+        dateFormat.setHours(24, 0, 0);
+        switch(dateFormat.getDay()){
+          case 0: sunday++;
+            break;
+          case 1: monday++;
+            break;
+          case 2: tuesday++;
+            break;
+          case 3: wednesday++;
+            break;
+          case 4: thursday++;
+            break;
+          case 5: friday++;
+            break;
+          case 6: saturday++;
+            break;
+          default: break;
+        }
+      }
+    }
+  }
+  var ctx = document.getElementById(id).getContext('2d');
+  var chart = new Chart(ctx, {
+      // The type of chart we want to create
+      type: 'bar',
+      // The data for our dataset
+      data: {
+          labels: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+          datasets: [{
+              data: [sunday, monday, tuesday, wednesday, thursday, friday, saturday],
+              backgroundColor: [
+                'rgb(235, 59, 90)',
+                'rgb(45, 152, 218)',
+                'rgba(75, 101, 132)',
+                'rgba(136, 84, 208)',
+                'rgba(32, 191, 107)',
+                'rgb(247, 183, 49)',
+                'rgb(225, 112, 85)',
+              ]
+          }]
+      },
+
+      // Configuration options go here
+      options: {
+        cutoutPercentage: 0,
+        responsive: true,
+        maintainAspectRatio: false,
+        aspectRatio: 1,
+        legend: {
+           display: false,
+        },
+      }
+  });
+}
+
+function spendingMonthAnalyizer(id, jsondata) {
+  var tokens = jsondata.split('][');
+  for(var i = 0; i < tokens.length; i++) {
+    if(i == 0)
+    {
+      tokens[i] = tokens[i] + "]";
+    }
+    else if(i == tokens.length - 1)
+    {
+      tokens[i] = "[" + tokens[i];
+    }
+    else
+    {
+      tokens[i] = "[" + tokens[i] + "]";
+    }
+    tokens[i] = JSON.parse(tokens[i]);
+
+    var total;
+
+    var january = 0;
+    var february = 0;
+    var march = 0;
+    var april = 0;
+    var may = 0;
+    var june = 0;
+    var july = 0;
+    var august = 0;
+    var september = 0;
+    var october = 0;
+    var november = 0;
+    var december = 0;
+
+    for(var j = 0; j < tokens[i].length; j++){
+      if(tokens[i][j]["Headers Source"].includes("Payables")){
+        var date = dateFormatChange(tokens[i][j]["Ledger Date"]);
+        var dateSplit = date.split("/");
+        dateSplit[2] = "20" + dateSplit[2];
+        var dateFormat = new Date(dateSplit[2] + "-" + (dateSplit[1]) + "-" + dateSplit[0]);
+        switch(dateFormat.getMonth()){
+          case 0: january++;
+            break;
+          case 1: february++;
+            break;
+          case 2: march++;
+            break;
+          case 3: april++;
+            break;
+          case 4: may++;
+            break;
+          case 5: june++;
+            break;
+          case 6: july++;
+            break;
+          case 7: august++;
+            break;
+          case 8: september++;
+            break;
+          case 9: october++;
+            break;
+          case 10: november++;
+            break;
+          case 11: december++;
+            break;
+          default: break;
+        }
+      }
+    }
+  }
+  var ctx = document.getElementById(id).getContext('2d');
+  var chart = new Chart(ctx, {
+      // The type of chart we want to create
+      type: 'bar',
+      // The data for our dataset
+      data: {
+          labels: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
+          datasets: [{
+              data: [january, february, march, april, may, june, july, august, september, october, november, december],
+              backgroundColor: [
+                'rgb(235, 59, 90)',
+                'rgb(45, 152, 218)',
+                'rgba(75, 101, 132)',
+                'rgba(136, 84, 208)',
+                'rgba(32, 191, 107)',
+                'rgb(247, 183, 49)',
+                'rgb(0, 206, 201)',
+                'rgb(108, 92, 231)',
+                'rgb(255, 234, 167)',
+                'rgb(253, 121, 168)',
+                'rgb(225, 112, 85)',
+                'rgb(85, 239, 196)',
+              ]
+          }]
+      },
+
+      // Configuration options go here
+      options: {
+        cutoutPercentage: 0,
+        responsive: true,
+        maintainAspectRatio: false,
+        aspectRatio: 1,
+        legend: {
+           display: false,
+        },
+      }
+  });
+}
+
+function spendingBusinessAnalyizer(id, jsondata) {
+  var tokens = jsondata.split('][');
+  var dataArray = new Array;
+  var counts = {};
+  for(var i = 0; i < tokens.length; i++) {
+    if(i == 0)
+    {
+      tokens[i] = tokens[i] + "]";
+    }
+    else if(i == tokens.length - 1)
+    {
+      tokens[i] = "[" + tokens[i];
+    }
+    else
+    {
+      tokens[i] = "[" + tokens[i] + "]";
+    }
+    tokens[i] = JSON.parse(tokens[i]);
+
+    for(var j = 0; j < tokens[i].length; j++){
+      if(tokens[i][j]["Headers Source"].includes("Payables")){
+        var transactions = tokens[i][j]["Description"].split(' | ');
+        var transactions = transactions[1].split(': ');
+          dataArray.push(transactions[1]);
+        }
+      }
+    }
+    dataArray.sort();
+    dataArray.forEach(function(x) { counts[x] = (counts[x] || 0)+1; });
+    dataArray = Object.entries(counts);
+    dataArray.sort(compareFunction);
+
+    var ctx = document.getElementById(id).getContext('2d');
+    var chart = new Chart(ctx, {
+        // The type of chart we want to create
+        type: 'pie',
+        // The data for our dataset
+        data: {
+            labels: [dataArray[0][0], dataArray[1][0], dataArray[2][0], dataArray[3][0], dataArray[4][0], dataArray[5][0]],
+            datasets: [{
+                data: [dataArray[0][1], dataArray[1][1], dataArray[2][1], dataArray[3][1], dataArray[4][1], dataArray[5][1]],
+                backgroundColor: [
+                  'rgb(235, 59, 90)',
+                  'rgb(45, 152, 218)',
+                  'rgba(75, 101, 132)',
+                  'rgba(136, 84, 208)',
+                  'rgba(32, 191, 107)',
+                  'rgb(247, 183, 49)',
+                  'rgb(0, 206, 201)',
+                  'rgb(108, 92, 231)',
+                  'rgb(255, 234, 167)',
+                  'rgb(253, 121, 168)',
+                  'rgb(225, 112, 85)',
+                  'rgb(85, 239, 196)',
+                ]
+            }]
+        },
+
+        // Configuration options go here
+        options: {
+            responsive: false,
+            //Define a new HTML Legend
+            legendCallback: function(legendarray) {
+                  var legendHtml = [];
+      			legendHtml.push('<div class="boxxcontainer">');
+                  for (var i=0; i<legendarray.data.labels.length; i++) {
+                      legendHtml.push('<div id="label' + i + '" class="containerItem" style="width:100%; height: 26px;"> <div class="boxx" style="background-color:' + legendarray.data.datasets[0].backgroundColor[i] + '; border-top:#fff;"><span class="legendamt">' + legendarray.data.datasets[0].data[i] + '</span></div>');
+                      if (legendarray.data.labels[i]) {
+                          legendHtml.push('<div class="boxxlabel">' + "#" + (i+1) + ": " + legendarray.data.labels[i] + '</div></div>');
+                      }
+                  }
+      			legendHtml.push('</div>');
+                  return legendHtml.join("");
+              },
+            legend: {
+      		   display: false,
+      	   },
+            },
+      }, newlegend);
+      var newlegend = document.getElementById("htmllegend").innerHTML = chart.generateLegend();
+}
+
+function spendingExpenseAnalyizer(id, jsondata) {
+  var tokens = jsondata.split('][');
+  var dataArray = new Array;
+  var counts = {};
+  for(var i = 0; i < tokens.length; i++) {
+    if(i == 0)
+    {
+      tokens[i] = tokens[i] + "]";
+    }
+    else if(i == tokens.length - 1)
+    {
+      tokens[i] = "[" + tokens[i];
+    }
+    else
+    {
+      tokens[i] = "[" + tokens[i] + "]";
+    }
+    tokens[i] = JSON.parse(tokens[i]);
+
+    for(var j = 0; j < tokens[i].length; j++){
+      if(tokens[i][j]["Headers Source"].includes("Payables")){
+        var transactions = tokens[i][j]["Description"].split(' | ');
+        var transactions = transactions[1].split(': ');
+        //transactions[1];
+        //tokens[i][j]["Debit Amount"];
+        var x = [transactions[1], tokens[i][j]["Debit Amount"]];
+          dataArray.push(x);
+        }
+      }
+    }
+    dataArray.sort(compareFunction);
+    console.log(dataArray[0][1]);
+    var tStart = "<table><tr><th>#</th><th>Amount</th><th>Transaction</th></th></tr>";
+    var tMiddle = "";
+    for(var i = 0; i < 12; i++) {
+      tMiddle += "<tr><td>" + i + "</td><td>" + moneyFormat(dataArray[i][1]) + "</td><td>" + dataArray[i][0] + "</td></tr>";
+    }
+    var tEnd = "</table>";
+    var fullTable = tStart + tMiddle + tEnd;
+    document.getElementById("topExpenses").innerHTML = fullTable;
+}
+
+function compareFunction(a,b){
+  if(a[1] < b[1])
+    return 1;
+  else
+    return -1;
 }
 
 function openGrant(id) {

@@ -310,6 +310,6 @@ function validateNewGrantForm(){
   </div>
   <div class="prev-next-buttons">
     <button id="prev-new-grant" class="prev-button" type="button" onclick="nextPrev(-1)"><i class="fas fa-angle-left" style="padding-right:10px;"></i>Previous</button>
-    <button id="save-new-grant" class="save-button" type="button" onclick="nextPrev(1)"><i class="far fa-save" style="padding-right:10px;"></i>Save Grant</button>
+    <button id="save-new-grant" class="save-button" type="button" onclick="nextPrev(1)" style="margin-top:0px;"><i class="far fa-save" style="padding-right:10px;"></i>Save Grant</button>
   </div>
 </div>
