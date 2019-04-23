@@ -8,7 +8,8 @@ require_once '../../config.php';
   }
 
   $grantid = json_encode($_GET['id']);
-
+  $_SESSION["current_grant"] = $grantid;
+  
   $sql="SELECT name,bp,dc_award,idc_award,agency FROM `grants` WHERE `id` =" . $grantid;
   $result = $con->query($sql);
   if ($result->num_rows > 0) {
