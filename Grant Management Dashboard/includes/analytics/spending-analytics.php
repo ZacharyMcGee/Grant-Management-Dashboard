@@ -33,7 +33,7 @@ $con->close();
 
 <div class='sixty-card' style="margin-top:0px; padding-bottom: 20px;">
   <div class='card-title'>
-    <div class='card-title-text'><span class='parent-link'>Monthly Spending Trends</span></div>
+    <div class='card-title-text'><span class='parent-link'><i class="fas fa-calendar"></i>Monthly Spending Trends</span></div>
   </div>
   <div class='body'>
     <div class="day-spending-analysis">
@@ -44,7 +44,7 @@ $con->close();
 
 <div class='forty-card' style="margin-top:0px; padding-bottom: 20px;">
   <div class='card-title'>
-    <div class='card-title-text'><span class='parent-link'>Day of the Week Spending Trends</span></div>
+    <div class='card-title-text'><span class='parent-link'><i class="fas fa-calendar-alt"></i>Day of the Week Spending Trends</span></div>
   </div>
   <div class='body'>
     <div class="day-spending-analysis">
@@ -55,7 +55,7 @@ $con->close();
 
 <div class='sixty-card' style="margin-top:20px; padding-bottom: 0px;">
   <div class='card-title'>
-    <div class='card-title-text'><span class='parent-link'>Largest Expense by Supplier</span></div>
+    <div class='card-title-text'><span class='parent-link'><i class="fas fa-money-bill-alt"></i>Largest Expense by Supplier</span></div>
   </div>
   <div class='body'>
     <div class="day-spending-analysis" style="margin-top:0px; margin-bottom: -3px;">
@@ -68,7 +68,7 @@ $con->close();
 
 <div class='forty-card' style="margin-top:20px; padding-bottom: 20px;">
   <div class='card-title'>
-    <div class='card-title-text'><span class='parent-link'>Most Transactions by Supplier</span></div>
+    <div class='card-title-text'><span class='parent-link'><i class="fas fa-chart-bar"></i>Most Transactions by Supplier</span></div>
   </div>
   <div class='body'>
     <div class="business-spending-analysis">
