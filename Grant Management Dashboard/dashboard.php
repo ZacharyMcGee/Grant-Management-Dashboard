@@ -91,7 +91,7 @@ if ($result->num_rows > 0) {
     </div>
     <div class="header-account-info">
     <div class="header-menu-buttons">
-      <i class="fas fa-bell" id="notifications-print" style="color: #263544; margin-right:10px;"></i>
+      <i class="fas fa-bell" id="notifications-print" style="margin-right:10px;"></i>
 			<div class="notification-dropdown" id="notification-dropdown">
 				<i class="fas fa-caret-up fa-2x" style="margin-top:-25px;position: absolute;top: 9px;color: #263544;left: 339px;"></i>
 				<div class="notification-header">

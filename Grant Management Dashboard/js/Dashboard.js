@@ -148,6 +148,7 @@ $("#calendar").click(function(){
 
 $("#notifications-print").click(function(){
   openDropdown('notification-dropdown');
+  document.getElementById("notifications-print").classList.toggle("active-button");
     $.ajax({url: "includes/tasks/notifications-system.php", success: function(result){
         $("#notifications").html(result);
     }});
