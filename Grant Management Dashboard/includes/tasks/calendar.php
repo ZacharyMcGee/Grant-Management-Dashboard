@@ -35,7 +35,6 @@
   <script>
     var deadCount=JSON.parse(<?php echo json_encode(sizeof($dlArray))?>);
     var deadlineArray=[];
-    var grantNameArray=[];
     var deadline=<?php echo json_encode($dlArray)?>;
     var count=0;
     while(count<deadCount){
@@ -43,7 +42,7 @@
       count++;
     }
     var name=<?php echo json_encode($nameArray)?>;
-    var grantNameArray=name.split(",");
+    var grantsNameArray=name.split(",");
     count=0;
     var rep;
     while(count<deadCount){
@@ -52,11 +51,11 @@
       count++;
     }
     count=0;
-    var deadlineDate;
-    var deadlineDateArray=[];
+    var deadlineDay;
+    var deadlineDayArray=[];
     while(count<deadCount){
-      deadlineDate=new Date(deadlineArray[count]);
-      deadlineDateArray[count]=deadlineDate;
+      deadlineDay=new Date(deadlineArray[count]);
+      deadlineDayArray[count]=deadlineDay;
       count++;
     }
     var date=new Date();
@@ -64,6 +63,27 @@
     var day=date.getDate();
     var year=date.getFullYear();
     var month=date.getMonth();
+
+    /*this makes it to where only upcoming deadlines are visible. If you want all deadlines visible, just put
+    this whole block into comments and set the grant name array to grantsNameArray and set the deadline array
+    to deadlineDayArray in the Create Calendar functions.*/
+    count=0;
+    var datesplus=new Date(year, month, day);
+    var deadlineDate;
+    var datesCull=datesplus.getTime();
+    var deadlinesCull;
+    var deadlineDateArray=[];
+    var grantNameArray=[];
+    while(count<deadCount){
+      deadlinesCull=deadlineDayArray[count].getTime();
+      if(datesCull<=deadlinesCull){
+        deadlineDate=new Date(deadlineDayArray[count]);
+        deadlineDateArray.push(deadlineDate);
+        grantNameArray.push(grantsNameArray[count]);
+      }
+      count++;
+    }
+
     var t=month;
     var u=year;
     var m;
@@ -569,6 +589,7 @@
       calendar+="</table>";
       return calendar;
     }
+
     //prints the calendar to the Steele div
     document.getElementById('Steele').innerHTML=createCalendar(findFirstDayOfMonth(day, week), day, m, year, deadlineDateArray, grantNameArray);
 
