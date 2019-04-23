@@ -208,7 +208,7 @@ if(!isset($_SESSION)) {
                 calendar+="<td class=\"calendar-deadline\"><span class=\"deadline-data-text\">";
                 calendar+=a;
                 calendar+="</span>";
-                calendar+=grantNameArray[regCount];
+                calendar+= "<i class='fas fa-exclamation-circle' style='color:#db6161b3'></i> " + grantNameArray[regCount];
                 calendar+=" is due";
                 deadlineCounter++;
               }
@@ -216,13 +216,13 @@ if(!isset($_SESSION)) {
                 calendar+="<td class=\"calendar-current-day-deadline\"><span class=\"current-deadline-data-text\">";
                 calendar+=a;
                 calendar+="</span>";
-                calendar+=grantNameArray[regCount];
+                calendar+="<i class='fas fa-exclamation-circle' style='color:#db6161b3'></i> " + grantNameArray[regCount];
                 calendar+=" is due";
                 deadlineCounter++;
               }
               else if(deadlineCounter>0){
                 calendar+=" ";
-                calendar+=grantNameArray[regCount];
+                calendar+="<i class='fas fa-exclamation-circle' style='color:#db6161b3'></i> " + grantNameArray[regCount];
                 calendar+=" is due";
               }
             }
@@ -262,7 +262,7 @@ if(!isset($_SESSION)) {
                 calendar+="<td class=\"calendar-deadline\"><span class=\"deadline-data-text\">";
                 calendar+=a;
                 calendar+="</span>";
-                calendar+=grantNameArray[regCount];
+                calendar+="<i class='fas fa-exclamation-circle' style='color:#db6161b3'></i> " + grantNameArray[regCount];
                 calendar+=" is due";
                 deadlineCounter++;
               }
@@ -270,13 +270,13 @@ if(!isset($_SESSION)) {
                 calendar+="<td class=\"calendar-current-day-deadline\"><span class=\"current-deadline-data-text\">";
                 calendar+=a;
                 calendar+="</span>";
-                calendar+=grantNameArray[regCount];
+                calendar+="<i class='fas fa-exclamation-circle' style='color:#db6161b3'></i> " + grantNameArray[regCount];
                 calendar+=" is due";
                 deadlineCounter++;
               }
               else if(deadlineCounter>0){
                 calendar+=" ";
-                calendar+=grantNameArray[regCount];
+                calendar+="<i class='fas fa-exclamation-circle' style='color:#db6161b3'></i> " + grantNameArray[regCount];
                 calendar+=" is due";
               }
             }
@@ -316,7 +316,7 @@ if(!isset($_SESSION)) {
                 calendar+="<td class=\"calendar-deadline\"><span class=\"deadline-data-text\">";
                 calendar+=a;
                 calendar+="</span>";
-                calendar+=grantNameArray[regCount];
+                calendar+="<i class='fas fa-exclamation-circle' style='color:#db6161b3'></i> " + grantNameArray[regCount];
                 calendar+=" is due";
                 deadlineCounter++;
               }
@@ -324,13 +324,13 @@ if(!isset($_SESSION)) {
                 calendar+="<td class=\"calendar-current-day-deadline\"><span class=\"current-deadline-data-text\">";
                 calendar+=a;
                 calendar+="</span>";
-                calendar+=grantNameArray[regCount];
+                calendar+="<i class='fas fa-exclamation-circle' style='color:#db6161b3'></i> " + grantNameArray[regCount];
                 calendar+=" is due";
                 deadlineCounter++;
               }
               else if(deadlineCounter>0){
                 calendar+=" ";
-                calendar+=grantNameArray[regCount];
+                calendar+="<i class='fas fa-exclamation-circle' style='color:#db6161b3'></i> " + grantNameArray[regCount];
                 calendar+=" is due";
               }
             }
@@ -370,7 +370,7 @@ if(!isset($_SESSION)) {
                 calendar+="<td class=\"calendar-deadline\"><span class=\"deadline-data-text\">";
                 calendar+=a;
                 calendar+="</span>";
-                calendar+=grantNameArray[regCount];
+                calendar+="<i class='fas fa-exclamation-circle' style='color:#db6161b3'></i> " + grantNameArray[regCount];
                 calendar+=" is due";
                 deadlineCounter++;
               }
@@ -378,13 +378,13 @@ if(!isset($_SESSION)) {
                 calendar+="<td class=\"calendar-current-day-deadline\"><span class=\"current-deadline-data-text\">";
                 calendar+=a;
                 calendar+="</span>";
-                calendar+=grantNameArray[regCount];
+                calendar+="<i class='fas fa-exclamation-circle' style='color:#db6161b3'></i> " + grantNameArray[regCount];
                 calendar+=" is due";
                 deadlineCounter++;
               }
               else if(deadlineCounter>0){
                 calendar+=" ";
-                calendar+=grantNameArray[regCount];
+                calendar+="<i class='fas fa-exclamation-circle' style='color:#db6161b3'></i> " + grantNameArray[regCount];
                 calendar+=" is due";
               }
             }
@@ -424,7 +424,7 @@ if(!isset($_SESSION)) {
                 calendar+="<td class=\"calendar-deadline\"><span class=\"deadline-data-text\">";
                 calendar+=a;
                 calendar+="</span>";
-                calendar+=grantNameArray[regCount];
+                calendar+="<i class='fas fa-exclamation-circle' style='color:#db6161b3'></i> " + grantNameArray[regCount];
                 calendar+=" is due";
                 deadlineCounter++;
               }
@@ -432,13 +432,13 @@ if(!isset($_SESSION)) {
                 calendar+="<td class=\"calendar-current-day-deadline\"><span class=\"current-deadline-data-text\">";
                 calendar+=a;
                 calendar+="</span>";
-                calendar+=grantNameArray[regCount];
+                calendar+="<i class='fas fa-exclamation-circle' style='color:#db6161b3'></i> " + grantNameArray[regCount];
                 calendar+=" is due";
                 deadlineCounter++;
               }
               else if(deadlineCounter>0){
                 calendar+=" ";
-                calendar+=grantNameArray[regCount];
+                calendar+="<i class='fas fa-exclamation-circle' style='color:#db6161b3'></i> " + grantNameArray[regCount];
                 calendar+=" is due";
               }
             }
@@ -528,7 +528,7 @@ if(!isset($_SESSION)) {
               calendar+="<td class=\"calendar-deadline\"><span class=\"deadline-data-text\">";
               calendar+=a;
               calendar+="</span>";
-              calendar+=grantNameArray[regCount];
+              calendar+="<i class='fas fa-exclamation-circle' style='color:#db6161b3'></i> " + grantNameArray[regCount];
               calendar+=" is due";
               deadlineCounter++;
             }
@@ -536,13 +536,13 @@ if(!isset($_SESSION)) {
               calendar+="<td class=\"calendar-current-day-deadline\"><span class=\"current-deadline-data-text\">";
               calendar+=a;
               calendar+="</span>";
-              calendar+=grantNameArray[regCount];
+              calendar+="<i class='fas fa-exclamation-circle' style='color:#db6161b3'></i> " + grantNameArray[regCount];
               calendar+=" is due";
               deadlineCounter++;
             }
             else if(deadlineCounter>0){
               calendar+=" ";
-              calendar+=grantNameArray[regCount];
+              calendar+="<i class='fas fa-exclamation-circle' style='color:#db6161b3'></i> " + grantNameArray[regCount];
               calendar+=" is due";
             }
           }
@@ -638,13 +638,13 @@ if(!isset($_SESSION)) {
                 calendar+="<td class=\"calendar-deadline\"><span class=\"deadline-data-text\">";
                 calendar+=a;
                 calendar+="</span>";
-                calendar+=grantNameArray[regCount];
+                calendar+="<i class='fas fa-exclamation-circle' style='color:#db6161b3'></i> " + grantNameArray[regCount];
                 calendar+=" is due";
                 deadlineCounter++;
               }
               else if(deadlineCounter>0){
                 calendar+=" ";
-                calendar+=grantNameArray[regCount];
+                calendar+="<i class='fas fa-exclamation-circle' style='color:#db6161b3'></i> " + grantNameArray[regCount];
                 calendar+=" is due";
               }
             }
@@ -675,13 +675,13 @@ if(!isset($_SESSION)) {
                 calendar+="<td class=\"calendar-deadline\"><span class=\"deadline-data-text\">";
                 calendar+=a;
                 calendar+="</span>";
-                calendar+=grantNameArray[regCount];
+                calendar+="<i class='fas fa-exclamation-circle' style='color:#db6161b3'></i> " + grantNameArray[regCount];
                 calendar+=" is due";
                 deadlineCounter++;
               }
               else if(deadlineCounter>0){
                 calendar+=" ";
-                calendar+=grantNameArray[regCount];
+                calendar+="<i class='fas fa-exclamation-circle' style='color:#db6161b3'></i> " + grantNameArray[regCount];
                 calendar+=" is due";
               }
             }
@@ -712,13 +712,13 @@ if(!isset($_SESSION)) {
                 calendar+="<td class=\"calendar-deadline\"><span class=\"deadline-data-text\">";
                 calendar+=a;
                 calendar+="</span>";
-                calendar+=grantNameArray[regCount];
+                calendar+="<i class='fas fa-exclamation-circle' style='color:#db6161b3'></i> " + grantNameArray[regCount];
                 calendar+=" is due";
                 deadlineCounter++;
               }
               else if(deadlineCounter>0){
                 calendar+=" ";
-                calendar+=grantNameArray[regCount];
+                calendar+="<i class='fas fa-exclamation-circle' style='color:#db6161b3'></i> " + grantNameArray[regCount];
                 calendar+=" is due";
               }
             }
@@ -749,13 +749,13 @@ if(!isset($_SESSION)) {
                 calendar+="<td class=\"calendar-deadline\"><span class=\"deadline-data-text\">";
                 calendar+=a;
                 calendar+="</span>";
-                calendar+=grantNameArray[regCount];
+                calendar+="<i class='fas fa-exclamation-circle' style='color:#db6161b3'></i> " + grantNameArray[regCount];
                 calendar+=" is due";
                 deadlineCounter++;
               }
               else if(deadlineCounter>0){
                 calendar+=" ";
-                calendar+=grantNameArray[regCount];
+                calendar+="<i class='fas fa-exclamation-circle' style='color:#db6161b3'></i> " + grantNameArray[regCount];
                 calendar+=" is due";
               }
             }
@@ -786,13 +786,13 @@ if(!isset($_SESSION)) {
                 calendar+="<td class=\"calendar-deadline\"><span class=\"deadline-data-text\">";
                 calendar+=a;
                 calendar+="</span>";
-                calendar+=grantNameArray[regCount];
+                calendar+="<i class='fas fa-exclamation-circle' style='color:#db6161b3'></i> " + grantNameArray[regCount];
                 calendar+=" is due";
                 deadlineCounter++;
               }
               else if(deadlineCounter>0){
                 calendar+=" ";
-                calendar+=grantNameArray[regCount];
+                calendar+="<i class='fas fa-exclamation-circle' style='color:#db6161b3'></i> " + grantNameArray[regCount];
                 calendar+=" is due";
               }
             }
@@ -823,13 +823,13 @@ if(!isset($_SESSION)) {
                 calendar+="<td class=\"calendar-deadline\"><span class=\"deadline-data-text\">";
                 calendar+=a;
                 calendar+="</span>";
-                calendar+=grantNameArray[regCount];
+                calendar+="<i class='fas fa-exclamation-circle' style='color:#db6161b3'></i> " + grantNameArray[regCount];
                 calendar+=" is due";
                 deadlineCounter++;
               }
               else if(deadlineCounter>0){
                 calendar+=" ";
-                calendar+=grantNameArray[regCount];
+                calendar+="<i class='fas fa-exclamation-circle' style='color:#db6161b3'></i> " + grantNameArray[regCount];
                 calendar+=" is due";
               }
             }
@@ -911,13 +911,13 @@ if(!isset($_SESSION)) {
               calendar+="<td class=\"calendar-deadline\"><span class=\"deadline-data-text\">";
               calendar+=a;
               calendar+="</span>";
-              calendar+=grantNameArray[regCount];
+              calendar+="<i class='fas fa-exclamation-circle' style='color:#db6161b3'></i> " + grantNameArray[regCount];
               calendar+=" is due";
               deadlineCounter++;
             }
             else if(deadlineCounter>0){
               calendar+=" ";
-              calendar+=grantNameArray[regCount];
+              calendar+="<i class='fas fa-exclamation-circle' style='color:#db6161b3'></i> " + grantNameArray[regCount];
               calendar+=" is due";
             }
           }
