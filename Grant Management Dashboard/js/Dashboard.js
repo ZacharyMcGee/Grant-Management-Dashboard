@@ -1454,7 +1454,7 @@ function spendingExpenseAnalyizer(id, jsondata) {
     var tStart = "<table><tr><th>#</th><th>Amount</th><th>Transaction</th></th></tr>";
     var tMiddle = "";
     for(var i = 0; i < 12; i++) {
-      tMiddle += "<tr><td>" + i + "</td><td>" + moneyFormat(dataArray[i][1]) + "</td><td>" + dataArray[i][0] + "</td></tr>";
+      tMiddle += "<tr><td>" + (i + 1) + "</td><td>" + moneyFormat(dataArray[i][1]) + "</td><td>" + dataArray[i][0] + "</td></tr>";
     }
     var tEnd = "</table>";
     var fullTable = tStart + tMiddle + tEnd;
