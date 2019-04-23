@@ -147,8 +147,9 @@ $("#calendar").click(function(){
 /////////////////////////////////////
 
 $("#notifications-print").click(function(){
+  openDropdown('notification-dropdown');
     $.ajax({url: "includes/tasks/notifications-system.php", success: function(result){
-        $("#content").html(result);
+        $("#notifications").html(result);
     }});
 });
 

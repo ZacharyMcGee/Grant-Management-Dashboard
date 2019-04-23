@@ -218,6 +218,44 @@ body {
     background-color: #f3f3f3;
 }
 
+.notification-header {
+background-color: #263544;
+}
+
+.notification-header p {
+    margin: 0px;
+    padding: 0px;
+    padding-left: 5px;
+    font-size: 14px;
+}
+
+.notification-dropdown {
+  font-size: 12px;
+  display: none;
+  top: 50px;
+  position: absolute;
+  color: #f3f3f3;
+  background-color: #303f4e;
+  min-width: 360px;
+  max-width: 360px;
+  -webkit-box-shadow: 0px 0px 1px 0px rgba(87,87,87,0.19);
+  -moz-box-shadow: 0px 0px 1px 0px rgba(87,87,87,0.19);
+  box-shadow: 0px 0px 1px 0px rgba(87,87,87,0.19);
+  z-index: 1;
+  border: 1px solid #263544;
+  min-height: 50px;
+  right: 350px;
+  border-radius: 3px;
+}
+
+.notification-icon {
+  float: left;
+  height: 25px;
+  width: 25px;
+  padding-left: 5px;
+  padding-top: 9px;
+}
+
 .show-dropdown {
   display: block;
 }
@@ -518,6 +556,24 @@ body {
 
 .topExpenses tr:not(:first-child):hover {
   background-color: #edf5ff;
+  cursor: pointer;
+}
+
+.notification-table {
+
+}
+
+.notification-table table {
+
+}
+
+.notification-table td {
+  border-bottom: 1px solid #263544;
+  padding-bottom: 5px;
+}
+
+.notification-table td:hover {
+  background-color: #76899c;
   cursor: pointer;
 }
 

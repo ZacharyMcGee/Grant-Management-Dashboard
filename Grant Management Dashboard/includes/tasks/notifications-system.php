@@ -303,7 +303,7 @@ function datePrefix(day){
   var year;
   var deadlineday;
   var newday;
-  notification="<table>";
+  notification="<table class='notification-table'>";
   //places the deadlines into a table for printing as notifications
   while(count<deadCount){
     day=orderedDateNotification[count].getDate();
@@ -311,15 +311,15 @@ function datePrefix(day){
     month=nameMonth(orderedDateNotification[count].getMonth());
     year=orderedDateNotification[count].getFullYear();
     notification+="<tr><td>";
-    notification+=orderedNameNotification[count];
-    notification+="\'s annual report is due on ";
+    notification+= "<div class='notification-icon'><i class='fas fa-exclamation-circle fa-lg'></i></div><b>" + orderedNameNotification[count] + "</b>";
+    notification+="\'s annual report is due on <b><u>";
     notification+=month;
     notification+=" ";
     notification+=day;
     notification+=prefix;
     notification+=", ";
     notification+=year;
-    notification+=" (";
+    notification+="</u></b> (";
     if(currmonth===month){
       deadlineday=(day-currday);
       switch(deadlineday){
@@ -501,7 +501,8 @@ function datePrefix(day){
   notification+="</table>";
 
   //prints the notification table with both the deadline notifications and update grant reminders as an alert
-  showAlert("alert", notification);
+  $("#notifications").html(notification);
+
 </script>
   </body>
 </html>
