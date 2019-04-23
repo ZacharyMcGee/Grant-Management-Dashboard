@@ -21,12 +21,12 @@
   $creationArray=array();
   while($count<sizeof($idArray)){
     $id=$idArray[$count];
-    $sql="SELECT name,creation_date FROM `grants` WHERE `userid` = '$userId' AND `id` = '$id'";
+    $sql="SELECT name,last_update FROM `grants` WHERE `userid` = '$userId' AND `id` = '$id'";
     $result = $con->query($sql);
     if ($result->num_rows > 0) {
         while($row = $result->fetch_assoc()) {
           $nameArray[]=$row["name"];
-          $creationArray[]=$row["creation_date"];
+          $creationArray[]=$row["last_update"];
         }
     }
     $count++;
