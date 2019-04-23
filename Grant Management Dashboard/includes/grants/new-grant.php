@@ -144,6 +144,10 @@ $("#cancel-new-grant").click(function(){
   }});
 });
 
+$(function() {
+  $("#notification-deadline").datepicker({ dateFormat: 'yy-mm-dd' });
+});
+
 function validateNewGrantForm(){
   var grantNameForm = document.getElementById('input-title');
   var budgetPurposeForm = document.getElementById('input-bp');

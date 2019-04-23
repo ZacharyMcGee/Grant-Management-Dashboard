@@ -118,6 +118,10 @@ require_once '../../config.php';
 </body>
 
 <script>
+$(function() {
+  $("#notification-deadline").datepicker({ dateFormat: 'yy-mm-dd' });
+});
+
   $("#save-edited-grant").click(function(){
     if(validateNewGrantForm()){
       console.log(sessionStorage.getItem("result"));
