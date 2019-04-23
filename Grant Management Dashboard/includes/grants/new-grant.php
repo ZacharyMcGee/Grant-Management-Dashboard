@@ -107,14 +107,14 @@ function createGrant(){
     //JSON.parse(sessionStorage.getItem("result"));
 
     var deadlineNot=document.getElementById('notification-deadline').value;
-    var emailDeadline;
-    if(document.getElementById('yeemail').checked){
+    var emailDeadline=0;
+    /*if(document.getElementById('yeemail').checked){
       emailDeadline=document.getElementById('yeemail').value;
     }
     else{
       emailDeadline=document.getElementById('noemail').value;
-    }
-    console.log(sessionStorage.getItem("result"));
+    }*/
+    //console.log(sessionStorage.getItem("result"));
     $.ajax({
         url: "functions/save-notification.php",
         type: "post",
@@ -160,20 +160,20 @@ function validateNewGrantForm(){
     return false;
   }
   else if (deadlineForm!=="") {
-    var pattern=new RegExp('^([0-9]{4}\/((0[1-9]){1}|(1[0-2]){1})\/((0[1-9]){1}|([1-2][0-9]){1}|(3[0-1]){1}))$');
+    var pattern=new RegExp('^([0-9]{4}-((0[1-9]){1}|(1[0-2]){1})-((0[1-9]){1}|([1-2][0-9]){1}|(3[0-1]){1}))$');
     var patterntest=pattern.test(deadlineForm);
     if(patterntest==false){
-      showAlert("error", "Please input deadline as \"YYYY/MM/DD\"!");
+      showAlert("error", "Please input deadline as \"YYYY-MM-DD\"!");
       return false;
     }
-    var replaceMonth=deadlineForm.split("/");
+    var replaceMonth=deadlineForm.split("-");
     if(replaceMonth[1]==='02'){
       var febPattern;
       if(isLeapYear(replaceMonth[0])){
-        febPattern=new RegExp('^([0-9]{4}\/(02)\/((0[1-9]){1}|(1[0-9]){1}|(2[0-9]{1})))$');
+        febPattern=new RegExp('^([0-9]{4}-(02)-((0[1-9]){1}|(1[0-9]){1}|(2[0-9]{1})))$');
       }
       else{
-        febPattern=new RegExp('^([0-9]{4}\/(02)\/((0[1-9]){1}|(1[0-9]){1}|(2[0-8]{1})))$');
+        febPattern=new RegExp('^([0-9]{4}-(02)-((0[1-9]){1}|(1[0-9]){1}|(2[0-8]{1})))$');
       }
       var febPatternTest=febPattern.test(deadlineForm);
       if(febPatternTest==false){
@@ -182,7 +182,7 @@ function validateNewGrantForm(){
       }
     }
     if(replaceMonth[1]==='04'||replaceMonth[1]==='06'||replaceMonth[1]==='09'||replaceMonth[1]==='11'){
-      var thirtyPattern=new RegExp('^([0-9]{4}\/((04){1}|(06){1}|(09){1}|(11){1})\/((0[1-9]){1}|([1-2][0-9]){1}|(30){1}))$');
+      var thirtyPattern=new RegExp('^([0-9]{4}-((04){1}|(06){1}|(09){1}|(11){1})-((0[1-9]){1}|([1-2][0-9]){1}|(30){1}))$');
       var thirtyPatternTest=thirtyPattern.test(deadlineForm);
       if(thirtyPatternTest==false){
         showAlert("error", "Incorrect input for April, June, September, or November. Please input date from 01-30!");
@@ -290,16 +290,16 @@ function validateNewGrantForm(){
     <p>Annual Report Deadline</p><span class="small-tip">(optional)</span>
     <div class="input-grant-input-container">
       <i class="fas fa-calendar-times fa-lg fa-fw" aria-hidden="true"></i>
-      <input type="text" id="notification-deadline" class="input-text" placeholder="YYYY/MM/DD">
+      <input type="text" id="notification-deadline" class="input-text" placeholder="YYYY-MM-DD">
     </div>
   </div>
-  <div class="input-email-notifications">
+  <!--<div class="input-email-notifications">
     <p>Email Notifications</p>
     <div class="input-grant-input-container">
       <input type="radio" id="yeemail" name="email" value="1">Yes
       <input type="radio" id="noemail" name="email" value="0" checked>No
     </div>
-  </div>
+  </div>-->
 </div>
 </div>
 </div>
