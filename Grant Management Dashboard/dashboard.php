@@ -79,7 +79,7 @@ if ($result->num_rows > 0) {
     <div class="header-img">
     </div>
     <div class="expand-button">
-      <i class="fas fa-expand" style="color: #263544;" onClick="loadExcel()"></i>
+      <i class="fas fa-expand" style="color: #263544;" onClick="openFullscreen()"></i>
     </div>
     <div class="search-bar">
 			<form id="search-bar-form" style="text-align:right;">
@@ -91,11 +91,11 @@ if ($result->num_rows > 0) {
     </div>
     <div class="header-account-info">
     <div class="header-menu-buttons">
-      <i class="fas fa-bell fa-lg" id="notifications-print" style="color: #263544; margin-right:10px;"></i>
-      <i class="fas fa-question-circle fa-lg" style="color: #263544;"></i>
+      <i class="fas fa-bell" id="notifications-print" style="color: #263544; margin-right:10px;"></i>
+      <i class="fas fa-question-circle" style="color: #263544;"></i>
     </div>
     <div class="header-account-username">
-      <i class="fas fa-user fa-lg" style="color: #263544;"></i><?php echo "<a href='account.php'>" . $username . "</a>"?>
+      <i class="fas fa-user" style="color: #263544;"></i><?php echo "<a href='account.php'>" . $username . "</a>"?>
     </div>
      <i class="fas fa-caret-down fa-sm" onclick="openDropdown('account-dropdown')" style="color: #263544; margin-top: 4px; cursor: pointer;"></i>
       <div class="account-dropdown" id="account-dropdown">
@@ -108,7 +108,7 @@ if ($result->num_rows > 0) {
     <div class="header-menu-bar">
       <ul>
         <li><a href="#" id="button1">Home</a></li>
-        <li><a href="#" onClick="scrollToSection('#description')">Link</a></li>
+        <li><a href="#" onClick="scrollToSection('#description')">New Grant</a></li>
         <li><a href="#" onClick="scrollToSection('#definition')">Link</a></li>
         <li><a href="#" onClick="scrollToSection('#design')">Link</a></li>
       </ul>
