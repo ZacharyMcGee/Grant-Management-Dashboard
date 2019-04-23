@@ -188,5 +188,14 @@ $con->close();
 			<i class="fas fa-calendar-alt" style="color:#7d7d7d;"></i><span class="parent-link">Calendar</span>
 		</div>
 	</div>
-	<?php include_once('includes/tasks/calendar.php'); ?>
+	<?php
+	if(file_exists('includes/tasks/calendar.php')) {
+		include_once('includes/tasks/calendar.php');
+	}
+	else
+	{
+		include_once('../../includes/tasks/calendar.php');
+		echo getcwd();
+	}
+	?>
 </div>
