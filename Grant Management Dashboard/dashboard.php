@@ -80,7 +80,7 @@ if ($result->num_rows > 0) {
     <div class="header-img">
     </div>
     <div class="expand-button">
-      <i class="fas fa-expand" style="color: #263544;" onClick="openFullscreen()"></i>
+      <i class="fas fa-expand" style="color: #797979;" onClick="openFullscreen()"></i>
     </div>
     <div class="search-bar">
 			<form id="search-bar-form" style="text-align:right;">
@@ -104,7 +104,7 @@ if ($result->num_rows > 0) {
       <i class="fas fa-question-circle"></i>
     </div>
     <div class="header-account-username">
-      <i class="fas fa-user" style="color: #263544;"></i><?php echo "<a href='#' onClick='openProfile()'>" . $username . "</a>"?>
+      <i class="fas fa-user" style="color: #797979;"></i><?php echo "<a href='#' onClick='openProfile()'>" . $username . "</a>"?>
     </div>
      <i class="fas fa-caret-down fa-sm" onclick="openDropdown('account-dropdown')" style="color: #263544; margin-top: 4px; cursor: pointer;"></i>
       <div class="account-dropdown" id="account-dropdown">
