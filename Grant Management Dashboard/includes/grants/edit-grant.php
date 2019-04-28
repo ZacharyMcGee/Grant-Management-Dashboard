@@ -97,7 +97,7 @@ require_once '../../config.php';
       <p>Annual Report Deadline</p><span class="small-tip">(optional)</span>
       <div class="input-grant-input-container">
         <i class="fas fa-calendar-times fa-lg fa-fw" aria-hidden="true"></i>
-        <input type="text" id="notification-deadline" class="input-text" placeholder="YYYY-MM-DD" value="<?php echo $deadline ?>">
+        <input type="text" id="notification-deadline" class="input-text" placeholder="YYYY-MM-DD" value="<?php if($deadline=="0000-00-00"){echo "";}else{echo $deadline;} ?>">
       </div>
     </div>
     <!--<div class="input-email-notifications">
