@@ -14,9 +14,9 @@ $email_not = $_POST['email'];
 $sql = "UPDATE notifications SET email='$email_not', deadline='$deadline' WHERE id=" . $_SESSION['current_grant'];
 
 if ($con->query($sql) === TRUE) {
-    echo "Successfuly edited grant and notification!";
+    echo "Successfuly updated grant!";
 } else {
-    echo "Error editing record: " . $con->error;
+    echo "Error updating record: " . $con->error;
 }
 
 ?>
