@@ -247,7 +247,7 @@ body {
 }
 
 .notification-header {
-background-color: #797979;
+background-color: #6d1010;
 }
 
 .notification-header p {
@@ -263,7 +263,7 @@ background-color: #797979;
   top: 50px;
   position: absolute;
   color: #f3f3f3;
-  background-color: #303f4e;
+  background-color: #821e1e;
   min-width: 360px;
   max-width: 360px;
   -webkit-box-shadow: 0px 0px 1px 0px rgba(87,87,87,0.19);
@@ -1081,7 +1081,7 @@ background-color: #797979;
 
 .input-grant-input-container i {
   padding: 10px;
-  background: #6c7d8f;
+  background: #902e2e;
   color: white;
   min-width: 20px;
   text-align: center;
@@ -1172,9 +1172,9 @@ background-color: #797979;
 
 .input-text:focus {
   box-shadow: 0 0 1px #1e90ff;
-  border-top: 1px solid #6c7d8f;
-  border-bottom: 1px solid #6c7d8f;
-  border-right: 1px solid #6c7d8f;
+  border-top: 1px solid #902e2e;
+  border-bottom: 1px solid ##902e2e;
+  border-right: 1px solid #902e2e;
   border-left: none;
   background-color: white;
   transition: all .3s;
